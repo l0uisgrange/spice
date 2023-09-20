@@ -9,51 +9,67 @@ import SwiftUI
 import SwiftData
 
 struct ContentView: View {
-    @Environment(\.modelContext) private var modelContext
-    @Query private var items: [Item]
-
+    var file: String = "few"
+    @State var zoom: CGFloat = 1.0
     var body: some View {
-        NavigationSplitView {
-            List {
-                ForEach(items) { item in
-                    NavigationLink {
-                        Text("Item at \(item.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))")
-                    } label: {
-                        Text(item.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))
+        if file == "" {
+            ContentUnavailableView("No file selected", systemImage: "folder", description: Text("Please open a compatible file."))
+                .toolbar {
+                    ToolbarItem {
+                        Button {
+                            
+                        } label: {
+                            Label("Add Item", systemImage: "play.circle.fill")
+                        }
                     }
                 }
-                .onDelete(perform: deleteItems)
+        } else {
+            GeometryReader { geometry in
+                Canvas { context, size in
+                    let windowWidth = geometry.frame(in: .global).width
+                    let windowHeight = geometry.frame(in: .global).height
+                    context.scaleBy(x: zoom, y: zoom)
+                    context.translateBy(x: windowWidth / 2, y: windowHeight / 2)
+                    context.stroke(
+                        Path() { path in
+                            path.move(to: CGPoint(x: 0, y: 0))
+                            path.addLine(to: CGPoint(x: 200, y: -200))
+                            path.addLine(to: CGPoint(x: -200, y: -200))
+                            path.addLine(to: CGPoint(x: 200, y: 200))
+                        },
+                        with: .color(.blue),
+                        lineWidth: 2)
+                }
             }
-            .navigationSplitViewColumnWidth(min: 180, ideal: 200)
             .toolbar {
+                ToolbarItemGroup {
+                    Button {
+                        if(zoom > 0.5) {
+                            zoom -= 0.5
+                        }
+                    } label: {
+                        Label("Add Item", systemImage: "minus.magnifyingglass")
+                    }
+                    Button {
+                        if(zoom < 2) {
+                            zoom += 0.5
+                        }
+                    } label: {
+                        Label("Add Item", systemImage: "plus.magnifyingglass")
+                    }
+                }
                 ToolbarItem {
-                    Button(action: addItem) {
-                        Label("Add Item", systemImage: "plus")
+                    Spacer()
+                }
+                ToolbarItem {
+                    Button {
+                        
+                    } label: {
+                        Label("Add Item", systemImage: "play.circle")
                     }
                 }
             }
-        } detail: {
-            Text("Select an item")
+            .edgesIgnoringSafeArea(.all)
         }
     }
-
-    private func addItem() {
-        withAnimation {
-            let newItem = Item(timestamp: Date())
-            modelContext.insert(newItem)
-        }
-    }
-
-    private func deleteItems(offsets: IndexSet) {
-        withAnimation {
-            for index in offsets {
-                modelContext.delete(items[index])
-            }
-        }
-    }
-}
-
-#Preview {
-    ContentView()
-        .modelContainer(for: Item.self, inMemory: true)
 }
