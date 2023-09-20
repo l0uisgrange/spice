@@ -28,8 +28,8 @@ struct ContentView: View {
                 Canvas { context, size in
                     let windowWidth = geometry.frame(in: .global).width
                     let windowHeight = geometry.frame(in: .global).height
+                    context.translateBy(x: windowWidth/2.0, y: windowHeight / 2)
                     context.scaleBy(x: zoom, y: zoom)
-                    context.translateBy(x: windowWidth / 2, y: windowHeight / 2)
                     context.stroke(
                         Path() { path in
                             path.move(to: CGPoint(x: 0, y: 0))
