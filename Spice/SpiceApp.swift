@@ -10,10 +10,12 @@ import SwiftData
 
 @main
 struct SpiceApp: App {
+    @AppStorage("symbolsStyle") private var symbolsStyle = 0
     @State private var fileImporter: Bool = false
     @State private var configuration: Bool = true
     @State private var showingAlert: Bool = false
     @State var lines: [Line] = []
+    @State var hover: Bool = false
     var body: some Scene {
         WindowGroup {
             ContentView(lines: $lines)
@@ -39,7 +41,10 @@ struct SpiceApp: App {
                             .fontWeight(.semibold)
                          Text("ONBOARDING_MESSAGE")
                             .font(.title3)
-                            .foregroundStyle(.gray)
+                        HStack(spacing: 20) {
+                            AppearanceView(styleId: 0, styleName: "EU_STYLE")
+                            AppearanceView(styleId: 1, styleName: "US_STYLE")
+                        }.padding(.top, 20)
                         Button {
                             self.configuration.toggle();
                         } label: {
@@ -49,14 +54,42 @@ struct SpiceApp: App {
                         .padding(.top, 30)
                     }.padding(40)
                 }
+                .onHover { isHovered in
+                    self.hover = isHovered
+                    DispatchQueue.main.async {
+                        if(self.hover) {
+                            NSCursor.openHand.push()
+                        } else {
+                            NSCursor.pop()
+                        }
+                    }
+                }
         }.commands {
             CommandGroup(after: CommandGroupPlacement.newItem) {
-                Button("Save") {
+                Button("MENU_SAVE") {
                     print("Saved!")
                 }.keyboardShortcut("S")
-                Button("Open") {
+                Button("MENU_OPEN") {
                     fileImporter.toggle()
                 }.keyboardShortcut("O")
+            }
+            CommandGroup(replacing: .appInfo) {
+                Button("MENU_ABOUT") {
+                    NSApplication.shared.orderFrontStandardAboutPanel(
+                        options: [
+                            NSApplication.AboutPanelOptionKey.credits: NSAttributedString(
+                                string: "OPEN_SOURCE_NOTICE",
+                                attributes: [
+                                    NSAttributedString.Key.font: NSFont.boldSystemFont(
+                                        ofSize: NSFont.smallSystemFontSize)
+                                ]
+                            ),
+                            NSApplication.AboutPanelOptionKey(
+                                rawValue: "Copyright"
+                            ): "MADE_BY"
+                        ]
+                    )
+                }
             }
         }
     }
@@ -90,6 +123,60 @@ struct SpiceApp: App {
         } catch let error {
             showingAlert.toggle()
             print(error)
+        }
+    }
+}
+
+struct AppearanceView: View {
+    @AppStorage("symbolsStyle") private var symbolsStyle = 0
+    var styleId: Int
+    var styleName: String
+    var body: some View {
+        VStack(alignment: .center) {
+            ZStack {
+                Canvas { context, size in
+                    context.translateBy(x: 75, y: 50)
+                    if styleId == 1 {
+                        context.stroke(
+                            Path() { path in
+                                path.move(to: CGPoint(x: -75, y: 0))
+                                path.addLine(to: CGPoint(x: -30, y: 0))
+                                path.addLine(to: CGPoint(x: -25, y: 13))
+                                path.addLine(to: CGPoint(x: -15, y: -13))
+                                path.addLine(to: CGPoint(x: -5, y: 13))
+                                path.addLine(to: CGPoint(x: 5, y: -13))
+                                path.addLine(to: CGPoint(x: 15, y: 13))
+                                path.addLine(to: CGPoint(x: 25, y: -13))
+                                path.addLine(to: CGPoint(x: 30, y: 0))
+                                path.addLine(to: CGPoint(x: 75, y: 0))
+                            },
+                            with: .color(.primary),
+                            lineWidth: 1.35)
+                    } else {
+                        context.stroke(
+                            Path() { path in
+                                path.move(to: CGPoint(x: -75, y: 0))
+                                path.addLine(to: CGPoint(x: -30, y: 0))
+                                path.addLine(to: CGPoint(x: -30, y: 13))
+                                path.addLine(to: CGPoint(x: 30, y: 13))
+                                path.addLine(to: CGPoint(x: 30, y: -13))
+                                path.addLine(to: CGPoint(x: -30, y: -13))
+                                path.addLine(to: CGPoint(x: -30, y: 0))
+                                path.move(to: CGPoint(x: 30, y: 0))
+                                path.addLine(to: CGPoint(x: 75, y: 0))
+                            },
+                            with: .color(.primary),
+                            lineWidth: 1.35)
+                    }
+                }.frame(width: 150, height: 100)
+                .clipShape(RoundedRectangle(cornerRadius: 10))
+                .overlay(
+                    RoundedRectangle(cornerRadius: 10)
+                        .stroke(symbolsStyle == styleId ? .blue : .secondary.opacity(0.5), lineWidth: symbolsStyle == styleId ? 2 : 0.5)
+                )
+            }.padding(.top, 5)
+        }.onTapGesture {
+            symbolsStyle = styleId
         }
     }
 }

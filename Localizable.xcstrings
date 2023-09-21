@@ -1,8 +1,16 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
-    "Add Item" : {
-
+    "EU_STYLE" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Européen"
+          }
+        }
+      }
     },
     "FILE_ERROR_BUTTON" : {
       "localizations" : {
@@ -34,12 +42,63 @@
         }
       }
     },
-    "No file selected" : {
+    "MADE_BY" : {
+      "extractionState" : "manual",
       "localizations" : {
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Aucun fichier ouvert"
+            "value" : "Conçu par Louis Grange"
+          }
+        }
+      }
+    },
+    "MENU_ABOUT" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "À propos de Spice"
+          }
+        }
+      }
+    },
+    "MENU_OPEN" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ouvrir"
+          }
+        }
+      }
+    },
+    "MENU_SAVE" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sauvegarder"
+          }
+        }
+      }
+    },
+    "NO_FILE_SELECTED" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aucun fichier sélectionné"
+          }
+        }
+      }
+    },
+    "NO_FILE_SELECTED_MESSAGE" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ouvrez un fichier rapidement avec ⌘O"
           }
         }
       }
@@ -74,27 +133,18 @@
         }
       }
     },
-    "Open" : {
+    "OPEN_SOURCE_NOTICE" : {
+      "extractionState" : "manual",
       "localizations" : {
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ouvrir"
+            "value" : "Cette application est distribuée en open-source et gratuitement"
           }
         }
       }
     },
-    "Please open a compatible file." : {
-      "localizations" : {
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ouvrez un fichier compatible"
-          }
-        }
-      }
-    },
-    "Run" : {
+    "RUN" : {
       "localizations" : {
         "fr" : {
           "stringUnit" : {
@@ -104,17 +154,18 @@
         }
       }
     },
-    "Save" : {
+    "US_STYLE" : {
+      "extractionState" : "manual",
       "localizations" : {
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sauvegarder"
+            "value" : "Américain"
           }
         }
       }
     },
-    "Zoom in" : {
+    "ZOOM_IN" : {
       "localizations" : {
         "fr" : {
           "stringUnit" : {
@@ -124,7 +175,7 @@
         }
       }
     },
-    "Zoom out" : {
+    "ZOOM_OUT" : {
       "localizations" : {
         "fr" : {
           "stringUnit" : {

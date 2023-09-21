@@ -9,39 +9,52 @@ import SwiftUI
 import SwiftData
 
 struct ContentView: View {
-    var file: String = "few"
     @Binding var lines: [Line]
     @State var zoom: CGFloat = 1.0
     var body: some View {
-        if file == "" {
-            ContentUnavailableView("No file selected", systemImage: "folder", description: Text("Please open a compatible file."))
+        if lines.count == 0 {
+            ContentUnavailableView("NO_FILE_SELECTED", systemImage: "folder", description: Text("NO_FILE_SELECTED_MESSAGE"))
+                .navigationSubtitle("NO_FILE_SELECTED")
                 .toolbar {
+                    ToolbarItemGroup {
+                        Button {
+                        } label: {
+                            Label("ZOOM_OUT", systemImage: "minus.magnifyingglass")
+                        }.disabled(true)
+                        Button {
+                        } label: {
+                            Label("ZOOM_IN", systemImage: "plus.magnifyingglass")
+                        }.disabled(true)
+                    }
                     ToolbarItem {
                         Button {
                             
                         } label: {
-                            Label("Add Item", systemImage: "play.circle.fill")
-                        }
+                            Label("RUN", systemImage: "play.circle")
+                        }.disabled(true)
                     }
                 }
         } else {
             GeometryReader { geometry in
-                Canvas { context, size in
-                    let windowWidth = geometry.frame(in: .global).width
-                    let windowHeight = geometry.frame(in: .global).height
-                    context.translateBy(x: windowWidth/2.0, y: windowHeight / 2)
-                    context.scaleBy(x: zoom, y: zoom)
-                    context.stroke(
-                        Path() { path in
-                            for line in lines {
-                                path.move(to: CGPoint(x: line.points.first?.x ?? 0, y: line.points.first?.y ?? 0))
-                                for point in line.points {
-                                    path.addLine(to: CGPoint(x: point.x, y: point.y))
+                VStack {
+                    Divider()
+                    Canvas { context, size in
+                        let windowWidth = geometry.frame(in: .global).width
+                        let windowHeight = geometry.frame(in: .global).height
+                        context.translateBy(x: windowWidth/2.0, y: windowHeight / 2)
+                        context.scaleBy(x: zoom, y: zoom)
+                        context.stroke(
+                            Path() { path in
+                                for line in lines {
+                                    path.move(to: CGPoint(x: line.points.first?.x ?? 0, y: line.points.first?.y ?? 0))
+                                    for point in line.points {
+                                        path.addLine(to: CGPoint(x: point.x, y: point.y))
+                                    }
                                 }
-                            }
-                        },
-                        with: .color(.black),
-                        lineWidth: 1.5)
+                            },
+                            with: .color(.black),
+                            lineWidth: 1.35*zoom)
+                    }
                 }
             }
             .toolbar {
@@ -51,14 +64,14 @@ struct ContentView: View {
                             zoom -= 0.5
                         }
                     } label: {
-                        Label("Zoom out", systemImage: "minus.magnifyingglass")
+                        Label("ZOOM_OUT", systemImage: "minus.magnifyingglass")
                     }
                     Button {
                         if(zoom < 2) {
                             zoom += 0.5
                         }
                     } label: {
-                        Label("Zoom in", systemImage: "plus.magnifyingglass")
+                        Label("ZOOM_IN", systemImage: "plus.magnifyingglass")
                     }
                 }
                 ToolbarItem {
@@ -68,7 +81,7 @@ struct ContentView: View {
                     Button {
                         
                     } label: {
-                        Label("Run", systemImage: "play.circle")
+                        Label("RUN", systemImage: "play.circle")
                     }
                 }
             }

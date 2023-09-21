@@ -13,5 +13,6 @@ struct Point {
 }
 
 struct Line {
+    
     let points: [Point]
 }
