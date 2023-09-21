@@ -10,6 +10,7 @@ import SwiftData
 
 struct ContentView: View {
     var file: String = "few"
+    @Binding var lines: [Line]
     @State var zoom: CGFloat = 1.0
     var body: some View {
         if file == "" {
@@ -32,13 +33,15 @@ struct ContentView: View {
                     context.scaleBy(x: zoom, y: zoom)
                     context.stroke(
                         Path() { path in
-                            path.move(to: CGPoint(x: 0, y: 0))
-                            path.addLine(to: CGPoint(x: 200, y: -200))
-                            path.addLine(to: CGPoint(x: -200, y: -200))
-                            path.addLine(to: CGPoint(x: 200, y: 200))
+                            for line in lines {
+                                path.move(to: CGPoint(x: line.points.first?.x ?? 0, y: line.points.first?.y ?? 0))
+                                for point in line.points {
+                                    path.addLine(to: CGPoint(x: point.x, y: point.y))
+                                }
+                            }
                         },
-                        with: .color(.blue),
-                        lineWidth: 2)
+                        with: .color(.black),
+                        lineWidth: 1.5)
                 }
             }
             .toolbar {
@@ -48,14 +51,14 @@ struct ContentView: View {
                             zoom -= 0.5
                         }
                     } label: {
-                        Label("Add Item", systemImage: "minus.magnifyingglass")
+                        Label("Zoom out", systemImage: "minus.magnifyingglass")
                     }
                     Button {
                         if(zoom < 2) {
                             zoom += 0.5
                         }
                     } label: {
-                        Label("Add Item", systemImage: "plus.magnifyingglass")
+                        Label("Zoom in", systemImage: "plus.magnifyingglass")
                     }
                 }
                 ToolbarItem {
@@ -65,7 +68,7 @@ struct ContentView: View {
                     Button {
                         
                     } label: {
-                        Label("Add Item", systemImage: "play.circle")
+                        Label("Run", systemImage: "play.circle")
                     }
                 }
             }

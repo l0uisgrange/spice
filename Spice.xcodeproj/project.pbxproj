@@ -9,19 +9,22 @@
 /* Begin PBXBuildFile section */
 		2A9AFE562ABB376100A77A2C /* SpiceApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9AFE552ABB376100A77A2C /* SpiceApp.swift */; };
 		2A9AFE582ABB376100A77A2C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9AFE572ABB376100A77A2C /* ContentView.swift */; };
-		2A9AFE5A2ABB376100A77A2C /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9AFE592ABB376100A77A2C /* Item.swift */; };
 		2A9AFE5C2ABB376200A77A2C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2A9AFE5B2ABB376200A77A2C /* Assets.xcassets */; };
 		2A9AFE5F2ABB376200A77A2C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2A9AFE5E2ABB376200A77A2C /* Preview Assets.xcassets */; };
+		2A9AFE672ABB499500A77A2C /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A9AFE662ABB499500A77A2C /* Localizable.xcstrings */; };
+		2A9AFE6A2ABB79BF00A77A2C /* Shapes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9AFE692ABB79BF00A77A2C /* Shapes.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		2A9AFE522ABB376100A77A2C /* Spice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Spice.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A9AFE552ABB376100A77A2C /* SpiceApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpiceApp.swift; sourceTree = "<group>"; };
 		2A9AFE572ABB376100A77A2C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		2A9AFE592ABB376100A77A2C /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		2A9AFE5B2ABB376200A77A2C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2A9AFE5E2ABB376200A77A2C /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		2A9AFE602ABB376200A77A2C /* Spice.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Spice.entitlements; sourceTree = "<group>"; };
+		2A9AFE662ABB499500A77A2C /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
+		2A9AFE682ABB71FF00A77A2C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		2A9AFE692ABB79BF00A77A2C /* Shapes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shapes.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -38,6 +41,7 @@
 		2A9AFE492ABB376100A77A2C = {
 			isa = PBXGroup;
 			children = (
+				2A9AFE662ABB499500A77A2C /* Localizable.xcstrings */,
 				2A9AFE542ABB376100A77A2C /* Spice */,
 				2A9AFE532ABB376100A77A2C /* Products */,
 			);
@@ -54,9 +58,10 @@
 		2A9AFE542ABB376100A77A2C /* Spice */ = {
 			isa = PBXGroup;
 			children = (
+				2A9AFE682ABB71FF00A77A2C /* Info.plist */,
 				2A9AFE552ABB376100A77A2C /* SpiceApp.swift */,
 				2A9AFE572ABB376100A77A2C /* ContentView.swift */,
-				2A9AFE592ABB376100A77A2C /* Item.swift */,
+				2A9AFE692ABB79BF00A77A2C /* Shapes.swift */,
 				2A9AFE5B2ABB376200A77A2C /* Assets.xcassets */,
 				2A9AFE602ABB376200A77A2C /* Spice.entitlements */,
 				2A9AFE5D2ABB376200A77A2C /* Preview Content */,
@@ -114,6 +119,7 @@
 			knownRegions = (
 				en,
 				Base,
+				fr,
 			);
 			mainGroup = 2A9AFE492ABB376100A77A2C;
 			productRefGroup = 2A9AFE532ABB376100A77A2C /* Products */;
@@ -132,6 +138,7 @@
 			files = (
 				2A9AFE5F2ABB376200A77A2C /* Preview Assets.xcassets in Resources */,
 				2A9AFE5C2ABB376200A77A2C /* Assets.xcassets in Resources */,
+				2A9AFE672ABB499500A77A2C /* Localizable.xcstrings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -143,7 +150,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2A9AFE582ABB376100A77A2C /* ContentView.swift in Sources */,
-				2A9AFE5A2ABB376100A77A2C /* Item.swift in Sources */,
+				2A9AFE6A2ABB79BF00A77A2C /* Shapes.swift in Sources */,
 				2A9AFE562ABB376100A77A2C /* SpiceApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -283,8 +290,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = Spice;
-				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
+				INFOPLIST_FILE = Spice/Info.plist;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -313,8 +319,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = Spice;
-				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
+				INFOPLIST_FILE = Spice/Info.plist;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
