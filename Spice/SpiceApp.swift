@@ -54,16 +54,6 @@ struct SpiceApp: App {
                         .padding(.top, 30)
                     }.padding(40)
                 }
-                .onHover { isHovered in
-                    self.hover = isHovered
-                    DispatchQueue.main.async {
-                        if(self.hover) {
-                            NSCursor.openHand.push()
-                        } else {
-                            NSCursor.pop()
-                        }
-                    }
-                }
         }.commands {
             CommandMenu("TOOLS") {
                 Button("ERASE") {
@@ -89,24 +79,9 @@ struct SpiceApp: App {
                     fileImporter.toggle()
                 }.keyboardShortcut("O")
             }
-            CommandGroup(replacing: .appInfo) {
-                Button("MENU_ABOUT") {
-                    NSApplication.shared.orderFrontStandardAboutPanel(
-                        options: [
-                            NSApplication.AboutPanelOptionKey.credits: NSAttributedString(
-                                string: "OPEN_SOURCE_NOTICE",
-                                attributes: [
-                                    NSAttributedString.Key.font: NSFont.boldSystemFont(
-                                        ofSize: NSFont.smallSystemFontSize)
-                                ]
-                            ),
-                            NSApplication.AboutPanelOptionKey(
-                                rawValue: "Copyright"
-                            ): "MADE_BY"
-                        ]
-                    )
-                }
-            }
+        }
+        Settings {
+            SettingsView()
         }
     }
     

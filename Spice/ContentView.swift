@@ -22,66 +22,52 @@ struct ContentView: View {
                     .navigationSubtitle("NO_FILE_SELECTED")
             } else {
                 GeometryReader { geometry in
-                    HSplitView {
-                        Canvas { context, size in
-                            let windowWidth = geometry.frame(in: .global).width
-                            let windowHeight = geometry.frame(in: .global).height
-                            context.fill(Path(CGRect(origin: .zero, size: size)), with: .color(Color("CanvasBackground")))
-                            context.translateBy(x: (windowWidth-260)/2.0 + canvasContentOffset.x, y: windowHeight / 2 + canvasContentOffset.y)
-                            context.scaleBy(x: zoom, y: zoom)
-                            context.stroke(
-                                Path() { path in
-                                    for row in 0..<100 {
-                                        for column in 0..<100 {
-                                            let dotCenter = CGPoint(
-                                                x: -1000 + CGFloat(column) * CGFloat(20),
-                                                y: -1000 + CGFloat(row) * CGFloat(20)
+                    Canvas { context, size in
+                        let windowWidth = geometry.frame(in: .global).width
+                        let windowHeight = geometry.frame(in: .global).height
+                        context.fill(Path(CGRect(origin: .zero, size: size)), with: .color(Color("CanvasBackground")))
+                        context.translateBy(x: windowWidth/2.0 + canvasContentOffset.x, y: windowHeight / 2 + canvasContentOffset.y)
+                        context.scaleBy(x: zoom, y: zoom)
+                        context.stroke(
+                            Path() { path in
+                                for row in 0..<100 {
+                                    for column in 0..<100 {
+                                        let dotCenter = CGPoint(
+                                            x: -1000 + CGFloat(column) * CGFloat(20),
+                                            y: -1000 + CGFloat(row) * CGFloat(20)
+                                        )
+                                        path.addEllipse(
+                                            in: CGRect(
+                                                x: dotCenter.x - dotSize / 2 / zoom,
+                                                y: dotCenter.y - dotSize / 2 / zoom,
+                                                width: dotSize / zoom,
+                                                height: dotSize / zoom
                                             )
-                                            path.addEllipse(
-                                                in: CGRect(
-                                                    x: dotCenter.x - dotSize / 2 / zoom,
-                                                    y: dotCenter.y - dotSize / 2 / zoom,
-                                                    width: dotSize / zoom,
-                                                    height: dotSize / zoom
-                                                )
-                                            )
-                                        }
+                                        )
                                     }
-                                },
-                                with: .color(.gray),
-                                lineWidth: 1/zoom)
-                            context.stroke(
-                                Path() { path in
-                                    for line in lines {
-                                        path.move(to: CGPoint(x: line.points.first?.x ?? 0, y: line.points.first?.y ?? 0))
-                                        for point in line.points {
-                                            path.addLine(to: CGPoint(x: point.x, y: point.y))
-                                        }
-                                    }
-                                },
-                                with: .color(.primary),
-                                lineWidth: 1.35/zoom
-                            )
-                        }.gesture(
-                            DragGesture()
-                                .onChanged { gesture in
-                                    self.canvasContentOffset.x = gesture.translation.width
-                                    self.canvasContentOffset.y = gesture.translation.height
                                 }
+                            },
+                            with: .color(.gray),
+                            lineWidth: 1/zoom)
+                        context.stroke(
+                            Path() { path in
+                                for line in lines {
+                                    path.move(to: CGPoint(x: line.points.first?.x ?? 0, y: line.points.first?.y ?? 0))
+                                    for point in line.points {
+                                        path.addLine(to: CGPoint(x: point.x, y: point.y))
+                                    }
+                                }
+                            },
+                            with: .color(.primary),
+                            lineWidth: 1.35/zoom
                         )
-                        VStack(alignment: .leading) {
-                            HStack {
-                                Text("COMPONENTS")
-                                    .font(.title3)
-                                Spacer()
-                            }.padding(.bottom, 15)
-                            ComponentView(name: "Résistance", imageName: "resistor")
-                            ComponentView(name: "Inductance", imageName: "inductor")
-                            ComponentView(name: "Capacité", imageName: "capacitor")
-                            Spacer()
-                        }.frame(width: 260)
-                        .padding(20)
-                    }
+                    }.gesture(
+                        DragGesture()
+                            .onChanged { gesture in
+                                self.canvasContentOffset.x = gesture.translation.width
+                                self.canvasContentOffset.y = gesture.translation.height
+                            }
+                    )
                 }
                 .edgesIgnoringSafeArea(.all)
             }

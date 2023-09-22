@@ -37,11 +37,22 @@
 
     },
     "COMPONENTS" : {
+      "extractionState" : "stale",
       "localizations" : {
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Composants"
+          }
+        }
+      }
+    },
+    "COMPONENTS_APPEARANCE" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apparence des composants"
           }
         }
       }
@@ -107,6 +118,19 @@
         }
       }
     },
+    "fwef" : {
+
+    },
+    "GENERAL_SETTINGS" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Général"
+          }
+        }
+      }
+    },
     "INDUCTOR" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -130,6 +154,7 @@
       }
     },
     "MENU_ABOUT" : {
+      "extractionState" : "stale",
       "localizations" : {
         "fr" : {
           "stringUnit" : {
