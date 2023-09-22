@@ -14,6 +14,10 @@ Spice currently supports the following languages:
 - French
 - English
 
+## Suggestions
+
+You can see our [roadmap](https://github.com/users/l0uisgrange/projects/2) to see what I am working on and suggest modifications by creating an Issue.
+
 ## Copyright
 
 Spice is an open-source project distributed under the MIT license.
