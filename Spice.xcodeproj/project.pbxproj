@@ -44,16 +44,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		2A4968832ABDD96B00DBC58B /* Settings */ = {
-			isa = PBXGroup;
-			children = (
-				2A49687F2ABDD81D00DBC58B /* SettingsView.swift */,
-				2A4968812ABDD95000DBC58B /* GeneralSettingsView.swift */,
-			);
-			name = Settings;
-			path = "Preview Content";
-			sourceTree = "<group>";
-		};
 		2A9AFE492ABB376100A77A2C = {
 			isa = PBXGroup;
 			children = (
@@ -79,7 +69,8 @@
 				2A9AFE572ABB376100A77A2C /* ContentView.swift */,
 				2A9AFE692ABB79BF00A77A2C /* Shapes.swift */,
 				2A49687D2ABDCAB500DBC58B /* ComponentView.swift */,
-				2A4968832ABDD96B00DBC58B /* Settings */,
+				2A49687F2ABDD81D00DBC58B /* SettingsView.swift */,
+				2A4968812ABDD95000DBC58B /* GeneralSettingsView.swift */,
 				2A9AFE5B2ABB376200A77A2C /* Assets.xcassets */,
 				2A9AFE602ABB376200A77A2C /* Spice.entitlements */,
 				2A9AFE5D2ABB376200A77A2C /* Preview Content */,
