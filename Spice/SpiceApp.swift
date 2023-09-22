@@ -65,6 +65,22 @@ struct SpiceApp: App {
                     }
                 }
         }.commands {
+            CommandMenu("TOOLS") {
+                Button("ERASE") {
+                    print("Saved!")
+                }
+                Divider()
+                Button("WIRE") {
+                }
+                Button("RESISTOR") {
+                }
+                Button("SOURCE_VOLTAGE") {
+                }
+                Button("SOURCE_CURRENT") {
+                }
+                Button("SOURCE_ALTERNATIVE") {
+                }
+            }
             CommandGroup(after: CommandGroupPlacement.newItem) {
                 Button("MENU_SAVE") {
                     print("Saved!")

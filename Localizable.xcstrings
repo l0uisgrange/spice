@@ -1,6 +1,36 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "ADD" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ajouter"
+          }
+        }
+      }
+    },
+    "CAPACITOR" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Capacité"
+          }
+        }
+      }
+    },
+    "ERASE" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Effacer"
+          }
+        }
+      }
+    },
     "EU_STYLE" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -38,6 +68,19 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Impossible d'ouvrir le fichier"
+          }
+        }
+      }
+    },
+    "FOCUS" : {
+
+    },
+    "INDUCTOR" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Inductance"
           }
         }
       }
@@ -144,12 +187,72 @@
         }
       }
     },
+    "RESISTOR" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Résistance"
+          }
+        }
+      }
+    },
     "RUN" : {
       "localizations" : {
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Lancer"
+          }
+        }
+      }
+    },
+    "SOURCE" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Source"
+          }
+        }
+      }
+    },
+    "SOURCE_ALTERNATIVE" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Source alternative"
+          }
+        }
+      }
+    },
+    "SOURCE_CURRENT" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Source de courant"
+          }
+        }
+      }
+    },
+    "SOURCE_VOLTAGE" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Source de tension"
+          }
+        }
+      }
+    },
+    "TOOLS" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Outils"
           }
         }
       }
@@ -161,6 +264,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Américain"
+          }
+        }
+      }
+    },
+    "WIRE" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Câble"
           }
         }
       }
