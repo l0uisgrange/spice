@@ -10,7 +10,6 @@
 		2A49687E2ABDCAB500DBC58B /* ComponentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A49687D2ABDCAB500DBC58B /* ComponentView.swift */; };
 		2A4968802ABDD81D00DBC58B /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A49687F2ABDD81D00DBC58B /* SettingsView.swift */; };
 		2A4968822ABDD95000DBC58B /* GeneralSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4968812ABDD95000DBC58B /* GeneralSettingsView.swift */; };
-		2A4968852ABDE01000DBC58B /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 2A4968842ABDE01000DBC58B /* Credits.rtf */; };
 		2A9AFE562ABB376100A77A2C /* SpiceApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9AFE552ABB376100A77A2C /* SpiceApp.swift */; };
 		2A9AFE582ABB376100A77A2C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9AFE572ABB376100A77A2C /* ContentView.swift */; };
 		2A9AFE5C2ABB376200A77A2C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2A9AFE5B2ABB376200A77A2C /* Assets.xcassets */; };
@@ -23,7 +22,6 @@
 		2A49687D2ABDCAB500DBC58B /* ComponentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentView.swift; sourceTree = "<group>"; };
 		2A49687F2ABDD81D00DBC58B /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		2A4968812ABDD95000DBC58B /* GeneralSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralSettingsView.swift; sourceTree = "<group>"; };
-		2A4968842ABDE01000DBC58B /* Credits.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = Credits.rtf; sourceTree = "<group>"; };
 		2A9AFE522ABB376100A77A2C /* Spice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Spice.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A9AFE552ABB376100A77A2C /* SpiceApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpiceApp.swift; sourceTree = "<group>"; };
 		2A9AFE572ABB376100A77A2C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -59,7 +57,6 @@
 		2A9AFE492ABB376100A77A2C = {
 			isa = PBXGroup;
 			children = (
-				2A4968842ABDE01000DBC58B /* Credits.rtf */,
 				2A9AFE662ABB499500A77A2C /* Localizable.xcstrings */,
 				2A9AFE542ABB376100A77A2C /* Spice */,
 				2A9AFE532ABB376100A77A2C /* Products */,
@@ -160,7 +157,6 @@
 				2A9AFE5F2ABB376200A77A2C /* Preview Assets.xcassets in Resources */,
 				2A9AFE5C2ABB376200A77A2C /* Assets.xcassets in Resources */,
 				2A9AFE672ABB499500A77A2C /* Localizable.xcstrings in Resources */,
-				2A4968852ABDE01000DBC58B /* Credits.rtf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -306,6 +302,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = Spice/Spice.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -316,6 +313,8 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Spice/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Spice;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -335,6 +334,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = Spice/Spice.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -345,6 +345,8 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Spice/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Spice;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
