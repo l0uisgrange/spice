@@ -18,6 +18,10 @@ Spice currently supports the following languages:
 
 You can see our [roadmap](https://github.com/users/l0uisgrange/projects/2) to see what I am working on and suggest modifications by creating an Issue.
 
+## About me
+
+I'm a Swiss developer who is tired of seeing bad UX/UI in macOS apps in the engineering world. That's why I create beautiful, user-friendly apps that follow Apple Design Guidelines..
+
 ## Copyright
 
 Spice is an open-source project distributed under the MIT license.
