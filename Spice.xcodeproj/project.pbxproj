@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2A49687E2ABDCAB500DBC58B /* ComponentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A49687D2ABDCAB500DBC58B /* ComponentView.swift */; };
 		2A9AFE562ABB376100A77A2C /* SpiceApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9AFE552ABB376100A77A2C /* SpiceApp.swift */; };
 		2A9AFE582ABB376100A77A2C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9AFE572ABB376100A77A2C /* ContentView.swift */; };
 		2A9AFE5C2ABB376200A77A2C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2A9AFE5B2ABB376200A77A2C /* Assets.xcassets */; };
@@ -16,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2A49687D2ABDCAB500DBC58B /* ComponentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentView.swift; sourceTree = "<group>"; };
 		2A9AFE522ABB376100A77A2C /* Spice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Spice.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A9AFE552ABB376100A77A2C /* SpiceApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpiceApp.swift; sourceTree = "<group>"; };
 		2A9AFE572ABB376100A77A2C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -62,6 +64,7 @@
 				2A9AFE552ABB376100A77A2C /* SpiceApp.swift */,
 				2A9AFE572ABB376100A77A2C /* ContentView.swift */,
 				2A9AFE692ABB79BF00A77A2C /* Shapes.swift */,
+				2A49687D2ABDCAB500DBC58B /* ComponentView.swift */,
 				2A9AFE5B2ABB376200A77A2C /* Assets.xcassets */,
 				2A9AFE602ABB376200A77A2C /* Spice.entitlements */,
 				2A9AFE5D2ABB376200A77A2C /* Preview Content */,
@@ -149,6 +152,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2A49687E2ABDCAB500DBC58B /* ComponentView.swift in Sources */,
 				2A9AFE582ABB376100A77A2C /* ContentView.swift in Sources */,
 				2A9AFE6A2ABB79BF00A77A2C /* Shapes.swift in Sources */,
 				2A9AFE562ABB376100A77A2C /* SpiceApp.swift in Sources */,

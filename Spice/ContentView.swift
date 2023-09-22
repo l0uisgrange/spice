@@ -9,8 +9,11 @@ import SwiftUI
 import SwiftData
 
 struct ContentView: View {
+    let columns = [GridItem(.flexible()), GridItem(.flexible())]
     @Binding var lines: [Line]
     @State var zoom: CGFloat = 1.0
+    @State var searchText: String = ""
+    @State private var canvasContentOffset: CGPoint = CGPoint.zero
     let dotSize: CGFloat = 1.0
     var body: some View {
         VStack {
@@ -19,12 +22,12 @@ struct ContentView: View {
                     .navigationSubtitle("NO_FILE_SELECTED")
             } else {
                 GeometryReader { geometry in
-                    VStack {
-                        Divider()
+                    HSplitView {
                         Canvas { context, size in
                             let windowWidth = geometry.frame(in: .global).width
                             let windowHeight = geometry.frame(in: .global).height
-                            context.translateBy(x: windowWidth/2.0, y: windowHeight / 2)
+                            context.fill(Path(CGRect(origin: .zero, size: size)), with: .color(Color("CanvasBackground")))
+                            context.translateBy(x: (windowWidth-260)/2.0 + canvasContentOffset.x, y: windowHeight / 2 + canvasContentOffset.y)
                             context.scaleBy(x: zoom, y: zoom)
                             context.stroke(
                                 Path() { path in
@@ -56,10 +59,28 @@ struct ContentView: View {
                                         }
                                     }
                                 },
-                                with: .color(.black),
+                                with: .color(.primary),
                                 lineWidth: 1.35/zoom
                             )
-                        }
+                        }.gesture(
+                            DragGesture()
+                                .onChanged { gesture in
+                                    self.canvasContentOffset.x = gesture.translation.width
+                                    self.canvasContentOffset.y = gesture.translation.height
+                                }
+                        )
+                        VStack(alignment: .leading) {
+                            HStack {
+                                Text("COMPONENTS")
+                                    .font(.title3)
+                                Spacer()
+                            }.padding(.bottom, 15)
+                            ComponentView(name: "Résistance", imageName: "resistor")
+                            ComponentView(name: "Inductance", imageName: "inductor")
+                            ComponentView(name: "Capacité", imageName: "capacitor")
+                            Spacer()
+                        }.frame(width: 260)
+                        .padding(20)
                     }
                 }
                 .edgesIgnoringSafeArea(.all)
@@ -69,7 +90,21 @@ struct ContentView: View {
                 Button {
                     
                 } label: {
-                    Label("RESISTOR", image: "resistor")
+                    Label("CANCEL", systemImage: "arrow.uturn.backward")
+                }.disabled(lines.count == 0)
+                .help("CANCEL")
+                Button {
+                    
+                } label: {
+                    Label("UNDO", systemImage: "arrow.uturn.forward")
+                }.disabled(lines.count == 0)
+                .help("UNDO")
+            }
+            ToolbarItem {
+                HStack {
+                    Spacer()
+                    Divider().frame(height: 25)
+                    Spacer()
                 }
             }
             ToolbarItemGroup {
@@ -78,42 +113,13 @@ struct ContentView: View {
                 } label: {
                     Label("ERASE", systemImage: "eraser")
                 }.disabled(lines.count == 0)
-                Menu {
-                    Button {
-                        
-                    } label: {
-                        Image(systemName: "house")
-                        Text("WIRE")
-                    }
-                    Divider()
-                    Button {
-                        
-                    } label: {
-                        Image(systemName: "house")
-                        Text("SOURCE")
-                    }
-                    Button {
-                        
-                    } label: {
-                        Image("resistor")
-                        Text("RESISTOR")
-                    }
-                    Button {
-                        
-                    } label: {
-                        Image(systemName: "house")
-                        Text("INDUCTOR")
-                    }
-                    Button {
-                        
-                    } label: {
-                        Image(systemName: "house")
-                        Text("CAPACITOR")
-                    }
-                    Divider()
+                .help("ERASE")
+                Button {
+                    
                 } label: {
-                    Label("ADD", systemImage: "plus")
+                    Label("WIRE", systemImage: "line.diagonal")
                 }.disabled(lines.count == 0)
+                .help("WIRE")
             }
             ToolbarItem {
                 HStack {
@@ -125,24 +131,33 @@ struct ContentView: View {
             ToolbarItemGroup {
                 Button {
                     if(zoom > 0.5) {
-                        zoom -= 0.5
+                        withAnimation(.bouncy) {
+                            zoom -= 0.5
+                        }
                     }
                 } label: {
                     Label("ZOOM_OUT", systemImage: "minus.magnifyingglass")
                 }.disabled(lines.count == 0)
+                .help("ZOOM_OUT")
                 Button {
                     if(zoom < 3) {
-                        zoom += 0.5
+                        withAnimation(.bouncy) {
+                            zoom += 0.5
+                        }
                     }
                 } label: {
                     Label("ZOOM_IN", systemImage: "plus.magnifyingglass")
                 }.disabled(lines.count == 0)
+                .help("ZOOM_IN")
                 Spacer()
                 Button {
-                    
+                    withAnimation(.bouncy) {
+                        canvasContentOffset = CGPoint.zero
+                    }
                 } label: {
-                    Label("FOCUS", systemImage: "target")
+                    Label("FOCUS", systemImage: "viewfinder")
                 }.disabled(lines.count == 0)
+                .help("FOCUS")
             }
             ToolbarItem {
                 HStack {
@@ -157,7 +172,9 @@ struct ContentView: View {
                 } label: {
                     Label("RUN", systemImage: "play.circle")
                 }.disabled(lines.count == 0)
+                .help("RUN")
             }
         }
     }
 }
+

@@ -10,9 +10,9 @@ import SwiftData
 
 @main
 struct SpiceApp: App {
-    @AppStorage("symbolsStyle") private var symbolsStyle = 0
+    @AppStorage("symbolsStyle") private var symbolsStyle = 2
     @State private var fileImporter: Bool = false
-    @State private var configuration: Bool = true
+    @State private var configuration: Bool = false
     @State private var showingAlert: Bool = false
     @State var lines: [Line] = []
     @State var hover: Bool = false
@@ -166,7 +166,7 @@ struct AppearanceView: View {
                                 path.addLine(to: CGPoint(x: 30, y: 0))
                                 path.addLine(to: CGPoint(x: 75, y: 0))
                             },
-                            with: .color(.primary),
+                            with: .color(Color("black")),
                             lineWidth: 1.35)
                     } else {
                         context.stroke(
@@ -181,7 +181,7 @@ struct AppearanceView: View {
                                 path.move(to: CGPoint(x: 30, y: 0))
                                 path.addLine(to: CGPoint(x: 75, y: 0))
                             },
-                            with: .color(.primary),
+                            with: .color(Color("black")),
                             lineWidth: 1.35)
                     }
                 }.frame(width: 150, height: 100)
