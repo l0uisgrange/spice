@@ -1,3 +1,5 @@
+<img src="https://github.com/l0uisgrange/spice/blob/main/Spice/Assets.xcassets/AppIcon.appiconset/512x512%202x%201.png" width="80">
+
 # Spice circuit simulator
 
 Spice is a native macOS simulator for electronic circuits that rivals LTSpice and other legacy software. It features a new, modern interface with easy-to-use features and smooth performance.
