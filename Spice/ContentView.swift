@@ -14,6 +14,7 @@ struct ContentView: View {
     @State var zoom: CGFloat = 1.0
     @State var searchText: String = ""
     @State private var canvasContentOffset: CGPoint = CGPoint.zero
+    @State private var origin: CGPoint = CGPoint.zero
     let dotSize: CGFloat = 1.0
     var body: some View {
         VStack {
@@ -26,7 +27,7 @@ struct ContentView: View {
                         let windowWidth = geometry.frame(in: .global).width
                         let windowHeight = geometry.frame(in: .global).height
                         context.fill(Path(CGRect(origin: .zero, size: size)), with: .color(Color("CanvasBackground")))
-                        context.translateBy(x: windowWidth/2.0 + canvasContentOffset.x, y: windowHeight / 2 + canvasContentOffset.y)
+                        context.translateBy(x: windowWidth/2.0 + origin.x + canvasContentOffset.x, y: windowHeight / 2 + origin.y + canvasContentOffset.y)
                         context.scaleBy(x: zoom, y: zoom)
                         context.stroke(
                             Path() { path in
@@ -75,6 +76,11 @@ struct ContentView: View {
                             .onChanged { gesture in
                                 self.canvasContentOffset.x = gesture.translation.width
                                 self.canvasContentOffset.y = gesture.translation.height
+                            }
+                            .onEnded { gesture in
+                                self.origin.x = self.canvasContentOffset.x + self.origin.x
+                                self.origin.y = self.canvasContentOffset.y + self.origin.y
+                                self.canvasContentOffset = CGPoint.zero
                             }
                     )
                 }
@@ -148,6 +154,7 @@ struct ContentView: View {
                 Button {
                     withAnimation(.bouncy) {
                         canvasContentOffset = CGPoint.zero
+                        origin = CGPoint.zero
                     }
                 } label: {
                     Label("FOCUS", systemImage: "viewfinder")
