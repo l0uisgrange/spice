@@ -71,7 +71,7 @@ struct ContentView: View {
             }
             ToolbarItemGroup {
                 Button {
-                    if(zoom > 0.5) {
+                    if(zoom >= 1) {
                         withAnimation(.bouncy) {
                             zoom -= 0.5
                         }
@@ -81,7 +81,7 @@ struct ContentView: View {
                 }.disabled(file == [])
                 .help("ZOOM_OUT")
                 Button {
-                    if(zoom < 3) {
+                    if(zoom <= 2.5) {
                         withAnimation(.bouncy) {
                             zoom += 0.5
                         }

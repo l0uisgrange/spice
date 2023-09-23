@@ -13,6 +13,7 @@ struct CanvasView: View {
     @AppStorage("gridStyle") private var gridStyle = 1
     @Binding var origin: CGPoint
     @Binding var zoom: Double
+    @State private var currentZoom = 0.0
     let dotSize: Double = 1.0
     @State var lines: [Line] = []
     var body: some View {
@@ -21,7 +22,7 @@ struct CanvasView: View {
             let windowHeight = geometry.frame(in: .global).height
             context.fill(Path(CGRect(origin: .zero, size: size)), with: .color(Color("CanvasBackground")))
             context.translateBy(x: windowWidth/2.0 + origin.x + canvasContentOffset.x, y: windowHeight / 2 + origin.y + canvasContentOffset.y)
-            context.scaleBy(x: zoom, y: zoom)
+            context.scaleBy(x: zoom + currentZoom, y: zoom + currentZoom)
             context.stroke(
                 Path() { path in
                     if gridStyle == 1 {
@@ -33,10 +34,10 @@ struct CanvasView: View {
                                 )
                                 path.addEllipse(
                                     in: CGRect(
-                                        x: dotCenter.x - dotSize / 2 / zoom,
-                                        y: dotCenter.y - dotSize / 2 / zoom,
-                                        width: dotSize / zoom,
-                                        height: dotSize / zoom
+                                        x: dotCenter.x - dotSize / 2 / (zoom+currentZoom),
+                                        y: dotCenter.y - dotSize / 2 / (zoom+currentZoom),
+                                        width: dotSize / (zoom+currentZoom),
+                                        height: dotSize / (zoom+currentZoom)
                                     )
                                 )
                             }
@@ -53,7 +54,7 @@ struct CanvasView: View {
                     }
                 },
                 with: .color(gridStyle == 1 ? .gray : .gray.opacity(0.3)),
-                lineWidth: 1/zoom)
+                lineWidth: 1/(zoom+currentZoom))
             context.stroke(
                 Path() { path in
                     path.move(to: CGPoint(x: -1000, y: 0))
@@ -62,7 +63,7 @@ struct CanvasView: View {
                     path.addLine(to: CGPoint(x: 0, y: 1000))
                 },
                 with: .color(.gray.opacity(0.2)),
-                lineWidth: 1/zoom)
+                lineWidth: 1/(zoom+currentZoom))
             for line in lines {
                 context.stroke(
                     Path() { path in
@@ -72,7 +73,7 @@ struct CanvasView: View {
                         }
                     },
                     with: .color(line.color),
-                    lineWidth: 1.35/zoom
+                    lineWidth: 1.35/(zoom+currentZoom)
                 )
             }
         }.gesture(
@@ -85,6 +86,20 @@ struct CanvasView: View {
                     self.origin.x = self.canvasContentOffset.x + self.origin.x
                     self.origin.y = self.canvasContentOffset.y + self.origin.y
                     self.canvasContentOffset = CGPoint.zero
+                }
+        )
+        .gesture(
+            MagnifyGesture()
+                .onChanged { value in
+                    if value.magnification-1 + zoom < 2.5 && value.magnification-1 + zoom > 1 {
+                        currentZoom = value.magnification - 1
+                    }
+                }
+                .onEnded { value in
+                    if currentZoom + zoom < 2.5 && currentZoom + zoom > 1 {
+                        zoom += currentZoom
+                        currentZoom = 0
+                    }
                 }
         )
     }
