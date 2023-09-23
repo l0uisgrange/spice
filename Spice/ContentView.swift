@@ -51,6 +51,15 @@ struct ContentView: View {
                             lineWidth: 1/zoom)
                         context.stroke(
                             Path() { path in
+                                path.move(to: CGPoint(x: -1000, y: 0))
+                                path.addLine(to: CGPoint(x: 1000, y: 0))
+                                path.move(to: CGPoint(x: 0, y: -1000))
+                                path.addLine(to: CGPoint(x: 0, y: 1000))
+                            },
+                            with: .color(.gray.opacity(0.2)),
+                            lineWidth: 1/zoom)
+                        context.stroke(
+                            Path() { path in
                                 for line in lines {
                                     path.move(to: CGPoint(x: line.points.first?.x ?? 0, y: line.points.first?.y ?? 0))
                                     for point in line.points {

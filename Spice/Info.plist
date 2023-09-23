@@ -6,15 +6,19 @@
 	<array>
 		<dict>
 			<key>CFBundleTypeIconSystemGenerated</key>
-			<integer>0</integer>
+			<integer>1</integer>
 			<key>CFBundleTypeName</key>
-			<string></string>
+			<string>Spice file</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>LSHandlerRank</key>
 			<string>Owner</string>
 			<key>LSItemContentTypes</key>
-			<array/>
+			<array>
+				<string>com.louisgrange.spice</string>
+			</array>
+			<key>NSDocumentClass</key>
+			<string>NSDocument</string>
 		</dict>
 		<dict>
 			<key>CFBundleTypeIconSystemGenerated</key>
@@ -27,6 +31,31 @@
 	</array>
 	<key>UTExportedTypeDeclarations</key>
 	<array>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>public.data</string>
+				<string>public.content</string>
+			</array>
+			<key>UTTypeDescription</key>
+			<string>Spice</string>
+			<key>UTTypeIcons</key>
+			<dict>
+				<key>UTTypeIconBadgeName</key>
+				<string>SpiceFileIcon</string>
+				<key>UTTypeIconText</key>
+				<string>SPICE</string>
+			</dict>
+			<key>UTTypeIdentifier</key>
+			<string>com.louisgrange.spice</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>spice</string>
+				</array>
+			</dict>
+		</dict>
 		<dict/>
 	</array>
 </dict>

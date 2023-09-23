@@ -7,6 +7,7 @@
 
 import SwiftUI
 import SwiftData
+import UniformTypeIdentifiers
 
 @main
 struct SpiceApp: App {
@@ -20,7 +21,7 @@ struct SpiceApp: App {
         WindowGroup {
             ContentView(lines: $lines)
                 .frame(minWidth: 500, idealWidth: 600, minHeight: 400, idealHeight: 550)
-                .fileImporter(isPresented: $fileImporter, allowedContentTypes: [.text], allowsMultipleSelection: false) { result in
+                .fileImporter(isPresented: $fileImporter, allowedContentTypes: [UTType(exportedAs: "com.louisgrange.spice", conformingTo: .text)], allowsMultipleSelection: false) { result in
                     switch result {
                     case .success(let file):
                         interpretFile(file)
