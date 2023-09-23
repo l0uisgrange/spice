@@ -57,6 +57,16 @@
         }
       }
     },
+    "DOTS" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Points"
+          }
+        }
+      }
+    },
     "ERASE" : {
       "localizations" : {
         "fr" : {
@@ -118,15 +128,33 @@
         }
       }
     },
-    "fwef" : {
-
-    },
     "GENERAL_SETTINGS" : {
+      "extractionState" : "stale",
       "localizations" : {
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Général"
+          }
+        }
+      }
+    },
+    "GRID" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Grille"
+          }
+        }
+      }
+    },
+    "GRID_APPEARANCE" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apparence de la grille"
           }
         }
       }
@@ -189,6 +217,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ouvrez un fichier rapidement avec ⌘O"
+          }
+        }
+      }
+    },
+    "NONE" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aucun"
           }
         }
       }

@@ -10,9 +10,11 @@ import SwiftUI
 struct CanvasView: View {
     @State var geometry: GeometryProxy
     @State private var canvasContentOffset: CGPoint = CGPoint.zero
+    @AppStorage("gridStyle") private var gridStyle = 1
     @Binding var origin: CGPoint
     @Binding var zoom: Double
     let dotSize: Double = 1.0
+    @State var lines: [Line] = []
     var body: some View {
         Canvas { context, size in
             let windowWidth = geometry.frame(in: .global).width
@@ -22,24 +24,35 @@ struct CanvasView: View {
             context.scaleBy(x: zoom, y: zoom)
             context.stroke(
                 Path() { path in
-                    for row in 0..<100 {
-                        for column in 0..<100 {
-                            let dotCenter = CGPoint(
-                                x: -1000 + CGFloat(column) * CGFloat(20),
-                                y: -1000 + CGFloat(row) * CGFloat(20)
-                            )
-                            path.addEllipse(
-                                in: CGRect(
-                                    x: dotCenter.x - dotSize / 2 / zoom,
-                                    y: dotCenter.y - dotSize / 2 / zoom,
-                                    width: dotSize / zoom,
-                                    height: dotSize / zoom
+                    if gridStyle == 1 {
+                        for row in 0..<100 {
+                            for column in 0..<100 {
+                                let dotCenter = CGPoint(
+                                    x: -1000 + CGFloat(column) * CGFloat(20),
+                                    y: -1000 + CGFloat(row) * CGFloat(20)
                                 )
-                            )
+                                path.addEllipse(
+                                    in: CGRect(
+                                        x: dotCenter.x - dotSize / 2 / zoom,
+                                        y: dotCenter.y - dotSize / 2 / zoom,
+                                        width: dotSize / zoom,
+                                        height: dotSize / zoom
+                                    )
+                                )
+                            }
+                        }
+                    } else if gridStyle == 2 {
+                        for column in 0..<100 {
+                            path.move(to: CGPoint(x: -1000 + CGFloat(column) * CGFloat(20), y: -1000))
+                            path.addLine(to: CGPoint(x: -1000 + CGFloat(column) * CGFloat(20), y: 1000))
+                        }
+                        for row in 0..<100 {
+                            path.move(to: CGPoint(x:-1000, y: -1000 + CGFloat(row) * CGFloat(20)))
+                            path.addLine(to: CGPoint(x:1000, y: -1000 + CGFloat(row) * CGFloat(20)))
                         }
                     }
                 },
-                with: .color(.gray),
+                with: .color(gridStyle == 1 ? .gray : .gray.opacity(0.3)),
                 lineWidth: 1/zoom)
             context.stroke(
                 Path() { path in
@@ -50,7 +63,7 @@ struct CanvasView: View {
                 },
                 with: .color(.gray.opacity(0.2)),
                 lineWidth: 1/zoom)
-            /*
+            for line in lines {
                 context.stroke(
                     Path() { path in
                         path.move(to: line.points.first ?? CGPoint.zero)
@@ -62,7 +75,6 @@ struct CanvasView: View {
                     lineWidth: 1.35/zoom
                 )
             }
-             */
         }.gesture(
             DragGesture()
                 .onChanged { gesture in
@@ -77,3 +89,4 @@ struct CanvasView: View {
         )
     }
 }
+
