@@ -5,6 +5,7 @@
 //  Created by Louis Grange on 20.09.2023.
 //
 
+import SwiftUI
 import Foundation
 
 struct Point {
@@ -13,6 +14,6 @@ struct Point {
 }
 
 struct Line {
-    
+    var color: Color
     let points: [Point]
 }

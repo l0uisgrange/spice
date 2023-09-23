@@ -59,18 +59,18 @@ struct ContentView: View {
                             },
                             with: .color(.gray.opacity(0.2)),
                             lineWidth: 1/zoom)
-                        context.stroke(
-                            Path() { path in
-                                for line in lines {
+                        for line in lines {
+                            context.stroke(
+                                Path() { path in
                                     path.move(to: CGPoint(x: line.points.first?.x ?? 0, y: line.points.first?.y ?? 0))
                                     for point in line.points {
                                         path.addLine(to: CGPoint(x: point.x, y: point.y))
                                     }
-                                }
-                            },
-                            with: .color(.primary),
-                            lineWidth: 1.35/zoom
-                        )
+                                },
+                                with: .color(line.color),
+                                lineWidth: 1.35/zoom
+                            )
+                        }
                     }.gesture(
                         DragGesture()
                             .onChanged { gesture in
