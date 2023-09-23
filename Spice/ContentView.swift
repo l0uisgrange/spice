@@ -14,6 +14,7 @@ struct ContentView: View {
     @State private var origin: CGPoint = CGPoint.zero
     let dotSize: CGFloat = 1.0
     @Binding var fileSelector: Bool
+    @Binding var components: [CircuitComponent]
     var body: some View {
         VStack {
             if file == [] {
@@ -21,7 +22,7 @@ struct ContentView: View {
                     .navigationSubtitle("NO_FILE_SELECTED")
             } else {
                 GeometryReader { geometry in
-                    CanvasView(geometry: geometry, origin: $origin, zoom: $zoom)
+                    CanvasView(geometry: geometry, origin: $origin, zoom: $zoom, components: $components)
                 }
                 .navigationSubtitle(file[0].lastPathComponent)
                 .edgesIgnoringSafeArea(.all)

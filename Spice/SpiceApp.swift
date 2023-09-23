@@ -17,14 +17,16 @@ struct SpiceApp: App {
     @State private var showingAlert: Bool = false
     @State var openedFile: [URL] = []
     @State var hover: Bool = false
+    @State var components: [CircuitComponent] = []
     var body: some Scene {
         WindowGroup {
-            ContentView(file: $openedFile, fileSelector: $fileSelector)
+            ContentView(file: $openedFile, fileSelector: $fileSelector, components: $components)
                 .frame(minWidth: 500, idealWidth: 600, minHeight: 400, idealHeight: 550)
-                .fileImporter(isPresented: $fileSelector, allowedContentTypes: [UTType(exportedAs: "com.louisgrange.spice", conformingTo: .text)], allowsMultipleSelection: false) { result in
+                .fileImporter(isPresented: $fileSelector, allowedContentTypes: [UTType(exportedAs: "com.louisgrange.spice")], allowsMultipleSelection: false) { result in
                     switch result {
                     case .success(let file):
                         openedFile = file
+                        interpretFile(file)
                     case .failure(let error):
                         print(error.localizedDescription)
                         showingAlert.toggle()
@@ -71,19 +73,18 @@ struct SpiceApp: App {
             // Get the shapes from the lines
             for line in linesFile {
                 let lineDataset = line.components(separatedBy: " ")
-                switch lineDataset[0] {
-                case "W":
-                    var points: [CGPoint] = []
-                    for i in 4..<lineDataset.count-1 {
-                        if i%2 == 0 {
-                            let newPoint = CGPoint(x: Double(lineDataset[i]) ?? 0, y: Double(lineDataset[i+1]) ?? 0)
-                            points.append(newPoint)
-                            print(newPoint)
-                        }
-                    }
-                default:
-                    print("Nope")
+                if(lineDataset.count != 8) {
+                    continue
                 }
+                let newComponent = CircuitComponent(
+                    color: Color(
+                        red: Double(lineDataset[1])!,
+                        green: Double(lineDataset[2])!,
+                        blue: Double(lineDataset[3])!),
+                    start: CGPoint(x: Int(lineDataset[4])!, y: Int(lineDataset[5])!),
+                    end: CGPoint(x: Int(lineDataset[6])!, y: Int(lineDataset[7])!),
+                    type: lineDataset[0])
+                components.append(newComponent)
             }
         } catch let error {
             showingAlert.toggle()

@@ -15,7 +15,7 @@ struct CanvasView: View {
     @Binding var zoom: Double
     @State private var currentZoom = 0.0
     let dotSize: Double = 1.0
-    @State var lines: [Line] = []
+    @Binding var components: [CircuitComponent]
     var body: some View {
         Canvas { context, size in
             let windowWidth = geometry.frame(in: .global).width
@@ -64,15 +64,15 @@ struct CanvasView: View {
                 },
                 with: .color(.gray.opacity(0.2)),
                 lineWidth: 1/(zoom+currentZoom))
-            for line in lines {
+            for component in components {
                 context.stroke(
                     Path() { path in
-                        path.move(to: line.points.first ?? CGPoint.zero)
-                        for point in line.points {
+                        path.move(to: component.startingPoint)
+                        for point in componentToLine(component) {
                             path.addLine(to: point)
                         }
                     },
-                    with: .color(line.color),
+                    with: .color(component.color),
                     lineWidth: 1.35/(zoom+currentZoom)
                 )
             }
@@ -105,3 +105,11 @@ struct CanvasView: View {
     }
 }
 
+func componentToLine(_ comp: CircuitComponent) -> [CGPoint] {
+    switch comp.type {
+    case "W":
+        return [comp.endingPoint]
+    default:
+        return []
+    }
+}
