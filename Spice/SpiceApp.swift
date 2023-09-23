@@ -11,20 +11,20 @@ import UniformTypeIdentifiers
 
 @main
 struct SpiceApp: App {
-    @AppStorage("symbolsStyle") private var symbolsStyle = 2
-    @State private var fileImporter: Bool = false
-    @State private var configuration: Bool = false
+    @AppStorage("symbolsStyle") private var symbolsStyle = 0
+    @State private var fileSelector: Bool = false
+    @State private var isPresented: Bool = false
     @State private var showingAlert: Bool = false
-    @State var lines: [Wire] = []
+    @State var openedFile: [URL] = []
     @State var hover: Bool = false
     var body: some Scene {
         WindowGroup {
-            ContentView(lines: $lines)
+            ContentView(file: $openedFile, fileSelector: $fileSelector)
                 .frame(minWidth: 500, idealWidth: 600, minHeight: 400, idealHeight: 550)
-                .fileImporter(isPresented: $fileImporter, allowedContentTypes: [UTType(exportedAs: "com.louisgrange.spice", conformingTo: .text)], allowsMultipleSelection: false) { result in
+                .fileImporter(isPresented: $fileSelector, allowedContentTypes: [UTType(exportedAs: "com.louisgrange.spice", conformingTo: .text)], allowsMultipleSelection: false) { result in
                     switch result {
                     case .success(let file):
-                        interpretFile(file)
+                        openedFile = file
                     case .failure(let error):
                         print(error.localizedDescription)
                         showingAlert.toggle()
@@ -35,49 +35,22 @@ struct SpiceApp: App {
                 } message: {
                     Text("FILE_ERROR_MESSAGE")
                 }
-                .sheet(isPresented: $configuration) {
-                    VStack(alignment: .center) {
-                        Text("ONBOARDING_TITLE")
-                            .font(.largeTitle)
-                            .fontWeight(.semibold)
-                         Text("ONBOARDING_MESSAGE")
-                            .font(.title3)
-                        HStack(spacing: 20) {
-                            AppearanceView(styleId: 0, styleName: "EU_STYLE")
-                            AppearanceView(styleId: 1, styleName: "US_STYLE")
-                        }.padding(.top, 20)
-                        Button {
-                            self.configuration.toggle();
-                        } label: {
-                            Text("ONBOARDING_BUTTON")
-                        }.buttonStyle(.borderedProminent)
-                        .controlSize(.extraLarge)
-                        .padding(.top, 30)
-                    }.padding(40)
+                .sheet(isPresented: $isPresented) {
+                    OnBoardingView(isPresented: $isPresented)
+                }
+                .onAppear {
+                    if symbolsStyle == 0 {
+                        isPresented.toggle()
+                    }
                 }
         }.commands {
-            CommandMenu("TOOLS") {
-                Button("ERASE") {
-                    print("Saved!")
-                }
-                Divider()
-                Button("WIRE") {
-                }
-                Button("RESISTOR") {
-                }
-                Button("SOURCE_VOLTAGE") {
-                }
-                Button("SOURCE_CURRENT") {
-                }
-                Button("SOURCE_ALTERNATIVE") {
-                }
-            }
             CommandGroup(after: CommandGroupPlacement.newItem) {
+                Divider()
                 Button("MENU_SAVE") {
                     print("Saved!")
                 }.keyboardShortcut("S")
                 Button("MENU_OPEN") {
-                    fileImporter.toggle()
+                    fileSelector.toggle()
                 }.keyboardShortcut("O")
             }
         }
@@ -108,8 +81,6 @@ struct SpiceApp: App {
                             print(newPoint)
                         }
                     }
-                    let newLine = Wire(color: Color(red: Double(lineDataset[1])!, green: Double(lineDataset[2])!, blue: Double(lineDataset[3])!), points: points)
-                    lines.append(newLine)
                 default:
                     print("Nope")
                 }
@@ -117,60 +88,6 @@ struct SpiceApp: App {
         } catch let error {
             showingAlert.toggle()
             print(error)
-        }
-    }
-}
-
-struct AppearanceView: View {
-    @AppStorage("symbolsStyle") private var symbolsStyle = 0
-    var styleId: Int
-    var styleName: String
-    var body: some View {
-        VStack(alignment: .center) {
-            ZStack {
-                Canvas { context, size in
-                    context.translateBy(x: 75, y: 50)
-                    if styleId == 1 {
-                        context.stroke(
-                            Path() { path in
-                                path.move(to: CGPoint(x: -75, y: 0))
-                                path.addLine(to: CGPoint(x: -30, y: 0))
-                                path.addLine(to: CGPoint(x: -25, y: 13))
-                                path.addLine(to: CGPoint(x: -15, y: -13))
-                                path.addLine(to: CGPoint(x: -5, y: 13))
-                                path.addLine(to: CGPoint(x: 5, y: -13))
-                                path.addLine(to: CGPoint(x: 15, y: 13))
-                                path.addLine(to: CGPoint(x: 25, y: -13))
-                                path.addLine(to: CGPoint(x: 30, y: 0))
-                                path.addLine(to: CGPoint(x: 75, y: 0))
-                            },
-                            with: .color(Color("black")),
-                            lineWidth: 1.35)
-                    } else {
-                        context.stroke(
-                            Path() { path in
-                                path.move(to: CGPoint(x: -75, y: 0))
-                                path.addLine(to: CGPoint(x: -30, y: 0))
-                                path.addLine(to: CGPoint(x: -30, y: 13))
-                                path.addLine(to: CGPoint(x: 30, y: 13))
-                                path.addLine(to: CGPoint(x: 30, y: -13))
-                                path.addLine(to: CGPoint(x: -30, y: -13))
-                                path.addLine(to: CGPoint(x: -30, y: 0))
-                                path.move(to: CGPoint(x: 30, y: 0))
-                                path.addLine(to: CGPoint(x: 75, y: 0))
-                            },
-                            with: .color(Color("black")),
-                            lineWidth: 1.35)
-                    }
-                }.frame(width: 150, height: 100)
-                .clipShape(RoundedRectangle(cornerRadius: 10))
-                .overlay(
-                    RoundedRectangle(cornerRadius: 10)
-                        .stroke(symbolsStyle == styleId ? .blue : .secondary.opacity(0.5), lineWidth: symbolsStyle == styleId ? 2 : 0.5)
-                )
-            }.padding(.top, 5)
-        }.onTapGesture {
-            symbolsStyle = styleId
         }
     }
 }

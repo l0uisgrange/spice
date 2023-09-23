@@ -21,7 +21,3 @@ struct ComponentView: View {
         }
     }
 }
-
-#Preview {
-    ComponentView(name: "Résistance", imageName: "resistor")
-}

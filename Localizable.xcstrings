@@ -153,17 +153,6 @@
         }
       }
     },
-    "MENU_ABOUT" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "À propos de Spice"
-          }
-        }
-      }
-    },
     "MENU_OPEN" : {
       "localizations" : {
         "fr" : {
@@ -245,16 +234,6 @@
         }
       }
     },
-    "RESISTOR" : {
-      "localizations" : {
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Résistance"
-          }
-        }
-      }
-    },
     "RUN" : {
       "localizations" : {
         "fr" : {
@@ -265,59 +244,18 @@
         }
       }
     },
-    "SEARCH_COMPONENT" : {
-      "extractionState" : "stale",
+    "SELECT_FILE" : {
       "localizations" : {
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Rechercher"
-          }
-        }
-      }
-    },
-    "SOURCE" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Source"
-          }
-        }
-      }
-    },
-    "SOURCE_ALTERNATIVE" : {
-      "localizations" : {
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Source alternative"
-          }
-        }
-      }
-    },
-    "SOURCE_CURRENT" : {
-      "localizations" : {
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Source de courant"
-          }
-        }
-      }
-    },
-    "SOURCE_VOLTAGE" : {
-      "localizations" : {
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Source de tension"
+            "value" : "Sélectionner un fichier"
           }
         }
       }
     },
     "TOOLS" : {
+      "extractionState" : "stale",
       "localizations" : {
         "fr" : {
           "stringUnit" : {
