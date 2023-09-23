@@ -15,7 +15,7 @@ struct SpiceApp: App {
     @State private var fileImporter: Bool = false
     @State private var configuration: Bool = false
     @State private var showingAlert: Bool = false
-    @State var lines: [Line] = []
+    @State var lines: [Wire] = []
     @State var hover: Bool = false
     var body: some Scene {
         WindowGroup {
@@ -99,16 +99,16 @@ struct SpiceApp: App {
             for line in linesFile {
                 let lineDataset = line.components(separatedBy: " ")
                 switch lineDataset[0] {
-                case "0":
-                    var points: [Point] = []
+                case "W":
+                    var points: [CGPoint] = []
                     for i in 4..<lineDataset.count-1 {
                         if i%2 == 0 {
-                            let newPoint = Point(x: Double(lineDataset[i]) ?? 0, y: Double(lineDataset[i+1]) ?? 0)
+                            let newPoint = CGPoint(x: Double(lineDataset[i]) ?? 0, y: Double(lineDataset[i+1]) ?? 0)
                             points.append(newPoint)
                             print(newPoint)
                         }
                     }
-                    let newLine = Line(color: Color(red: Double(lineDataset[1])!, green: Double(lineDataset[2])!, blue: Double(lineDataset[3])!), points: points)
+                    let newLine = Wire(color: Color(red: Double(lineDataset[1])!, green: Double(lineDataset[2])!, blue: Double(lineDataset[3])!), points: points)
                     lines.append(newLine)
                 default:
                     print("Nope")

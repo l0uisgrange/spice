@@ -8,12 +8,13 @@
 import SwiftUI
 import Foundation
 
-struct Point {
-    var x: Double = 0.0
-    var y: Double = 0.0
+struct Wire {
+    var color: Color
+    var points: [CGPoint]
 }
 
-struct Line {
+struct Resistor {
     var color: Color
-    let points: [Point]
+    var position: CGPoint
+    var orientation: Angle
 }

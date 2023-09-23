@@ -10,7 +10,7 @@ import SwiftData
 
 struct ContentView: View {
     let columns = [GridItem(.flexible()), GridItem(.flexible())]
-    @Binding var lines: [Line]
+    @Binding var lines: [Wire]
     @State var zoom: CGFloat = 1.0
     @State var searchText: String = ""
     @State private var canvasContentOffset: CGPoint = CGPoint.zero
@@ -62,9 +62,9 @@ struct ContentView: View {
                         for line in lines {
                             context.stroke(
                                 Path() { path in
-                                    path.move(to: CGPoint(x: line.points.first?.x ?? 0, y: line.points.first?.y ?? 0))
+                                    path.move(to: line.points.first ?? CGPoint.zero)
                                     for point in line.points {
-                                        path.addLine(to: CGPoint(x: point.x, y: point.y))
+                                        path.addLine(to: point)
                                     }
                                 },
                                 with: .color(line.color),
