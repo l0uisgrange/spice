@@ -9,8 +9,8 @@ import SwiftUI
 import Foundation
 
 struct Point {
-    var x = 0
-    var y = 0
+    var x: Double = 0.0
+    var y: Double = 0.0
 }
 
 struct Line {

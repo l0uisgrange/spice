@@ -102,8 +102,10 @@ struct SpiceApp: App {
                 case "0":
                     var points: [Point] = []
                     for i in 4..<lineDataset.count-1 {
-                        if i%2 != 0 {
-                            points.append(Point(x: Int(lineDataset[i]) ?? 0, y: Int(lineDataset[i+1]) ?? 0))
+                        if i%2 == 0 {
+                            let newPoint = Point(x: Double(lineDataset[i]) ?? 0, y: Double(lineDataset[i+1]) ?? 0)
+                            points.append(newPoint)
+                            print(newPoint)
                         }
                     }
                     let newLine = Line(color: Color(red: Double(lineDataset[1])!, green: Double(lineDataset[2])!, blue: Double(lineDataset[3])!), points: points)
