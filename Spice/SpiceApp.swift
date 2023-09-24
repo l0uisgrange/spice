@@ -73,17 +73,20 @@ struct SpiceApp: App {
             // Get the shapes from the lines
             for line in linesFile {
                 let lineDataset = line.components(separatedBy: " ")
-                if(lineDataset.count != 8) {
+                if(lineDataset[0].contains("*")) {
                     continue
                 }
                 let newComponent = CircuitComponent(
+                    lineDataset[0],
                     color: Color(
                         red: Double(lineDataset[1])!,
                         green: Double(lineDataset[2])!,
                         blue: Double(lineDataset[3])!),
                     start: CGPoint(x: Int(lineDataset[4])!, y: Int(lineDataset[5])!),
                     end: CGPoint(x: Int(lineDataset[6])!, y: Int(lineDataset[7])!),
-                    type: lineDataset[0])
+                    type: lineDataset[0].components(separatedBy: "").first ?? "W",
+                    value: lineDataset.count > 8 ? Double(lineDataset[8]) ?? 0.0 : 0.0)
+                print("\(newComponent.type) : \(newComponent.startingPoint)->\(newComponent.endingPoint)")
                 components.append(newComponent)
             }
         } catch let error {

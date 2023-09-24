@@ -10,10 +10,12 @@ import SwiftUI
 struct CanvasView: View {
     @State var geometry: GeometryProxy
     @State private var canvasContentOffset: CGPoint = CGPoint.zero
+    @AppStorage("symbolsStyle") private var symbolsStyle = 0
     @AppStorage("gridStyle") private var gridStyle = 1
     @Binding var origin: CGPoint
     @Binding var zoom: Double
-    @State private var currentZoom = 0.0
+    @State private var currentZoom: Double = 0.0
+    @State private var cursorPosition: CGPoint = CGPoint.zero
     let dotSize: Double = 1.0
     @Binding var components: [CircuitComponent]
     var body: some View {
@@ -64,19 +66,12 @@ struct CanvasView: View {
                 },
                 with: .color(.gray.opacity(0.2)),
                 lineWidth: 1/(zoom+currentZoom))
-            for component in components {
-                context.stroke(
-                    Path() { path in
-                        path.move(to: component.startingPoint)
-                        for point in componentToLine(component) {
-                            path.addLine(to: point)
-                        }
-                    },
-                    with: .color(component.color),
-                    lineWidth: 1.35/(zoom+currentZoom)
-                )
+            for c in components {
+                c.draw(context: context, zoom: currentZoom + zoom, style: symbolsStyle)
             }
-        }.gesture(
+        }
+        .drawingGroup()
+        .gesture(
             DragGesture()
                 .onChanged { gesture in
                     self.canvasContentOffset.x = gesture.translation.width
@@ -88,28 +83,5 @@ struct CanvasView: View {
                     self.canvasContentOffset = CGPoint.zero
                 }
         )
-        .gesture(
-            MagnifyGesture()
-                .onChanged { value in
-                    if value.magnification-1 + zoom < 2.5 && value.magnification-1 + zoom > 1 {
-                        currentZoom = value.magnification - 1
-                    }
-                }
-                .onEnded { value in
-                    if currentZoom + zoom < 2.5 && currentZoom + zoom > 1 {
-                        zoom += currentZoom
-                        currentZoom = 0
-                    }
-                }
-        )
-    }
-}
-
-func componentToLine(_ comp: CircuitComponent) -> [CGPoint] {
-    switch comp.type {
-    case "W":
-        return [comp.endingPoint]
-    default:
-        return []
     }
 }

@@ -15,8 +15,8 @@ struct SettingsView: View {
     var body: some View {
         Form {
             Picker("COMPONENTS_APPEARANCE", selection: $symbolsStyle) {
-                ForEach(0..<2) { option in
-                    Text(option == 0 ? "US_STYLE" : "EU_STYLE")
+                ForEach(1..<3) { option in
+                    Text(option == 1 ? "US_STYLE" : "EU_STYLE")
                         .tag(option)
                 }
             }

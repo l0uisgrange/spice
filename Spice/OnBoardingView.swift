@@ -18,8 +18,8 @@ struct OnBoardingView: View {
              Text("ONBOARDING_MESSAGE")
                 .font(.title3)
             HStack(spacing: 20) {
-                AppearanceView(styleId: 0, styleName: "EU_STYLE")
-                AppearanceView(styleId: 1, styleName: "US_STYLE")
+                AppearanceView(styleId: 1, styleName: "EU_STYLE")
+                AppearanceView(styleId: 2, styleName: "US_STYLE")
             }.padding(.top, 20)
             Button {
                 isPresented.toggle()
@@ -55,7 +55,7 @@ struct AppearanceView: View {
                                 path.addLine(to: CGPoint(x: 30, y: 0))
                                 path.addLine(to: CGPoint(x: 75, y: 0))
                             },
-                            with: .color(Color("black")),
+                            with: .color(.primary),
                             lineWidth: 1.35)
                     } else {
                         context.stroke(
@@ -70,7 +70,7 @@ struct AppearanceView: View {
                                 path.move(to: CGPoint(x: 30, y: 0))
                                 path.addLine(to: CGPoint(x: 75, y: 0))
                             },
-                            with: .color(Color("black")),
+                            with: .color(.primary),
                             lineWidth: 1.35)
                     }
                 }.frame(width: 150, height: 100)
