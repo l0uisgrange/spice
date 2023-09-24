@@ -17,14 +17,11 @@ R1 1 2 1k
 V1 1 0 DC 5V
 ```
 | Component | Date statement |
-| -- | -- |
+| :-- | :-- |
 | Voltage source | `V<name> <node1> <node2> DC <value>` |
 | Current source | `I<name> <node1> <node2> DC <value>` |
-| Resistor | `R<name> <node1> <node2> <value>` |
-| Capacitor | `C<name> <node1> <node2> <value>` |
-| Inductor | `L<name> <node1> <node2> <value>` |
-| Diode | `D<name> <node1> <node2> <model>` |
-| Transistor | `Q<name> <collector> <base> <emitter> <model>` |
+
+For more informations, please read the Wiki
 
 ## Languages support
 
