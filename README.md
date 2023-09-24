@@ -21,7 +21,7 @@ V1 1 0 DC 5V
 | Voltage source | `V<name> <node1> <node2> DC <value>` |
 | Current source | `I<name> <node1> <node2> DC <value>` |
 
-For more informations, please read the ![Wiki](https://github.com/l0uisgrange/spice/wiki)
+For more informations, please read the [Wiki](https://github.com/l0uisgrange/spice/wiki)
 
 ## Languages support
 
