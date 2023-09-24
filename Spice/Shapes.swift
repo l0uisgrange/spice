@@ -31,52 +31,86 @@ class CircuitComponent: Identifiable {
     var type: String = ""
     func draw(context: GraphicsContext, zoom: Double = 1.0, style: Int = 1) {
         context.drawLayer { ctx in
+            if type != "W" {
+                ctx.translateBy(x: startingPoint.x, y: startingPoint.y)
+                ctx.rotate(by: Angle(degrees: startingPoint.x == endingPoint.x ? 90 : 0))
+            }
             ctx.stroke(
-                Path() { path in
-                    path.move(to: startingPoint)
-                    for point in componentToLine(self, style: style) {
-                        path.addLine(to: point)
-                    }
-                },
+                getPath(self, style: style),
                 with: .color(color),
                 lineWidth: 1.35/zoom
             )
-            ctx.translateBy(x: startingPoint.x, y: startingPoint.y)
         }
     }
 }
 
-func componentToLine(_ c: CircuitComponent, style: Int = 1) -> [CGPoint] {
-    if c.type == "W" { return [c.endingPoint] }
+func getPath(_ c: CircuitComponent, style: Int = 1) -> Path {
     switch c.type {
+    case "W":
+        return Wire(start: c.startingPoint, end: c.endingPoint).path()
     case "R":
-        if style == 1 {
-            return [
-                CGPoint(x: 0, y: 0),
-                CGPoint(x: 10, y: 0),
-                CGPoint(x: 15, y: -10),
-                CGPoint(x: 25, y: 10),
-                CGPoint(x: 35, y: -10),
-                CGPoint(x: 45, y: 10),
-                CGPoint(x: 50, y: 0),
-                CGPoint(x: 60, y: 0)
-            ]
-        } else {
-            return [
-                CGPoint(x: 0, y: 0),
-                CGPoint(x: 10, y: 0),
-                CGPoint(x: 10, y: -7),
-                CGPoint(x: 50, y: -7),
-                CGPoint(x: 50, y: 7),
-                CGPoint(x: 10, y: 7),
-                CGPoint(x: 10, y: 0),
-                CGPoint(x: 10, y: 7),
-                CGPoint(x: 50, y: 7),
-                CGPoint(x: 50, y: 0),
-                CGPoint(x: 60, y: 0)
-            ]
-        }
+        return Resistor(start: c.startingPoint, end: c.endingPoint, style: style).path()
     default:
-        return []
+        return Wire(start: c.startingPoint, end: c.endingPoint).path()
+    }
+}
+
+struct Wire: Shape {
+    var start: CGPoint
+    var end: CGPoint
+
+    func path(in rect: CGRect = CGRect(x: 0, y: -1, width: 400, height: 2)) -> Path {
+        var path = Path()
+        path.move(to: start)
+        path.addLine(to: end)
+        return path
+    }
+}
+
+struct Resistor: Shape {
+    var start: CGPoint
+    var end: CGPoint
+    var style: Int = 1
+
+    func path(in rect: CGRect = CGRect(x: 0, y: -20, width: 60, height: 40)) -> Path {
+        switch style {
+        case 2:
+            var path = Path()
+            path.move(to: CGPoint.zero)
+            path.addLine(to: CGPoint(x: 10, y: 0))
+            path.addLine(to: CGPoint(x: 10, y: -10))
+            path.addLine(to: CGPoint(x: 50, y: -10))
+            path.addLine(to: CGPoint(x: 50, y: 0))
+            path.addLine(to: CGPoint(x: 60, y: 0))
+            path.move(to: CGPoint(x: 10, y: 0))
+            path.addLine(to: CGPoint(x: 10, y: 10))
+            path.addLine(to: CGPoint(x: 50, y: 10))
+            path.addLine(to: CGPoint(x: 50, y: 0))
+            return path
+        default:
+            var path = Path()
+            path.move(to: CGPoint.zero)
+            path.addLine(to: CGPoint(x: 10, y: 0))
+            path.addLine(to: CGPoint(x: 15, y: -10))
+            path.addLine(to: CGPoint(x: 25, y: 10))
+            path.addLine(to: CGPoint(x: 35, y: -10))
+            path.addLine(to: CGPoint(x: 45, y: 10))
+            path.addLine(to: CGPoint(x: 50, y: 0))
+            path.addLine(to: CGPoint(x: 60, y: 0))
+            return path
+        }
+    }
+}
+
+struct Inductor: Shape {
+    var start: CGPoint
+    var end: CGPoint
+    var style: Int = 1
+
+    func path(in rect: CGRect = CGRect(x: 0, y: -20, width: 60, height: 40)) -> Path {
+        var path = Path()
+        path.move(to: start)
+        path.move(to: start)
+        return path
     }
 }
