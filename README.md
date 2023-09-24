@@ -17,7 +17,7 @@ R1 1 2 1k
 V1 1 0 DC 5V
 ```
 | Component | Date statement |
-| -- | -- | -- |
+| -- | -- |
 | Voltage source | `V<name> <node1> <node2> DC <value>` |
 | Current source | `I<name> <node1> <node2> DC <value>` |
 | Resistor | `R<name> <node1> <node2> <value>` |
