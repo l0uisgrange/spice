@@ -58,6 +58,8 @@ func getPath(_ c: CircuitComponent, style: Int = 1) -> Path {
         return Resistor(start: c.startingPoint, end: c.endingPoint, style: style).path()
     case "I":
         return Inductor(start: c.startingPoint, end: c.endingPoint, style: style).path()
+    case "V":
+        return VSource(start: c.startingPoint, end: c.endingPoint, style: style).path()
     default:
         return Wire(start: c.startingPoint, end: c.endingPoint).path()
     }
@@ -128,6 +130,37 @@ struct Inductor: Shape {
             path.addArc(center: CGPoint(x: 30, y: 0), radius: 8, startAngle: Angle(degrees: 220), endAngle: Angle(degrees: 320), clockwise: true)
             path.addArc(center: CGPoint(x: 42, y: 0), radius: 8, startAngle: Angle(degrees: 220), endAngle: Angle(degrees: 0), clockwise: true)
             path.move(to: CGPoint(x: 50, y: 0))
+            path.addLine(to: CGPoint(x: 60, y: 0))
+            return path
+        }
+    }
+}
+
+struct VSource: Shape {
+    var start: CGPoint
+    var end: CGPoint
+    var style: Int = 1
+
+    func path(in rect: CGRect = CGRect(x: 0, y: -8, width: 60, height: 16)) -> Path {
+        switch style {
+        case 2:
+            var path = Path()
+            path.move(to: CGPoint.zero)
+            path.addLine(to: CGPoint(x: 60, y: 0))
+            path.addRoundedRect(in: CGRect(x: 15, y: -15, width: 30, height: 30), cornerSize: CGSize(width: 200, height: 200))
+            return path
+        default:
+            var path = Path()
+            path.move(to: CGPoint.zero)
+            path.addLine(to: CGPoint(x: 15, y: 0))
+            path.addRoundedRect(in: CGRect(x: 15, y: -15, width: 30, height: 30), cornerSize: CGSize(width: 200, height: 200))
+            path.move(to: CGPoint(x: 20, y: 0))
+            path.addLine(to: CGPoint(x: 25, y: 0))
+            path.move(to: CGPoint(x: 22.5, y: 2.5))
+            path.addLine(to: CGPoint(x: 22.5, y: -2.5))
+            path.move(to: CGPoint(x: 35, y: 0))
+            path.addLine(to: CGPoint(x: 40, y: 0))
+            path.move(to: CGPoint(x: 45, y: 0))
             path.addLine(to: CGPoint(x: 60, y: 0))
             return path
         }

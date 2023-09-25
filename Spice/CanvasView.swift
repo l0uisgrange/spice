@@ -70,6 +70,21 @@ struct CanvasView: View {
                 c.draw(context: context, zoom: currentZoom + zoom, style: symbolsStyle)
             }
         }
+        .focusable()
+        .onMoveCommand { direction in
+            switch direction {
+            case .down:
+                origin.y -= 20
+            case .up:
+                origin.y += 20
+            case .right:
+                origin.x -= 20
+            case .left:
+                origin.x += 20
+            default:
+                origin.x = origin.x
+            }
+        }
         .drawingGroup()
         .gesture(
             DragGesture()

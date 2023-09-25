@@ -12,6 +12,16 @@
         }
       }
     },
+    "BACKGROUND" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Arrière-plan"
+          }
+        }
+      }
+    },
     "CANCEL" : {
       "localizations" : {
         "fr" : {
@@ -37,7 +47,6 @@
 
     },
     "COMPONENTS" : {
-      "extractionState" : "stale",
       "localizations" : {
         "fr" : {
           "stringUnit" : {

@@ -12,15 +12,18 @@ import UniformTypeIdentifiers
 @main
 struct SpiceApp: App {
     @AppStorage("symbolsStyle") private var symbolsStyle = 0
+    @AppStorage("gridStyle") private var gridStyle = 1
     @State private var fileSelector: Bool = false
     @State private var isPresented: Bool = false
     @State private var showingAlert: Bool = false
+    @State var zoom: Double = 1.5
     @State var openedFile: [URL] = []
+    @State var editionMode: EditionMode = .cursor
     @State var hover: Bool = false
     @State var components: [CircuitComponent] = []
     var body: some Scene {
         WindowGroup {
-            ContentView(file: $openedFile, fileSelector: $fileSelector, components: $components)
+            ContentView(file: $openedFile, zoom: $zoom, fileSelector: $fileSelector, editionMode: $editionMode, components: $components)
                 .frame(minWidth: 500, idealWidth: 600, minHeight: 400, idealHeight: 550)
                 .fileImporter(isPresented: $fileSelector, allowedContentTypes: [UTType(exportedAs: "com.louisgrange.spice")], allowsMultipleSelection: false) { result in
                     switch result {
@@ -54,6 +57,31 @@ struct SpiceApp: App {
                 Button("MENU_OPEN") {
                     fileSelector.toggle()
                 }.keyboardShortcut("O")
+            }
+            CommandGroup(after: CommandGroupPlacement.toolbar) {
+                Divider()
+                Picker("BACKGROUND", selection: $gridStyle) {
+                    Text("NONE")
+                        .tag(0)
+                    Text("DOTS")
+                        .tag(1)
+                    Text("GRID")
+                        .tag(2)
+                }
+                Picker("COMPONENTS", selection: $symbolsStyle) {
+                    Text("EU_STYLE")
+                        .tag(1)
+                    Text("US_STYLE")
+                        .tag(2)
+                }
+                Divider()
+                Button("ZOOM_IN") {
+                    zoom += 0.5
+                }
+                Button("ZOOM_OUT") {
+                    zoom -= 0.5
+                }
+                Divider()
             }
         }
         Settings {
@@ -94,4 +122,8 @@ struct SpiceApp: App {
             print(error)
         }
     }
+}
+
+enum EditionMode {
+    case cursor, wire, edit
 }

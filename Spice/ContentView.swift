@@ -10,10 +10,11 @@ import SwiftData
 
 struct ContentView: View {
     @Binding var file: [URL]
-    @State var zoom: Double = 1.5
+    @Binding var zoom: Double
     @State private var origin: CGPoint = CGPoint.zero
     let dotSize: CGFloat = 1.0
     @Binding var fileSelector: Bool
+    @Binding var editionMode: EditionMode
     @Binding var components: [CircuitComponent]
     var body: some View {
         VStack {
