@@ -40,6 +40,12 @@ class CircuitComponent: Identifiable {
                 with: .color(color),
                 lineWidth: 1.35/zoom
             )
+            if type == "I" && style == 2 {
+                ctx.fill(
+                    getPath(self, style: style),
+                    with: .color(color)
+                )
+            }
         }
     }
 }
@@ -50,6 +56,8 @@ func getPath(_ c: CircuitComponent, style: Int = 1) -> Path {
         return Wire(start: c.startingPoint, end: c.endingPoint).path()
     case "R":
         return Resistor(start: c.startingPoint, end: c.endingPoint, style: style).path()
+    case "I":
+        return Inductor(start: c.startingPoint, end: c.endingPoint, style: style).path()
     default:
         return Wire(start: c.startingPoint, end: c.endingPoint).path()
     }
@@ -72,29 +80,24 @@ struct Resistor: Shape {
     var end: CGPoint
     var style: Int = 1
 
-    func path(in rect: CGRect = CGRect(x: 0, y: -20, width: 60, height: 40)) -> Path {
+    func path(in rect: CGRect = CGRect(x: 0, y: -8, width: 60, height: 16)) -> Path {
         switch style {
         case 2:
             var path = Path()
             path.move(to: CGPoint.zero)
             path.addLine(to: CGPoint(x: 10, y: 0))
-            path.addLine(to: CGPoint(x: 10, y: -10))
-            path.addLine(to: CGPoint(x: 50, y: -10))
-            path.addLine(to: CGPoint(x: 50, y: 0))
+            path.addRect(CGRect(x: 10, y: -8, width: 40, height: 15))
+            path.move(to: CGPoint(x: 50, y: 0))
             path.addLine(to: CGPoint(x: 60, y: 0))
-            path.move(to: CGPoint(x: 10, y: 0))
-            path.addLine(to: CGPoint(x: 10, y: 10))
-            path.addLine(to: CGPoint(x: 50, y: 10))
-            path.addLine(to: CGPoint(x: 50, y: 0))
             return path
         default:
             var path = Path()
             path.move(to: CGPoint.zero)
             path.addLine(to: CGPoint(x: 10, y: 0))
-            path.addLine(to: CGPoint(x: 15, y: -10))
-            path.addLine(to: CGPoint(x: 25, y: 10))
-            path.addLine(to: CGPoint(x: 35, y: -10))
-            path.addLine(to: CGPoint(x: 45, y: 10))
+            path.addLine(to: CGPoint(x: 15, y: -rect.height/2))
+            path.addLine(to: CGPoint(x: 25, y: rect.height/2))
+            path.addLine(to: CGPoint(x: 35, y: -rect.height/2))
+            path.addLine(to: CGPoint(x: 45, y: rect.height/2))
             path.addLine(to: CGPoint(x: 50, y: 0))
             path.addLine(to: CGPoint(x: 60, y: 0))
             return path
@@ -107,10 +110,26 @@ struct Inductor: Shape {
     var end: CGPoint
     var style: Int = 1
 
-    func path(in rect: CGRect = CGRect(x: 0, y: -20, width: 60, height: 40)) -> Path {
-        var path = Path()
-        path.move(to: start)
-        path.move(to: start)
-        return path
+    func path(in rect: CGRect = CGRect(x: 0, y: -8, width: 60, height: 16)) -> Path {
+        switch style {
+        case 2:
+            var path = Path()
+            path.move(to: CGPoint.zero)
+            path.addLine(to: CGPoint(x: 10, y: 0))
+            path.addRect(CGRect(x: 10, y: -8, width: 40, height: 15))
+            path.move(to: CGPoint(x: 50, y: 0))
+            path.addLine(to: CGPoint(x: 60, y: 0))
+            return path
+        default:
+            var path = Path()
+            path.move(to: CGPoint.zero)
+            path.addLine(to: CGPoint(x: 10, y: 0))
+            path.addArc(center: CGPoint(x: 18 , y: 0), radius: 8, startAngle: Angle(degrees: 180), endAngle: Angle(degrees: 320), clockwise: true)
+            path.addArc(center: CGPoint(x: 30, y: 0), radius: 8, startAngle: Angle(degrees: 220), endAngle: Angle(degrees: 320), clockwise: true)
+            path.addArc(center: CGPoint(x: 42, y: 0), radius: 8, startAngle: Angle(degrees: 220), endAngle: Angle(degrees: 0), clockwise: true)
+            path.move(to: CGPoint(x: 50, y: 0))
+            path.addLine(to: CGPoint(x: 60, y: 0))
+            return path
+        }
     }
 }
