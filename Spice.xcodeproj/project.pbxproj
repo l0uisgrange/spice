@@ -3,14 +3,12 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 60;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		2A37A92C2ABF3345009C64CE /* CanvasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A37A92B2ABF3345009C64CE /* CanvasView.swift */; };
 		2A37A92E2ABF36FB009C64CE /* OnBoardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A37A92D2ABF36FB009C64CE /* OnBoardingView.swift */; };
-		2A37A9302ABF39BC009C64CE /* NoContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A37A92F2ABF39BC009C64CE /* NoContentView.swift */; };
-		2A49687E2ABDCAB500DBC58B /* ComponentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A49687D2ABDCAB500DBC58B /* ComponentView.swift */; };
 		2A4968802ABDD81D00DBC58B /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A49687F2ABDD81D00DBC58B /* SettingsView.swift */; };
 		2A9AFE562ABB376100A77A2C /* SpiceApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9AFE552ABB376100A77A2C /* SpiceApp.swift */; };
 		2A9AFE582ABB376100A77A2C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9AFE572ABB376100A77A2C /* ContentView.swift */; };
@@ -18,13 +16,12 @@
 		2A9AFE5F2ABB376200A77A2C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2A9AFE5E2ABB376200A77A2C /* Preview Assets.xcassets */; };
 		2A9AFE672ABB499500A77A2C /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A9AFE662ABB499500A77A2C /* Localizable.xcstrings */; };
 		2A9AFE6A2ABB79BF00A77A2C /* Shapes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9AFE692ABB79BF00A77A2C /* Shapes.swift */; };
+		2AE073A82AC1ECFB000AECE0 /* FilesTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE073A72AC1ECFB000AECE0 /* FilesTypes.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		2A37A92B2ABF3345009C64CE /* CanvasView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasView.swift; sourceTree = "<group>"; };
 		2A37A92D2ABF36FB009C64CE /* OnBoardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingView.swift; sourceTree = "<group>"; };
-		2A37A92F2ABF39BC009C64CE /* NoContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoContentView.swift; sourceTree = "<group>"; };
-		2A49687D2ABDCAB500DBC58B /* ComponentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentView.swift; sourceTree = "<group>"; };
 		2A49687F2ABDD81D00DBC58B /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		2A9AFE522ABB376100A77A2C /* Spice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Spice.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A9AFE552ABB376100A77A2C /* SpiceApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpiceApp.swift; sourceTree = "<group>"; };
@@ -35,6 +32,7 @@
 		2A9AFE662ABB499500A77A2C /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		2A9AFE682ABB71FF00A77A2C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		2A9AFE692ABB79BF00A77A2C /* Shapes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shapes.swift; sourceTree = "<group>"; };
+		2AE073A72AC1ECFB000AECE0 /* FilesTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilesTypes.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +54,7 @@
 				2A9AFE532ABB376100A77A2C /* Products */,
 			);
 			sourceTree = "<group>";
+			usesTabs = 0;
 		};
 		2A9AFE532ABB376100A77A2C /* Products */ = {
 			isa = PBXGroup;
@@ -71,12 +70,11 @@
 				2A9AFE682ABB71FF00A77A2C /* Info.plist */,
 				2A9AFE552ABB376100A77A2C /* SpiceApp.swift */,
 				2A9AFE572ABB376100A77A2C /* ContentView.swift */,
-				2A49687D2ABDCAB500DBC58B /* ComponentView.swift */,
 				2A37A92B2ABF3345009C64CE /* CanvasView.swift */,
-				2A9AFE692ABB79BF00A77A2C /* Shapes.swift */,
-				2A37A92F2ABF39BC009C64CE /* NoContentView.swift */,
 				2A49687F2ABDD81D00DBC58B /* SettingsView.swift */,
 				2A37A92D2ABF36FB009C64CE /* OnBoardingView.swift */,
+				2A9AFE692ABB79BF00A77A2C /* Shapes.swift */,
+				2AE073A72AC1ECFB000AECE0 /* FilesTypes.swift */,
 				2A9AFE5B2ABB376200A77A2C /* Assets.xcassets */,
 				2A9AFE602ABB376200A77A2C /* Spice.entitlements */,
 				2A9AFE5D2ABB376200A77A2C /* Preview Content */,
@@ -128,7 +126,7 @@
 				};
 			};
 			buildConfigurationList = 2A9AFE4D2ABB376100A77A2C /* Build configuration list for PBXProject "Spice" */;
-			compatibilityVersion = "Xcode 14.0";
+			compatibilityVersion = "Xcode 15.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -165,9 +163,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				2A4968802ABDD81D00DBC58B /* SettingsView.swift in Sources */,
-				2A37A9302ABF39BC009C64CE /* NoContentView.swift in Sources */,
 				2A37A92C2ABF3345009C64CE /* CanvasView.swift in Sources */,
-				2A49687E2ABDCAB500DBC58B /* ComponentView.swift in Sources */,
+				2AE073A82AC1ECFB000AECE0 /* FilesTypes.swift in Sources */,
 				2A9AFE582ABB376100A77A2C /* ContentView.swift in Sources */,
 				2A37A92E2ABF36FB009C64CE /* OnBoardingView.swift in Sources */,
 				2A9AFE6A2ABB79BF00A77A2C /* Shapes.swift in Sources */,
@@ -306,7 +303,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 118;
+				CURRENT_PROJECT_VERSION = 138;
 				DEVELOPMENT_ASSET_PATHS = "\"Spice/Preview Content\"";
 				DEVELOPMENT_TEAM = N2L3268M2F;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -321,7 +318,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
-				MARKETING_VERSION = 0.2.0;
+				MARKETING_VERSION = 0.2.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.louisgrange.Spice;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -339,7 +336,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 118;
+				CURRENT_PROJECT_VERSION = 138;
 				DEVELOPMENT_ASSET_PATHS = "\"Spice/Preview Content\"";
 				DEVELOPMENT_TEAM = N2L3268M2F;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -354,7 +351,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
-				MARKETING_VERSION = 0.2.0;
+				MARKETING_VERSION = 0.2.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.louisgrange.Spice;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

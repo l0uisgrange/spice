@@ -4,9 +4,15 @@
     "ADD" : {
       "extractionState" : "stale",
       "localizations" : {
-        "fr" : {
+        "en" : {
           "stringUnit" : {
             "state" : "translated",
+            "value" : "Add"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
             "value" : "Ajouter"
           }
         }
@@ -14,6 +20,12 @@
     },
     "BACKGROUND" : {
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Background"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -24,6 +36,12 @@
     },
     "CANCEL" : {
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cancel"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -32,22 +50,14 @@
         }
       }
     },
-    "CAPACITOR" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Capacité"
-          }
-        }
-      }
-    },
-    "Component" : {
-
-    },
     "COMPONENTS" : {
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Components"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -58,6 +68,12 @@
     },
     "COMPONENTS_APPEARANCE" : {
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Components appearance"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -68,6 +84,12 @@
     },
     "DOTS" : {
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dots"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -78,6 +100,12 @@
     },
     "ERASE" : {
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Erase"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -89,6 +117,12 @@
     "EU_STYLE" : {
       "extractionState" : "manual",
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "European"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -99,6 +133,12 @@
     },
     "FILE_ERROR_BUTTON" : {
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Okay"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -108,6 +148,7 @@
       }
     },
     "FILE_ERROR_MESSAGE" : {
+      "extractionState" : "stale",
       "localizations" : {
         "fr" : {
           "stringUnit" : {
@@ -129,6 +170,12 @@
     },
     "FOCUS" : {
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Focus"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -137,19 +184,14 @@
         }
       }
     },
-    "GENERAL_SETTINGS" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Général"
-          }
-        }
-      }
-    },
     "GRID" : {
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Grid"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -160,6 +202,12 @@
     },
     "GRID_APPEARANCE" : {
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Grid appearance"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -168,30 +216,14 @@
         }
       }
     },
-    "INDUCTOR" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Inductance"
-          }
-        }
-      }
-    },
-    "MADE_BY" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Conçu par Louis Grange"
-          }
-        }
-      }
-    },
     "MENU_OPEN" : {
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Open"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -202,6 +234,12 @@
     },
     "MENU_SAVE" : {
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Save"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -210,8 +248,32 @@
         }
       }
     },
-    "NO_FILE_SELECTED" : {
+    "NEW_FILE" : {
+      "extractionState" : "stale",
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "New file"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Nouveau fichier"
+          }
+        }
+      }
+    },
+    "NO_FILE_SELECTED" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No file selected"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -221,7 +283,14 @@
       }
     },
     "NO_FILE_SELECTED_MESSAGE" : {
+      "extractionState" : "stale",
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Open a file quickly with ⌘O"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -232,6 +301,12 @@
     },
     "NONE" : {
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "None"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -242,6 +317,12 @@
     },
     "ONBOARDING_BUTTON" : {
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Close"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -252,6 +333,12 @@
     },
     "ONBOARDING_MESSAGE" : {
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This option changes the appearance of some symbols"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -262,6 +349,12 @@
     },
     "ONBOARDING_TITLE" : {
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Choose your style"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -270,19 +363,14 @@
         }
       }
     },
-    "OPEN_SOURCE_NOTICE" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Cette application est distribuée en open-source et gratuitement"
-          }
-        }
-      }
-    },
     "RUN" : {
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Run"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -292,7 +380,14 @@
       }
     },
     "SELECT_FILE" : {
+      "extractionState" : "stale",
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Select file"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -304,9 +399,15 @@
     "TOOLS" : {
       "extractionState" : "stale",
       "localizations" : {
-        "fr" : {
+        "en" : {
           "stringUnit" : {
             "state" : "translated",
+            "value" : "Tools"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
             "value" : "Outils"
           }
         }
@@ -314,6 +415,12 @@
     },
     "UNDO" : {
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Undo"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -325,6 +432,12 @@
     "US_STYLE" : {
       "extractionState" : "manual",
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "American"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -335,6 +448,12 @@
     },
     "WIRE" : {
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wire"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -345,6 +464,12 @@
     },
     "ZOOM_IN" : {
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zoom in"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -355,6 +480,12 @@
     },
     "ZOOM_OUT" : {
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zoom out"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",

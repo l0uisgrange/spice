@@ -13,33 +13,15 @@ import UniformTypeIdentifiers
 struct SpiceApp: App {
     @AppStorage("symbolsStyle") private var symbolsStyle = 0
     @AppStorage("gridStyle") private var gridStyle = 1
-    @State private var fileSelector: Bool = false
     @State private var isPresented: Bool = false
-    @State private var showingAlert: Bool = false
     @State var zoom: Double = 1.5
     @State var openedFile: [URL] = []
     @State var editionMode: EditionMode = .cursor
-    @State var hover: Bool = false
     @State var components: [CircuitComponent] = []
     var body: some Scene {
-        WindowGroup {
-            ContentView(file: $openedFile, zoom: $zoom, fileSelector: $fileSelector, editionMode: $editionMode, components: $components)
+        DocumentGroup(newDocument: SpiceDocument(text: "* Data statements")) { configuration in
+            ContentView(file: $openedFile, zoom: $zoom, editionMode: $editionMode, components: $components)
                 .frame(minWidth: 500, idealWidth: 600, minHeight: 400, idealHeight: 550)
-                .fileImporter(isPresented: $fileSelector, allowedContentTypes: [UTType(exportedAs: "com.louisgrange.spice")], allowsMultipleSelection: false) { result in
-                    switch result {
-                    case .success(let file):
-                        openedFile = file
-                        interpretFile(file)
-                    case .failure(let error):
-                        print(error.localizedDescription)
-                        showingAlert.toggle()
-                    }
-                }
-                .alert("FILE_ERROR_TITLE", isPresented: $showingAlert) {
-                    Button("FILE_ERROR_BUTTON", role: .cancel) { }
-                } message: {
-                    Text("FILE_ERROR_MESSAGE")
-                }
                 .sheet(isPresented: $isPresented) {
                     OnBoardingView(isPresented: $isPresented)
                 }
@@ -49,15 +31,6 @@ struct SpiceApp: App {
                     }
                 }
         }.commands {
-            CommandGroup(after: CommandGroupPlacement.newItem) {
-                Divider()
-                Button("MENU_SAVE") {
-                    print("Saved!")
-                }.keyboardShortcut("S")
-                Button("MENU_OPEN") {
-                    fileSelector.toggle()
-                }.keyboardShortcut("O")
-            }
             CommandGroup(after: CommandGroupPlacement.toolbar) {
                 Divider()
                 Picker("BACKGROUND", selection: $gridStyle) {
@@ -118,8 +91,7 @@ struct SpiceApp: App {
                 components.append(newComponent)
             }
         } catch let error {
-            showingAlert.toggle()
-            print(error)
+            print(error.localizedDescription)
         }
     }
 }

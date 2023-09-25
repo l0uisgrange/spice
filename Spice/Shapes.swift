@@ -8,11 +8,6 @@
 import SwiftUI
 import Foundation
 
-struct Line {
-    var color: Color
-    var points: [CGPoint]
-}
-
 class CircuitComponent: Identifiable {
     init(_ name: String, color: Color, start: CGPoint, end: CGPoint, type: String, value: Double) {
         self.color = color
@@ -56,10 +51,14 @@ func getPath(_ c: CircuitComponent, style: Int = 1) -> Path {
         return Wire(start: c.startingPoint, end: c.endingPoint).path()
     case "R":
         return Resistor(start: c.startingPoint, end: c.endingPoint, style: style).path()
-    case "I":
+    case "L":
         return Inductor(start: c.startingPoint, end: c.endingPoint, style: style).path()
+    case "C":
+        return Capacitor(start: c.startingPoint, end: c.endingPoint, style: style).path()
     case "V":
         return VSource(start: c.startingPoint, end: c.endingPoint, style: style).path()
+    case "I":
+        return ISource(start: c.startingPoint, end: c.endingPoint, style: style).path()
     default:
         return Wire(start: c.startingPoint, end: c.endingPoint).path()
     }
@@ -78,6 +77,36 @@ struct Wire: Shape {
 }
 
 struct Resistor: Shape {
+    var start: CGPoint
+    var end: CGPoint
+    var style: Int = 1
+
+    func path(in rect: CGRect = CGRect(x: 0, y: -8, width: 60, height: 16)) -> Path {
+        switch style {
+        case 2:
+            var path = Path()
+            path.move(to: CGPoint.zero)
+            path.addLine(to: CGPoint(x: 10, y: 0))
+            path.addRect(CGRect(x: 10, y: -8, width: 40, height: 15))
+            path.move(to: CGPoint(x: 50, y: 0))
+            path.addLine(to: CGPoint(x: 60, y: 0))
+            return path
+        default:
+            var path = Path()
+            path.move(to: CGPoint.zero)
+            path.addLine(to: CGPoint(x: 10, y: 0))
+            path.addLine(to: CGPoint(x: 15, y: -rect.height/2))
+            path.addLine(to: CGPoint(x: 25, y: rect.height/2))
+            path.addLine(to: CGPoint(x: 35, y: -rect.height/2))
+            path.addLine(to: CGPoint(x: 45, y: rect.height/2))
+            path.addLine(to: CGPoint(x: 50, y: 0))
+            path.addLine(to: CGPoint(x: 60, y: 0))
+            return path
+        }
+    }
+}
+
+struct Capacitor: Shape {
     var start: CGPoint
     var end: CGPoint
     var style: Int = 1
@@ -148,6 +177,41 @@ struct VSource: Shape {
             path.move(to: CGPoint.zero)
             path.addLine(to: CGPoint(x: 60, y: 0))
             path.addRoundedRect(in: CGRect(x: 15, y: -15, width: 30, height: 30), cornerSize: CGSize(width: 200, height: 200))
+            return path
+        default:
+            var path = Path()
+            path.move(to: CGPoint.zero)
+            path.addLine(to: CGPoint(x: 15, y: 0))
+            path.addRoundedRect(in: CGRect(x: 15, y: -15, width: 30, height: 30), cornerSize: CGSize(width: 200, height: 200))
+            path.move(to: CGPoint(x: 20, y: 0))
+            path.addLine(to: CGPoint(x: 25, y: 0))
+            path.move(to: CGPoint(x: 22.5, y: 2.5))
+            path.addLine(to: CGPoint(x: 22.5, y: -2.5))
+            path.move(to: CGPoint(x: 35, y: 0))
+            path.addLine(to: CGPoint(x: 40, y: 0))
+            path.move(to: CGPoint(x: 45, y: 0))
+            path.addLine(to: CGPoint(x: 60, y: 0))
+            return path
+        }
+    }
+}
+
+struct ISource: Shape {
+    var start: CGPoint
+    var end: CGPoint
+    var style: Int = 1
+
+    func path(in rect: CGRect = CGRect(x: 0, y: -8, width: 60, height: 16)) -> Path {
+        switch style {
+        case 2:
+            var path = Path()
+            path.move(to: CGPoint.zero)
+            path.addLine(to: CGPoint(x: 15, y: 0))
+            path.addRoundedRect(in: CGRect(x: 15, y: -15, width: 30, height: 30), cornerSize: CGSize(width: 200, height: 200))
+            path.move(to: CGPoint(x:45, y:45))
+            path.addLine(to: CGPoint(x: 60, y: 0))
+            path.move(to: CGPoint(x:30, y:-15))
+            path.addLine(to: CGPoint(x: 30, y: 15))
             return path
         default:
             var path = Path()
