@@ -1,23 +1,6 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
-    "ADD" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Add"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Ajouter"
-          }
-        }
-      }
-    },
     "BACKGROUND" : {
       "localizations" : {
         "en" : {
@@ -131,43 +114,6 @@
         }
       }
     },
-    "FILE_ERROR_BUTTON" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Okay"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "D'accord"
-          }
-        }
-      }
-    },
-    "FILE_ERROR_MESSAGE" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Le fichier n'a pas pu être ouvert. Vérifiez son format et si vous possédez les permissions nécessaires. "
-          }
-        }
-      }
-    },
-    "FILE_ERROR_TITLE" : {
-      "localizations" : {
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Impossible d'ouvrir le fichier"
-          }
-        }
-      }
-    },
     "FOCUS" : {
       "localizations" : {
         "en" : {
@@ -216,85 +162,18 @@
         }
       }
     },
-    "MENU_OPEN" : {
+    "LAST SAVE %@" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Open"
+            "value" : "Saved %@"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ouvrir"
-          }
-        }
-      }
-    },
-    "MENU_SAVE" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Save"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sauvegarder"
-          }
-        }
-      }
-    },
-    "NEW_FILE" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "New file"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Nouveau fichier"
-          }
-        }
-      }
-    },
-    "NO_FILE_SELECTED" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "No file selected"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Aucun fichier sélectionné"
-          }
-        }
-      }
-    },
-    "NO_FILE_SELECTED_MESSAGE" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Open a file quickly with ⌘O"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ouvrez un fichier rapidement avec ⌘O"
+            "value" : "Sauvegardé %@"
           }
         }
       }
@@ -375,40 +254,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Lancer"
-          }
-        }
-      }
-    },
-    "SELECT_FILE" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Select file"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sélectionner un fichier"
-          }
-        }
-      }
-    },
-    "TOOLS" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tools"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Outils"
           }
         }
       }

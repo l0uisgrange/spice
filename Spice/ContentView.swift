@@ -9,15 +9,14 @@ import SwiftUI
 import SwiftData
 
 struct ContentView: View {
-    @Binding var file: [URL]
+    @Binding var document: SpiceDocument
     @Binding var zoom: Double
     @State private var origin: CGPoint = CGPoint.zero
     let dotSize: CGFloat = 1.0
     @Binding var editionMode: EditionMode
-    @Binding var components: [CircuitComponent]
     var body: some View {
         GeometryReader { geometry in
-            CanvasView(geometry: geometry, origin: $origin, zoom: $zoom, components: $components)
+            CanvasView(geometry: geometry, origin: $origin, zoom: $zoom, components: $document.components)
         }
         .edgesIgnoringSafeArea(.all)
         .toolbar {

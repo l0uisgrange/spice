@@ -13,11 +13,10 @@ extension UTType {
 }
 
 struct SpiceDocument: FileDocument {
-    static var readableContentTypes: [UTType] {
-        [.spice]
-    }
+    static var readableContentTypes: [UTType] = [.spice]
     
     var text = ""
+    var components: [CircuitComponent] = []
     
     init(text: String) {
         self.text = text
@@ -26,8 +25,25 @@ struct SpiceDocument: FileDocument {
     init(configuration: ReadConfiguration) throws {
         if let data = configuration.file.regularFileContents {
             text = String(decoding: data, as: UTF8.self)
-        } else {
-            text = ""
+            let linesFile = text.components(separatedBy: "\n")
+            for line in linesFile {
+                let lineDataset = line.components(separatedBy: " ")
+                if(lineDataset.contains("*") || lineDataset.count < 4) {
+                    continue
+                }
+                let newComponent = CircuitComponent(
+                    lineDataset[0],
+                    color: Color(
+                        red: Double(lineDataset[1])!,
+                        green: Double(lineDataset[2])!,
+                        blue: Double(lineDataset[3])!),
+                    start: CGPoint(x: Int(lineDataset[4])!, y: Int(lineDataset[5])!),
+                    end: CGPoint(x: Int(lineDataset[6])!, y: Int(lineDataset[7])!),
+                    type: lineDataset[0].components(separatedBy: "").first ?? "W",
+                    value: lineDataset.count > 8 ? Double(lineDataset[8]) ?? 0.0 : 0.0)
+                print("\(newComponent.type) : \(newComponent.startingPoint)->\(newComponent.endingPoint)")
+                components.append(newComponent)
+            }
         }
     }
     
