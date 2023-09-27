@@ -40,7 +40,6 @@ struct ContentView: View {
             }
         }
         .navigationTitle("Editor")
-        #if os(macOS)
         .toolbar {
             ToolbarItem {
                 Spacer()
@@ -115,7 +114,6 @@ struct ContentView: View {
                 }.help("RUN")
             }
         }
-        #endif
     }
     
     func checkUpdate() async -> Bool {

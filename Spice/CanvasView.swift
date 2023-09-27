@@ -84,7 +84,6 @@ struct CanvasView: View {
                 c.draw(context: context, zoom: currentZoom + zoom, style: symbolsStyle, cursor: hoverLocation)
             }
         }
-        #if os(macOS)
         .onContinuousHover(coordinateSpace: .local) { phase in
             switch phase {
             case .active(let location):
@@ -112,7 +111,6 @@ struct CanvasView: View {
             }
         }
         .drawingGroup()
-        #endif
         .gesture(
             DragGesture()
                 .onChanged { gesture in

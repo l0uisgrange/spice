@@ -10,6 +10,7 @@
 		2A37A92C2ABF3345009C64CE /* CanvasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A37A92B2ABF3345009C64CE /* CanvasView.swift */; };
 		2A37A92E2ABF36FB009C64CE /* OnBoardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A37A92D2ABF36FB009C64CE /* OnBoardingView.swift */; };
 		2A4968802ABDD81D00DBC58B /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A49687F2ABDD81D00DBC58B /* SettingsView.swift */; };
+		2A8133582AC49500004F124B /* InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A8133572AC49500004F124B /* InfoPlist.xcstrings */; };
 		2A9AFE562ABB376100A77A2C /* SpiceApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9AFE552ABB376100A77A2C /* SpiceApp.swift */; };
 		2A9AFE582ABB376100A77A2C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9AFE572ABB376100A77A2C /* ContentView.swift */; };
 		2A9AFE5C2ABB376200A77A2C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2A9AFE5B2ABB376200A77A2C /* Assets.xcassets */; };
@@ -23,6 +24,7 @@
 		2A37A92B2ABF3345009C64CE /* CanvasView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasView.swift; sourceTree = "<group>"; };
 		2A37A92D2ABF36FB009C64CE /* OnBoardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingView.swift; sourceTree = "<group>"; };
 		2A49687F2ABDD81D00DBC58B /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		2A8133572AC49500004F124B /* InfoPlist.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = InfoPlist.xcstrings; sourceTree = "<group>"; };
 		2A9AFE522ABB376100A77A2C /* Spice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Spice.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A9AFE552ABB376100A77A2C /* SpiceApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpiceApp.swift; sourceTree = "<group>"; };
 		2A9AFE572ABB376100A77A2C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -49,6 +51,7 @@
 		2A9AFE492ABB376100A77A2C = {
 			isa = PBXGroup;
 			children = (
+				2A8133572AC49500004F124B /* InfoPlist.xcstrings */,
 				2A9AFE662ABB499500A77A2C /* Localizable.xcstrings */,
 				2A9AFE542ABB376100A77A2C /* Spice */,
 				2A9AFE532ABB376100A77A2C /* Products */,
@@ -151,6 +154,7 @@
 			files = (
 				2A9AFE5F2ABB376200A77A2C /* Preview Assets.xcassets in Resources */,
 				2A9AFE5C2ABB376200A77A2C /* Assets.xcassets in Resources */,
+				2A8133582AC49500004F124B /* InfoPlist.xcstrings in Resources */,
 				2A9AFE672ABB499500A77A2C /* Localizable.xcstrings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -304,7 +308,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 283;
+				CURRENT_PROJECT_VERSION = 288;
 				DEVELOPMENT_ASSET_PATHS = "\"Spice/Preview Content\"";
 				DEVELOPMENT_TEAM = N2L3268M2F;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -324,11 +328,10 @@
 				MARKETING_VERSION = 0.3.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.louisgrange.Spice;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTED_PLATFORMS = macosx;
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Debug;
 		};
@@ -343,7 +346,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 283;
+				CURRENT_PROJECT_VERSION = 288;
 				DEVELOPMENT_ASSET_PATHS = "\"Spice/Preview Content\"";
 				DEVELOPMENT_TEAM = N2L3268M2F;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -363,11 +366,10 @@
 				MARKETING_VERSION = 0.3.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.louisgrange.Spice;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTED_PLATFORMS = macosx;
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Release;
 		};

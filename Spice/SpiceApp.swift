@@ -19,9 +19,7 @@ struct SpiceApp: App {
     var body: some Scene {
         DocumentGroup(newDocument: SpiceDocument(text: "* Data statements")) { file in
             ContentView(document: file.$document, zoom: $zoom, editionMode: $editionMode)
-                #if os(macOS)
                 .frame(minWidth: 500, idealWidth: 600, minHeight: 400, idealHeight: 550)
-                #endif
                 .sheet(isPresented: $isPresented) {
                     OnBoardingView(isPresented: $isPresented)
                 }
@@ -31,7 +29,6 @@ struct SpiceApp: App {
                     }
                 }
         }
-        #if os(macOS)
         .commands {
             CommandGroup(after: CommandGroupPlacement.toolbar) {
                 Divider()
@@ -59,12 +56,9 @@ struct SpiceApp: App {
                 Divider()
             }
         }
-        #endif
-        #if os(macOS)
         Settings {
             SettingsView()
         }
-        #endif
     }
 }
 
