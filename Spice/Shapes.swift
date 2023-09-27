@@ -24,7 +24,7 @@ class CircuitComponent: Identifiable {
     var startingPoint: CGPoint = CGPoint.zero
     var endingPoint: CGPoint = CGPoint.zero
     var type: String = ""
-    func draw(context: GraphicsContext, zoom: Double = 1.0, style: Int = 1) {
+    func draw(context: GraphicsContext, zoom: Double = 1.0, style: Int = 1, cursor: CGPoint) {
         context.drawLayer { ctx in
             if type != "W" {
                 ctx.translateBy(x: startingPoint.x, y: startingPoint.y)
@@ -32,13 +32,13 @@ class CircuitComponent: Identifiable {
             }
             ctx.stroke(
                 getPath(self, style: style),
-                with: .color(color),
+                with: .color(getPath(self, style: style).boundingRect.contains(cursor) ? .red : color),
                 lineWidth: 1.35/zoom
             )
             if type == "I" && style == 2 {
                 ctx.fill(
                     getPath(self, style: style),
-                    with: .color(color)
+                    with: .color(getPath(self, style: style).boundingRect.contains(cursor) ? .red : color)
                 )
             }
         }
@@ -68,7 +68,7 @@ struct Wire: Shape {
     var start: CGPoint
     var end: CGPoint
 
-    func path(in rect: CGRect = CGRect(x: 0, y: -1, width: 400, height: 2)) -> Path {
+    func path(in rect: CGRect = CGRect(x: 0, y: -5, width: 400, height: 10)) -> Path {
         var path = Path()
         path.move(to: start)
         path.addLine(to: end)

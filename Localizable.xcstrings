@@ -81,6 +81,9 @@
         }
       }
     },
+    "Editor" : {
+
+    },
     "ERASE" : {
       "localizations" : {
         "en" : {
@@ -158,22 +161,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Apparence de la grille"
-          }
-        }
-      }
-    },
-    "LAST SAVE %@" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Saved %@"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sauvegardé %@"
           }
         }
       }
@@ -270,6 +257,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Rétablir"
+          }
+        }
+      }
+    },
+    "UPDATE_AVAILABLE" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Update available"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Mise à jour disponible"
           }
         }
       }

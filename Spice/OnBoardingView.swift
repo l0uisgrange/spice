@@ -26,7 +26,9 @@ struct OnBoardingView: View {
             } label: {
                 Text("ONBOARDING_BUTTON")
             }.buttonStyle(.borderedProminent)
-            .controlSize(.extraLarge)
+            #if os(macOS)
+                .controlSize(.extraLarge)
+            #endif
             .padding(.top, 30)
         }.padding(40)
     }

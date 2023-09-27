@@ -18,6 +18,9 @@ struct CanvasView: View {
     @State private var cursorPosition: CGPoint = CGPoint.zero
     let dotSize: Double = 1.0
     @Binding var components: [CircuitComponent]
+    @State private var hoverLocation: CGPoint = .zero
+    @State private var isHovering = false
+    @Binding var editionMode: EditionMode
     var body: some View {
         Canvas { context, size in
             let windowWidth = geometry.frame(in: .global).width
@@ -66,8 +69,31 @@ struct CanvasView: View {
                 },
                 with: .color(.gray.opacity(0.2)),
                 lineWidth: 1/(zoom+currentZoom))
+            if editionMode == .wire {
+                context.stroke(
+                    Path() { path in
+                        path.move(to: CGPoint(x: -1000, y: hoverLocation.y))
+                        path.addLine(to: CGPoint(x: 1000, y: hoverLocation.y))
+                        path.move(to: CGPoint(x: hoverLocation.x, y: -1000))
+                        path.addLine(to: CGPoint(x: hoverLocation.x, y: 1000))
+                    },
+                    with: .color(.primary),
+                    lineWidth: 1/(zoom+currentZoom))
+            }
             for c in components {
-                c.draw(context: context, zoom: currentZoom + zoom, style: symbolsStyle)
+                c.draw(context: context, zoom: currentZoom + zoom, style: symbolsStyle, cursor: hoverLocation)
+            }
+        }
+        #if os(macOS)
+        .onContinuousHover(coordinateSpace: .local) { phase in
+            switch phase {
+            case .active(let location):
+                let y  = -geometry.frame(in: .global).height/(2*(zoom+currentZoom)) + location.y/(zoom+currentZoom)
+                let x  = -geometry.frame(in: .global).width/(2*(zoom+currentZoom)) + location.x/(zoom+currentZoom)
+                hoverLocation = CGPoint(x: x, y: y)
+                isHovering = true
+            case .ended:
+                isHovering = false
             }
         }
         .focusable()
@@ -86,6 +112,7 @@ struct CanvasView: View {
             }
         }
         .drawingGroup()
+        #endif
         .gesture(
             DragGesture()
                 .onChanged { gesture in
