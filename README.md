@@ -9,13 +9,13 @@ Spice 🌶️ is a native macOS simulator for electronic circuits that rivals LT
 You can download the [latest version](https://github.com/l0uisgrange/spice/releases/latest) and run it directly.
 
 #### Requirements
-Spice works only in **macOS sonoma** 14.0+ and currently supports the following languages:
+Spice works only on **macOS sonoma** 14.0+ and currently supports the following languages:
 - 🇫🇷 French
 - 🇬🇧 English
 
 ## File format
 
-Spice uses and supports the original SPICE netlists (files) developed in 1975 and used everywhere for circuit simulation. It looks like this:
+Spice supports the original SPICE netlists (files) developed in 1975 and used everywhere for circuit simulation. However, the app mainly uses it's own format `.spice`, which looks like this:
 ```text
 * Data statements
 R1 0 0 1 0 10 10 10 100
