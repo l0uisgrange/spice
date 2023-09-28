@@ -15,11 +15,12 @@ struct ContentView: View {
     let dotSize: CGFloat = 1.0
     @State var updateAvailable: Bool = false
     @Binding var editionMode: EditionMode
+    @State var selectedColor = Color.black
     var body: some View {
         VStack {
             GeometryReader { geometry in
                 ZStack(alignment: .topTrailing) {
-                    CanvasView(geometry: geometry, origin: $origin, zoom: $zoom, components: $document.components, editionMode: $editionMode)
+                    CanvasView(geometry: geometry, selectedColor: $selectedColor, origin: $origin, zoom: $zoom, components: $document.components, editionMode: $editionMode)
                         .task {
                             updateAvailable = await checkUpdate()
                         }
@@ -66,11 +67,7 @@ struct ContentView: View {
                 } label: {
                     Label("ERASE", systemImage: "cursorarrow")
                 }.help("ERASE")
-                Button {
-                    editionMode = .edit
-                } label: {
-                    Label("ERASE", systemImage: "eraser")
-                }.help("ERASE")
+                ColorPicker("Set the background color", selection: $selectedColor, supportsOpacity: false)
                 Button {
                     editionMode = .wire
                 } label: {
@@ -112,6 +109,7 @@ struct ContentView: View {
                 } label: {
                     Label("RUN", systemImage: "play.circle")
                 }.help("RUN")
+                .disabled(true)
             }
         }
     }

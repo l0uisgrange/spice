@@ -17,7 +17,7 @@ struct SpiceApp: App {
     @State var zoom: Double = 1.5
     @State var editionMode: EditionMode = .cursor
     var body: some Scene {
-        DocumentGroup(newDocument: SpiceDocument(text: "* Data statements")) { file in
+        DocumentGroup(newDocument: SpiceDocument(components: [])) { file in
             ContentView(document: file.$document, zoom: $zoom, editionMode: $editionMode)
                 .frame(minWidth: 500, idealWidth: 600, minHeight: 400, idealHeight: 550)
                 .sheet(isPresented: $isPresented) {

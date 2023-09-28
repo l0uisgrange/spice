@@ -32,13 +32,13 @@ class CircuitComponent: Identifiable {
             }
             ctx.stroke(
                 getPath(self, style: style),
-                with: .color(getPath(self, style: style).boundingRect.contains(cursor) ? .red : color),
+                with: .color(color),
                 lineWidth: 1.35/zoom
             )
             if type == "I" && style == 2 {
                 ctx.fill(
                     getPath(self, style: style),
-                    with: .color(getPath(self, style: style).boundingRect.contains(cursor) ? .red : color)
+                    with: .color(color)
                 )
             }
         }
@@ -48,19 +48,19 @@ class CircuitComponent: Identifiable {
 func getPath(_ c: CircuitComponent, style: Int = 1) -> Path {
     switch c.type {
     case "W":
-        return Wire(start: c.startingPoint, end: c.endingPoint).path()
+        return Wire(start: c.startingPoint.alignedPoint, end: c.endingPoint.alignedPoint).path()
     case "R":
-        return Resistor(start: c.startingPoint, end: c.endingPoint, style: style).path()
+        return Resistor(start: c.startingPoint.alignedPoint, end: c.endingPoint.alignedPoint, style: style).path()
     case "L":
-        return Inductor(start: c.startingPoint, end: c.endingPoint, style: style).path()
+        return Inductor(start: c.startingPoint.alignedPoint, end: c.endingPoint.alignedPoint, style: style).path()
     case "C":
-        return Capacitor(start: c.startingPoint, end: c.endingPoint, style: style).path()
+        return Capacitor(start: c.startingPoint.alignedPoint, end: c.endingPoint.alignedPoint, style: style).path()
     case "V":
-        return VSource(start: c.startingPoint, end: c.endingPoint, style: style).path()
+        return VSource(start: c.startingPoint.alignedPoint, end: c.endingPoint.alignedPoint, style: style).path()
     case "I":
-        return ISource(start: c.startingPoint, end: c.endingPoint, style: style).path()
+        return ISource(start: c.startingPoint.alignedPoint, end: c.endingPoint.alignedPoint, style: style).path()
     default:
-        return Wire(start: c.startingPoint, end: c.endingPoint).path()
+        return Wire(start: c.startingPoint.alignedPoint, end: c.endingPoint.alignedPoint).path()
     }
 }
 

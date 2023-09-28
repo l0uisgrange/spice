@@ -12,6 +12,7 @@ struct CanvasView: View {
     @State private var canvasContentOffset: CGPoint = CGPoint.zero
     @AppStorage("symbolsStyle") private var symbolsStyle = 0
     @AppStorage("gridStyle") private var gridStyle = 1
+    @Binding var selectedColor: Color
     @Binding var origin: CGPoint
     @Binding var zoom: Double
     @State private var currentZoom: Double = 0.0
@@ -20,6 +21,7 @@ struct CanvasView: View {
     @Binding var components: [CircuitComponent]
     @State private var hoverLocation: CGPoint = .zero
     @State private var isHovering = false
+    @State private var newComponent: CircuitComponent = CircuitComponent("", color: .blue, start: CGPoint(x: 1000, y:1000), end: CGPoint(x: 1000, y:1000), type: "W", value: 10)
     @Binding var editionMode: EditionMode
     var body: some View {
         Canvas { context, size in
@@ -58,30 +60,27 @@ struct CanvasView: View {
                         }
                     }
                 },
-                with: .color(gridStyle == 1 ? .gray : .gray.opacity(0.3)),
-                lineWidth: 1/(zoom+currentZoom))
-            context.stroke(
-                Path() { path in
-                    path.move(to: CGPoint(x: -1000, y: 0))
-                    path.addLine(to: CGPoint(x: 1000, y: 0))
-                    path.move(to: CGPoint(x: 0, y: -1000))
-                    path.addLine(to: CGPoint(x: 0, y: 1000))
-                },
-                with: .color(.gray.opacity(0.2)),
+                with: .color(gridStyle == 1 ? .gray : .gray.opacity(0.1)),
                 lineWidth: 1/(zoom+currentZoom))
             if editionMode == .wire {
-                context.stroke(
-                    Path() { path in
-                        path.move(to: CGPoint(x: -1000, y: hoverLocation.y))
-                        path.addLine(to: CGPoint(x: 1000, y: hoverLocation.y))
-                        path.move(to: CGPoint(x: hoverLocation.x, y: -1000))
-                        path.addLine(to: CGPoint(x: hoverLocation.x, y: 1000))
-                    },
-                    with: .color(.primary),
-                    lineWidth: 1/(zoom+currentZoom))
+                if newComponent.startingPoint != CGPoint(x: 1000, y: 1000) {
+                    newComponent.draw(context:context, zoom: currentZoom+zoom, style: symbolsStyle, cursor: hoverLocation)
+                }
             }
             for c in components {
                 c.draw(context: context, zoom: currentZoom + zoom, style: symbolsStyle, cursor: hoverLocation)
+            }
+        }
+        .onTapGesture {
+            let extreme = CGPoint(x: 1000, y:1000)
+            if editionMode == .wire {
+                if newComponent.startingPoint == extreme {
+                    newComponent = CircuitComponent("W", color: selectedColor, start: hoverLocation.alignedPoint, end: hoverLocation.alignedPoint, type: "W", value: 0)
+                } else {
+                    newComponent.endingPoint = hoverLocation.alignedPoint
+                    components.append(newComponent)
+                    newComponent = CircuitComponent("W", color: selectedColor, start: extreme, end: extreme, type: "W", value: 0)
+                }
             }
         }
         .onContinuousHover(coordinateSpace: .local) { phase in
@@ -90,9 +89,16 @@ struct CanvasView: View {
                 let y  = -geometry.frame(in: .global).height/(2*(zoom+currentZoom)) + location.y/(zoom+currentZoom)
                 let x  = -geometry.frame(in: .global).width/(2*(zoom+currentZoom)) + location.x/(zoom+currentZoom)
                 hoverLocation = CGPoint(x: x, y: y)
+                if newComponent.name != "" {
+                    newComponent.endingPoint = hoverLocation
+                }
                 isHovering = true
+                if editionMode == .wire && isHovering {
+                    NSCursor.crosshair.push()
+                }
             case .ended:
                 isHovering = false
+                NSCursor.arrow.push()
             }
         }
         .focusable()
@@ -123,5 +129,13 @@ struct CanvasView: View {
                     self.canvasContentOffset = CGPoint.zero
                 }
         )
+    }
+}
+
+extension CGPoint {
+    var alignedPoint: CGPoint {
+        let x = self.x-self.x.remainder(dividingBy: 20)
+        let y = self.y-self.y.remainder(dividingBy: 20)
+        return CGPoint(x: x, y: y)
     }
 }
