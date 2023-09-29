@@ -19,7 +19,6 @@ struct ContentView: View {
     @State var selectedColor = Color.black
     var body: some View {
         VStack(spacing: 0) {
-            Divider()
             GeometryReader { geometry in
                 ZStack(alignment: .topTrailing) {
                     CanvasView(geometry: geometry, selectedColor: $selectedColor, origin: $origin, zoom: $zoom, components: $document.components, editionMode: $editionMode)
@@ -113,7 +112,7 @@ struct ContentView: View {
                 }.help("RUN")
                 .disabled(true)
             }
-        }.toolbarBackground(Color("CanvasBackground"))
+        }
     }
 }
 

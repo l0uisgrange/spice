@@ -1,6 +1,9 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "" : {
+
+    },
     "%@ (%@)" : {
       "localizations" : {
         "de" : {
@@ -538,9 +541,6 @@
           }
         }
       }
-    },
-    "Settings" : {
-
     },
     "SETTINGS" : {
       "localizations" : {

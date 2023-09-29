@@ -14,6 +14,7 @@ struct SpiceApp: App {
     @AppStorage("symbolsStyle") private var symbolsStyle = 0
     @AppStorage("gridStyle") private var gridStyle = 1
     @AppStorage("onBoarded") private var onBoarded = false
+    @Environment(\.openWindow) var openWindow
     @State private var isPresented: Bool = false
     @State var zoom: Double = 1.5
     @State var editionMode: EditionMode = .cursor
@@ -29,7 +30,7 @@ struct SpiceApp: App {
                         isPresented.toggle()
                     }
                 }
-        }
+        }.defaultPosition(.center)
         .commands {
             CommandGroup(after: CommandGroupPlacement.toolbar) {
                 Divider()
@@ -57,11 +58,17 @@ struct SpiceApp: App {
                 Divider()
             }
             CommandGroup(after: CommandGroupPlacement.appSettings) {
-                NavigationLink(destination: SettingsView()) {
-                    Text("Settings")
+                Button {
+                    openWindow(id: "settings")
+                } label: {
+                    Text("SETTINGS")
                 }.keyboardShortcut(",")
             }
         }
+        Window("", id: "settings") {
+            SettingsView()
+                .frame(width: 500, height: 300)
+        }.defaultPosition(.center)
     }
 }
 
