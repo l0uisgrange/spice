@@ -9,8 +9,7 @@ import SwiftUI
 import Foundation
 
 class CircuitComponent: Identifiable {
-    init(_ name: String, color: Color, start: CGPoint, end: CGPoint, type: String, value: Double) {
-        self.color = color
+    init(_ name: String, start: CGPoint, end: CGPoint, type: String, value: Double) {
         self.startingPoint = start
         self.endingPoint = end
         self.type = type
@@ -20,7 +19,6 @@ class CircuitComponent: Identifiable {
     let id = UUID()
     var value: Any = 0.0
     var name: String = ""
-    var color: Color = .primary
     var startingPoint: CGPoint = CGPoint.zero
     var endingPoint: CGPoint = CGPoint.zero
     var type: String = ""
@@ -32,13 +30,13 @@ class CircuitComponent: Identifiable {
             }
             ctx.stroke(
                 getPath(self, style: style),
-                with: .color(color),
+                with: .color(Color("CircuitColor")),
                 lineWidth: 1.35/zoom
             )
             if type == "I" && style == 2 {
                 ctx.fill(
                     getPath(self, style: style),
-                    with: .color(color)
+                    with: .color(Color("CircuitColor"))
                 )
             }
         }

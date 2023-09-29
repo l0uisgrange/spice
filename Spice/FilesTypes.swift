@@ -27,19 +27,15 @@ struct SpiceDocument: FileDocument {
             let linesFile = text.components(separatedBy: "\n")
             for line in linesFile {
                 let lineDataset = line.components(separatedBy: " ")
-                if(lineDataset.contains("*") || lineDataset.count < 8) {
+                if(lineDataset.contains("*") || lineDataset.count < 5) {
                     continue
                 }
                 let newComponent = CircuitComponent(
                     lineDataset[0],
-                    color: Color(
-                        red: Double(lineDataset[1])!,
-                        green: Double(lineDataset[2])!,
-                        blue: Double(lineDataset[3])!),
-                    start: CGPoint(x: Int(Double(lineDataset[4])!), y: Int(Double(lineDataset[5])!)),
-                    end: CGPoint(x: Int(Double(lineDataset[6])!), y: Int(Double(lineDataset[7])!)),
+                    start: CGPoint(x: Int(Double(lineDataset[1])!), y: Int(Double(lineDataset[2])!)),
+                    end: CGPoint(x: Int(Double(lineDataset[3])!), y: Int(Double(lineDataset[4])!)),
                     type: lineDataset[0].components(separatedBy: "").first ?? "W",
-                    value: lineDataset.count > 8 ? Double(lineDataset[8]) ?? 0.0 : 0.0)
+                    value: lineDataset.count > 5 ? Double(lineDataset[5]) ?? 0.0 : 0.0)
                 print("\(newComponent.type) : \(newComponent.startingPoint)->\(newComponent.endingPoint)")
                 components.append(newComponent)
             }
@@ -49,8 +45,7 @@ struct SpiceDocument: FileDocument {
     func fileWrapper(configuration: WriteConfiguration) throws -> FileWrapper {
         var fileContent: String = "* Data statements\n"
         for c in components {
-            let colorComponents = c.color.resolve(in: EnvironmentValues())
-            let thisLine: String = "\(c.name) \(colorComponents.red) \(colorComponents.green) \(colorComponents.blue) \(c.startingPoint.x) \(c.startingPoint.y) \(c.endingPoint.x) \(c.endingPoint.y) \(c.value)\n"
+            let thisLine: String = "\(c.name) \(c.startingPoint.x) \(c.startingPoint.y) \(c.endingPoint.x) \(c.endingPoint.y) \(c.value)\n"
             fileContent += thisLine
         }
         return FileWrapper(regularFileWithContents: Data(fileContent.utf8))

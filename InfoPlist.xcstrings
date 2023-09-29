@@ -79,31 +79,31 @@
         "da" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "SPICE ER EN OPEN SOURCE-APP LAVET AF LOUIS GRANGE OG DISTRIBUERET UNDER GPL-3.0-LICENSEN"
+            "value" : "Copyright © 2023 Louis Grange\nAlle rettigheder forbeholdes"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "SPICE IST EINE OPEN-SOURCE-APP VON LOUIS GRANGE, DIE UNTER DER GPL-3.0-LIZENZ VERTRIEBEN IST."
+            "value" : "Copyright © 2023 Louis Grange\nAlle Rechte vorbehalten"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "SPICE IS AN OPEN-SOURCE APP MADE BY LOUIS GRANGE AND DISTRIBUTED UNDER THE GPL-3.0 LICENSE"
+            "value" : "Copyright © 2023 Louis Grange\nAll rights reserved"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "SPICE EST UNE APPLICATION OPEN-SOURCE DÉVELOPÉE PAR LOUIS GRANGE DISTRIBUÉE SOUS LICENCE GPL-3.0"
+            "value" : "Copyright © 2023 Louis Grange\nTous droits réservés"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "SPICE È UN'APP OPEN SOURCE REALIZZATA DA LOUIS GRANGE E DISTRIBUITA SOTTO LA LICENZA GPL-3.0"
+            "value" : "Copyright © 2023 Louis Grange\nTutti i diritti riservati"
           }
         }
       }

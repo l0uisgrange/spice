@@ -21,12 +21,12 @@ struct CanvasView: View {
     @Binding var components: [CircuitComponent]
     @State private var hoverLocation: CGPoint = .zero
     @State private var isHovering = false
-    @State private var newComponent: CircuitComponent = CircuitComponent("", color: .blue, start: CGPoint(x: 1000, y:1000), end: CGPoint(x: 1000, y:1000), type: "W", value: 10)
+    @State private var newComponent: CircuitComponent = CircuitComponent("", start: CGPoint(x: 1000, y:1000), end: CGPoint(x: 1000, y:1000), type: "W", value: 10)
     @Binding var editionMode: EditionMode
     var body: some View {
         Canvas { context, size in
-            let windowWidth = geometry.frame(in: .global).width
-            let windowHeight = geometry.frame(in: .global).height
+            let windowWidth = geometry.size.width
+            let windowHeight = geometry.size.height
             context.fill(Path(CGRect(origin: .zero, size: size)), with: .color(Color("CanvasBackground")))
             context.translateBy(x: windowWidth/2.0 + origin.x + canvasContentOffset.x, y: windowHeight / 2 + origin.y + canvasContentOffset.y)
             context.scaleBy(x: zoom + currentZoom, y: zoom + currentZoom)
@@ -75,19 +75,19 @@ struct CanvasView: View {
             let extreme = CGPoint(x: 1000, y:1000)
             if editionMode == .wire {
                 if newComponent.startingPoint == extreme {
-                    newComponent = CircuitComponent("W", color: selectedColor, start: hoverLocation.alignedPoint, end: hoverLocation.alignedPoint, type: "W", value: 0)
+                    newComponent = CircuitComponent("W", start: hoverLocation.alignedPoint, end: hoverLocation.alignedPoint, type: "W", value: 0)
                 } else {
                     newComponent.endingPoint = hoverLocation.alignedPoint
                     components.append(newComponent)
-                    newComponent = CircuitComponent("W", color: selectedColor, start: extreme, end: extreme, type: "W", value: 0)
+                    newComponent = CircuitComponent("W", start: extreme, end: extreme, type: "W", value: 0)
                 }
             }
         }
         .onContinuousHover(coordinateSpace: .local) { phase in
             switch phase {
             case .active(let location):
-                let y  = -geometry.frame(in: .global).height/(2*(zoom+currentZoom)) + location.y/(zoom+currentZoom)
-                let x  = -geometry.frame(in: .global).width/(2*(zoom+currentZoom)) + location.x/(zoom+currentZoom)
+                let y  = -geometry.size.height/(2*(zoom+currentZoom)) + location.y/(zoom+currentZoom) - origin.y/(zoom+currentZoom)
+                let x  = -geometry.size.width/(2*(zoom+currentZoom)) + location.x/(zoom+currentZoom) - origin.x/(zoom+currentZoom)
                 hoverLocation = CGPoint(x: x, y: y)
                 if newComponent.name != "" {
                     newComponent.endingPoint = hoverLocation
