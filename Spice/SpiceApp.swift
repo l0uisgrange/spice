@@ -56,11 +56,12 @@ struct SpiceApp: App {
                 }
                 Divider()
             }
+            CommandGroup(after: CommandGroupPlacement.appSettings) {
+                NavigationLink(destination: SettingsView()) {
+                    Text("Settings")
+                }.keyboardShortcut(",")
+            }
         }
-        Settings {
-            SettingsView()
-                .presentedWindowToolbarStyle(.unified)
-        }.windowToolbarStyle(.unified)
     }
 }
 

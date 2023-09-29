@@ -69,5 +69,13 @@ struct SettingsView: View {
             }
         }.formStyle(.grouped)
         .navigationTitle("SETTINGS")
+        .frame(width: 500, height: 300)
+        .toolbar {
+            ToolbarItem {
+                Link(destination: URL(string: "https://github.com/l0uisgrange/spice")!) {
+                    Label("GitHub", image: "GitHub")
+                }.buttonStyle(.borderedProminent)
+            }
+        }
     }
 }

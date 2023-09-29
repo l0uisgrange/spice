@@ -18,7 +18,8 @@ struct ContentView: View {
     @Binding var editionMode: EditionMode
     @State var selectedColor = Color.black
     var body: some View {
-        VStack {
+        VStack(spacing: 0) {
+            Divider()
             GeometryReader { geometry in
                 ZStack(alignment: .topTrailing) {
                     CanvasView(geometry: geometry, selectedColor: $selectedColor, origin: $origin, zoom: $zoom, components: $document.components, editionMode: $editionMode)
