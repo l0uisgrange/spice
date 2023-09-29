@@ -43,7 +43,6 @@ struct ContentView: View {
                 }
             }
         }
-        .navigationTitle("Editor")
         .toolbar {
             ToolbarItem {
                 Spacer()
@@ -70,7 +69,6 @@ struct ContentView: View {
                 } label: {
                     Label("ERASE", systemImage: "cursorarrow")
                 }.help("ERASE")
-                ColorPicker("Set the background color", selection: $selectedColor, supportsOpacity: false)
                 Button {
                     editionMode = .wire
                 } label: {
@@ -114,7 +112,7 @@ struct ContentView: View {
                 }.help("RUN")
                 .disabled(true)
             }
-        }
+        }.toolbarBackground(Color("CanvasBackground"))
     }
 }
 

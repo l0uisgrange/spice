@@ -20,7 +20,7 @@ struct SpiceApp: App {
     var body: some Scene {
         DocumentGroup(newDocument: SpiceDocument(components: [])) { file in
             ContentView(document: file.$document, zoom: $zoom, editionMode: $editionMode)
-                .frame(minWidth: 500, idealWidth: 600, minHeight: 400, idealHeight: 550)
+                .frame(minWidth: 500, idealWidth: 900, minHeight: 400, idealHeight: 700)
                 .sheet(isPresented: $isPresented) {
                     OnBoardingView(isPresented: $isPresented)
                 }

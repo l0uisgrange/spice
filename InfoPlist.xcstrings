@@ -5,6 +5,18 @@
       "comment" : "Bundle display name",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Spice"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Spice"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "new",
@@ -12,6 +24,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Spice"
+          }
+        },
+        "it" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Spice"
@@ -23,6 +41,18 @@
       "comment" : "Bundle name",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Spice"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Spice"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "new",
@@ -34,12 +64,30 @@
             "state" : "translated",
             "value" : "Spice"
           }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Spice"
+          }
         }
       }
     },
     "NSHumanReadableCopyright" : {
       "extractionState" : "manual",
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "SPICE ER EN OPEN SOURCE-APP LAVET AF LOUIS GRANGE OG DISTRIBUERET UNDER GPL-3.0-LICENSEN"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "SPICE IST EINE OPEN-SOURCE-APP VON LOUIS GRANGE, DIE UNTER DER GPL-3.0-LIZENZ VERTRIEBEN IST."
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -48,15 +96,45 @@
         },
         "fr" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "SPICE EST UNE APPLICATION OPEN-SOURCE DÉVELOPÉE PAR LOUIS GRANGE DISTRIBUÉE SOUS LICENCE GPL-3.0"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "SPICE È UN'APP OPEN SOURCE REALIZZATA DA LOUIS GRANGE E DISTRIBUITA SOTTO LA LICENZA GPL-3.0"
           }
         }
       }
     },
     "Spice" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Spice"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Spice"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Spice"
+          }
+        },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Spice"
+          }
+        },
+        "it" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Spice"

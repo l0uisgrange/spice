@@ -27,6 +27,7 @@ struct CanvasView: View {
         Canvas { context, size in
             let windowWidth = geometry.frame(in: .global).width
             let windowHeight = geometry.frame(in: .global).height
+            context.fill(Path(CGRect(origin: .zero, size: size)), with: .color(Color("CanvasBackground")))
             context.translateBy(x: windowWidth/2.0 + origin.x + canvasContentOffset.x, y: windowHeight / 2 + origin.y + canvasContentOffset.y)
             context.scaleBy(x: zoom + currentZoom, y: zoom + currentZoom)
             context.stroke(
