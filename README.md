@@ -1,4 +1,4 @@
-<img src="https://github.com/l0uisgrange/spice/blob/main/Spice/Assets.xcassets/AppIcon.appiconset/512x512%202x%201.png" width="80">
+<img src="/Spice/Assets.xcassets/AppIcon.appiconset/512x512%202x%201.png" width="80">
 
 # Spice circuit simulator
 
@@ -22,7 +22,7 @@ R1 0 0 1 0 10 10 10 100
 V1 0 1 0 0 10 0 0 DC 150
 ```
 
-For more informations on how this works, please read the [Wiki](https://github.com/l0uisgrange/spice/wiki)
+For more informations on how this works, please read the [Wiki](https://github.com/l0uisgrange/spice/wiki).
 
 ## Suggestions
 
@@ -32,6 +32,6 @@ Check my [roadmap](https://github.com/users/l0uisgrange/projects/2) to see what 
 
 I'm a Swiss 🇨🇭 developer who is tired of seeing bad UX/UI in macOS apps in the engineering world. That's why I create beautiful, user-friendly apps that follow Apple Design Guidelines.
 
-## Copyright ⚖️
+## License ⚖️
 
 Spice is an open-source project distributed under the GPL-3.0 license.
