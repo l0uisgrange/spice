@@ -13,6 +13,7 @@ import UniformTypeIdentifiers
 struct SpiceApp: App {
     @AppStorage("symbolsStyle") private var symbolsStyle = 0
     @AppStorage("gridStyle") private var gridStyle = 1
+    @AppStorage("onBoarded") private var onBoarded = false
     @State private var isPresented: Bool = false
     @State var zoom: Double = 1.5
     @State var editionMode: EditionMode = .cursor
@@ -24,7 +25,7 @@ struct SpiceApp: App {
                     OnBoardingView(isPresented: $isPresented)
                 }
                 .onAppear {
-                    if symbolsStyle == 0 {
+                    if !onBoarded {
                         isPresented.toggle()
                     }
                 }
@@ -58,7 +59,8 @@ struct SpiceApp: App {
         }
         Settings {
             SettingsView()
-        }
+                .presentedWindowToolbarStyle(.unified)
+        }.windowToolbarStyle(.unified)
     }
 }
 

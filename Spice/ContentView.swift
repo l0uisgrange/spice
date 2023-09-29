@@ -9,6 +9,7 @@ import SwiftUI
 import SwiftData
 
 struct ContentView: View {
+    @AppStorage("checkUpdate") private var checkUpdate = true
     @Binding var document: SpiceDocument
     @Binding var zoom: Double
     @State private var origin: CGPoint = CGPoint.zero
@@ -22,7 +23,9 @@ struct ContentView: View {
                 ZStack(alignment: .topTrailing) {
                     CanvasView(geometry: geometry, selectedColor: $selectedColor, origin: $origin, zoom: $zoom, components: $document.components, editionMode: $editionMode)
                         .task {
-                            updateAvailable = await checkUpdate()
+                            if checkUpdate {
+                                updateAvailable = await checkForUpdate()
+                            }
                         }
                     if updateAvailable {
                         HStack(alignment: .top) {
@@ -113,22 +116,22 @@ struct ContentView: View {
             }
         }
     }
-    
-    func checkUpdate() async -> Bool {
-        let url = URL(string: "https://api.github.com/repos/l0uisgrange/spice/releases/latest")!
-        let current = Bundle.main.infoDictionary?["CFBundleVersion"] as? String
-        do {
-            let (data, _) = try await URLSession.shared.data(from: url)
-            if let resp = try? JSONDecoder().decode(Release.self, from: data) {
-                if resp.tag_name != current && resp.tag_name.count > 0 {
-                    return true
-                }
+}
+
+func checkForUpdate() async -> Bool {
+    let url = URL(string: "https://api.github.com/repos/l0uisgrange/spice/releases/latest")!
+    let current = Bundle.main.infoDictionary?["CFBundleVersion"] as? String
+    do {
+        let (data, _) = try await URLSession.shared.data(from: url)
+        if let resp = try? JSONDecoder().decode(Release.self, from: data) {
+            if resp.tag_name != current && resp.tag_name.count > 0 {
+                return true
             }
-        } catch {
-            print("Invalid data")
         }
-        return false
+    } catch {
+        print("Invalid data")
     }
+    return false
 }
 
 struct Release: Decodable {
