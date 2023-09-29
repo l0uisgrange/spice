@@ -17,7 +17,6 @@ struct CanvasView: View {
     @Binding var zoom: Double
     @State private var currentZoom: Double = 0.0
     @State private var cursorPosition: CGPoint = CGPoint.zero
-    let dotSize: Double = 1.0
     @Binding var components: [CircuitComponent]
     @State private var hoverLocation: CGPoint = .zero
     @State private var isHovering = false
@@ -29,38 +28,7 @@ struct CanvasView: View {
             let windowHeight = geometry.size.height
             context.translateBy(x: windowWidth/2.0 + origin.x + canvasContentOffset.x, y: windowHeight / 2 + origin.y + canvasContentOffset.y)
             context.scaleBy(x: zoom + currentZoom, y: zoom + currentZoom)
-            context.stroke(
-                Path() { path in
-                    if gridStyle == 1 {
-                        for row in 0..<100 {
-                            for column in 0..<100 {
-                                let dotCenter = CGPoint(
-                                    x: -1000 + CGFloat(column) * CGFloat(20),
-                                    y: -1000 + CGFloat(row) * CGFloat(20)
-                                )
-                                path.addEllipse(
-                                    in: CGRect(
-                                        x: dotCenter.x - dotSize / 2 / (zoom+currentZoom),
-                                        y: dotCenter.y - dotSize / 2 / (zoom+currentZoom),
-                                        width: dotSize / (zoom+currentZoom),
-                                        height: dotSize / (zoom+currentZoom)
-                                    )
-                                )
-                            }
-                        }
-                    } else if gridStyle == 2 {
-                        for column in 0..<100 {
-                            path.move(to: CGPoint(x: -1000 + CGFloat(column) * CGFloat(20), y: -1000))
-                            path.addLine(to: CGPoint(x: -1000 + CGFloat(column) * CGFloat(20), y: 1000))
-                        }
-                        for row in 0..<100 {
-                            path.move(to: CGPoint(x:-1000, y: -1000 + CGFloat(row) * CGFloat(20)))
-                            path.addLine(to: CGPoint(x:1000, y: -1000 + CGFloat(row) * CGFloat(20)))
-                        }
-                    }
-                },
-                with: .color(gridStyle == 1 ? .gray.opacity(0.4) : .gray.opacity(0.1)),
-                lineWidth: 1/(zoom+currentZoom))
+            context.drawGrid(gridStyle: gridStyle, zoom: zoom + currentZoom)
             if editionMode == .wire {
                 if newComponent.startingPoint != CGPoint(x: 1000, y: 1000) {
                     newComponent.draw(context:context, zoom: currentZoom+zoom, style: symbolsStyle, cursor: hoverLocation)
@@ -136,5 +104,43 @@ extension CGPoint {
         let x = self.x-self.x.remainder(dividingBy: 20)
         let y = self.y-self.y.remainder(dividingBy: 20)
         return CGPoint(x: x, y: y)
+    }
+}
+
+extension GraphicsContext {
+    func drawGrid(gridStyle: Int, zoom: Double) {
+        let dotSize: Double = 1.0
+        self.stroke(
+            Path() { path in
+                if gridStyle == 1 {
+                    for row in 0..<200 {
+                        for column in 0..<200 {
+                            let dotCenter = CGPoint(
+                                x: -2000 + CGFloat(column) * CGFloat(20),
+                                y: -2000 + CGFloat(row) * CGFloat(20)
+                            )
+                            path.addEllipse(
+                                in: CGRect(
+                                    x: dotCenter.x - dotSize / 2 / zoom,
+                                    y: dotCenter.y - dotSize / 2 / zoom,
+                                    width: dotSize / zoom,
+                                    height: dotSize / zoom
+                                )
+                            )
+                        }
+                    }
+                } else if gridStyle == 2 {
+                    for column in 0..<200 {
+                        path.move(to: CGPoint(x: -2000 + CGFloat(column) * CGFloat(20), y: -2000))
+                        path.addLine(to: CGPoint(x: -2000 + CGFloat(column) * CGFloat(20), y: 2000))
+                    }
+                    for row in 0..<200 {
+                        path.move(to: CGPoint(x:-2000, y: -2000 + CGFloat(row) * CGFloat(20)))
+                        path.addLine(to: CGPoint(x:2000, y: -2000 + CGFloat(row) * CGFloat(20)))
+                    }
+                }
+            },
+            with: .color(gridStyle == 1 ? .gray.opacity(0.4) : .gray.opacity(0.1)),
+            lineWidth: 0.8/zoom)
     }
 }

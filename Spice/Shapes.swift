@@ -31,7 +31,7 @@ class CircuitComponent: Identifiable {
             ctx.stroke(
                 getPath(self, style: style),
                 with: .color(Color("CircuitColor")),
-                lineWidth: 1.35/zoom
+                lineWidth: 1.1/zoom
             )
             if type == "I" && style == 2 {
                 ctx.fill(
