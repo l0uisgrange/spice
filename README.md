@@ -39,4 +39,5 @@ I'm a Swiss 🇨🇭 developer who is tired of seeing bad UX/UI in macOS apps in
 
 ## Licence ⚖️
 
-Spice is an open source project distributed under the GPL-3.0 licence.
+Spice is an open source project.
+
