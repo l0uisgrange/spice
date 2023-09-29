@@ -26,7 +26,7 @@ For more informations on how this works, please read the [Wiki](https://github.c
 
 ## Suggestions
 
-You can see my [roadmap](https://github.com/users/l0uisgrange/projects/2) to see what I am working on and suggest modifications by creating an Issue.
+Check my [roadmap](https://github.com/users/l0uisgrange/projects/2) to see what I'm working on. You can also suggest new features, bug fixes, or improvements to existing features by creating an issue!
 
 ## About me 👀
 
