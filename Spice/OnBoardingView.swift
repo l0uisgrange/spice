@@ -52,7 +52,7 @@ struct OnBoardingView: View {
                 } label: {
                     Text("ONBOARDING_BUTTON")
                 }.buttonStyle(.borderedProminent)
-                    .controlSize(.extraLarge)
+                .controlSize(.extraLarge)
             }
             Text("VERSION \(appVersion) (\(appBuild))")
                 .font(.caption)

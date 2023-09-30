@@ -21,12 +21,12 @@ struct SpiceApp: App {
     var body: some Scene {
         DocumentGroup(newDocument: SpiceDocument(components: [])) { file in
             ContentView(document: file.$document, zoom: $zoom, editionMode: $editionMode)
-                .frame(minWidth: 500, idealWidth: 900, minHeight: 400, idealHeight: 700)
+                .frame(minWidth: 700, idealWidth: 900, minHeight: 500, idealHeight: 700)
                 .sheet(isPresented: $isPresented) {
                     OnBoardingView(isPresented: $isPresented)
                 }
                 .onAppear {
-                    if !onBoarded {
+                    if onBoarded {
                         isPresented.toggle()
                     }
                 }

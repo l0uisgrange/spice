@@ -9,6 +9,7 @@ import SwiftUI
 import SwiftData
 
 struct ContentView: View {
+    @Environment(\.undoManager) var undoManager
     @AppStorage("checkUpdate") private var checkUpdate = true
     @Binding var document: SpiceDocument
     @Binding var zoom: Double
@@ -27,9 +28,8 @@ struct ContentView: View {
                                 updateAvailable = await checkForUpdate()
                             }
                         }
-                    if updateAvailable {
-                        HStack(alignment: .top) {
-                            Spacer()
+                    HStack {
+                        if updateAvailable {
                             Link(destination: URL(string: "https://github.com/l0uisgrange/spice/releases/latest")!) {
                                 Label("UPDATE_AVAILABLE", systemImage: "arrow.down.circle.fill")
                                     .padding(.vertical, 7)
@@ -38,42 +38,34 @@ struct ContentView: View {
                                     .foregroundStyle(.white)
                                     .clipShape(RoundedRectangle(cornerRadius: 5))
                             }.buttonStyle(PlainButtonStyle())
-                        }.padding(20)
-                    }
+                        }
+                    }.padding(20)
                 }
             }
-        }
-        .toolbar {
+        }.toolbar {
             ToolbarItem {
                 Spacer()
             }
             ToolbarItemGroup(placement: .principal) {
                 Button {
-                    
+                    undoManager?.undo()
                 } label: {
                     Label("CANCEL", systemImage: "arrow.uturn.backward")
-                }
-                .help("CANCEL")
-                .disabled(true)
+                }.help("CANCEL")
+                .disabled((undoManager?.canUndo ?? false) ? false : true)
                 Button {
-                    
+                    undoManager?.redo()
                 } label: {
                     Label("UNDO", systemImage: "arrow.uturn.forward")
                 }.help("UNDO")
-                .disabled(true)
+                .disabled((undoManager?.canRedo ?? false) ? false : true)
                 HStack {
                     Divider().frame(height: 20)
                 }
-                Button {
-                    editionMode = .cursor
-                } label: {
-                    Label("ERASE", systemImage: "cursorarrow")
-                }.help("ERASE")
-                Button {
-                    editionMode = .wire
-                } label: {
-                    Label("WIRE", systemImage: "line.diagonal")
-                }.help("WIRE")
+                Picker("", selection: $editionMode) {
+                    Label("ERASE", systemImage: "hand.point.up").tag(EditionMode.cursor)
+                    Label("WIRE", systemImage: "line.diagonal").tag(EditionMode.wire)
+                }.pickerStyle(SegmentedPickerStyle())
                 Spacer().frame(width: 20)
             }
             ToolbarItemGroup(placement: .status) {

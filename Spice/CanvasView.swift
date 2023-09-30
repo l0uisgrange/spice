@@ -20,6 +20,7 @@ struct CanvasView: View {
     @Binding var components: [CircuitComponent]
     @State private var hoverLocation: CGPoint = .zero
     @State private var isHovering = false
+    @GestureState private var magnifyBy = 1.0
     @State private var newComponent: CircuitComponent = CircuitComponent("", start: CGPoint(x: 1000, y:1000), end: CGPoint(x: 1000, y:1000), type: "W", value: 10)
     @Binding var editionMode: EditionMode
     var body: some View {
@@ -69,19 +70,41 @@ struct CanvasView: View {
             }
         }
         .focusable()
-        .onMoveCommand { direction in
-            switch direction {
-            case .down:
-                origin.y -= 20
-            case .up:
-                origin.y += 20
-            case .right:
-                origin.x -= 20
-            case .left:
-                origin.x += 20
+        .onKeyPress(keys: [.downArrow, .upArrow, .rightArrow, .leftArrow, .escape, .space, "W", "R", "L", "C"], phases: [.repeat, .up]) { result in
+            switch result.key {
+            case .downArrow:
+                origin.y -= 50/zoom
+            case .upArrow:
+                origin.y += 50/zoom
+            case .rightArrow:
+                origin.x -= 50/zoom
+            case .leftArrow:
+                origin.x += 50/zoom
+            case .escape:
+                newComponent.startingPoint = CGPoint(x: 1000, y: 1000)
+            case .space:
+                zoom = 1.5
+                origin = CGPoint.zero
             default:
-                origin.x = origin.x
+                print("Key not recognized (key)")
+                switch result.characters {
+                case "W":
+                    print("Switch to W")
+                    newComponent.type = "W"
+                case "R":
+                    print("Switch to R")
+                    newComponent.type = "R"
+                case "L":
+                    print("Switch to L")
+                    newComponent.type = "L"
+                case "C":
+                    print("Switch to C")
+                    newComponent.type = "C"
+                default:
+                    print("Key not recognized (char)")
+                }
             }
+            return .handled
         }
         .drawingGroup()
         .gesture(

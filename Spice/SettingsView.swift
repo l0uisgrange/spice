@@ -42,13 +42,15 @@ struct SettingsView: View {
                         } label: {
                             Text("CHECK_UPDATE")
                         }.buttonStyle(.bordered)
+                        .controlSize(.large)
                         .disabled(checkedUpdate)
                         if updateAvailable {
                             Link(destination: URL(string: "https://github.com/l0uisgrange/spice/releases/latest")!) {
                                 Text("INSTALL_UPDATE")
                             }.buttonStyle(.borderedProminent)
+                            .controlSize(.large)
                         }
-                    }
+                    }.padding(.top, 10)
                 }
             }
             Section {
