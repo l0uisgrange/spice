@@ -7,6 +7,7 @@
 
 import SwiftUI
 import SwiftData
+import TipKit
 
 struct ContentView: View {
     @Environment(\.undoManager) var undoManager
@@ -17,12 +18,12 @@ struct ContentView: View {
     let dotSize: CGFloat = 1.0
     @State var updateAvailable: Bool = false
     @Binding var editionMode: EditionMode
-    @State var selectedColor = Color.black
+    @State private var showingComponents = false
     var body: some View {
         VStack(spacing: 0) {
             GeometryReader { geometry in
                 ZStack(alignment: .topTrailing) {
-                    CanvasView(geometry: geometry, selectedColor: $selectedColor, origin: $origin, zoom: $zoom, components: $document.components, editionMode: $editionMode)
+                    CanvasView(geometry: geometry, origin: $origin, zoom: $zoom, components: $document.components, editionMode: $editionMode)
                         .task {
                             if checkUpdate {
                                 updateAvailable = await checkForUpdate()
@@ -66,6 +67,16 @@ struct ContentView: View {
                     Label("ERASE", systemImage: "hand.point.up").tag(EditionMode.cursor)
                     Label("WIRE", systemImage: "line.diagonal").tag(EditionMode.wire)
                 }.pickerStyle(SegmentedPickerStyle())
+                Button {
+                    showingComponents.toggle()
+                } label: {
+                    Label("", systemImage: "plus")
+                }
+                .popover(isPresented: $showingComponents, arrowEdge: .bottom) {
+                    Text("Your content here")
+                        .font(.headline)
+                        .padding()
+                }
                 Spacer().frame(width: 20)
             }
             ToolbarItemGroup(placement: .status) {
@@ -100,7 +111,7 @@ struct ContentView: View {
                 Button {
                     
                 } label: {
-                    Label("RUN", systemImage: "play.circle")
+                    Label("RUN", systemImage: "play.circle.fill")
                 }.help("RUN")
                 .disabled(true)
             }

@@ -570,6 +570,12 @@
         }
       }
     },
+    "TIP_SIMULATION_DESCRIPTION" : {
+
+    },
+    "TIP_SIMULATION_TITLE" : {
+
+    },
     "UNDO" : {
       "localizations" : {
         "de" : {
@@ -738,6 +744,9 @@
           }
         }
       }
+    },
+    "Your content here" : {
+
     },
     "ZOOM_IN" : {
       "localizations" : {

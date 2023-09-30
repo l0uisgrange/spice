@@ -12,7 +12,6 @@ struct CanvasView: View {
     @State private var canvasContentOffset: CGPoint = CGPoint.zero
     @AppStorage("symbolsStyle") private var symbolsStyle = 0
     @AppStorage("gridStyle") private var gridStyle = 1
-    @Binding var selectedColor: Color
     @Binding var origin: CGPoint
     @Binding var zoom: Double
     @State private var currentZoom: Double = 0.0
