@@ -72,11 +72,6 @@ struct ContentView: View {
                 } label: {
                     Label("", systemImage: "plus")
                 }
-                .popover(isPresented: $showingComponents, arrowEdge: .bottom) {
-                    Text("Your content here")
-                        .font(.headline)
-                        .padding()
-                }
                 Spacer().frame(width: 20)
             }
             ToolbarItemGroup(placement: .status) {

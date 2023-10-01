@@ -11,6 +11,7 @@
 		2A37A92E2ABF36FB009C64CE /* OnBoardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A37A92D2ABF36FB009C64CE /* OnBoardingView.swift */; };
 		2A4968802ABDD81D00DBC58B /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A49687F2ABDD81D00DBC58B /* SettingsView.swift */; };
 		2A5C5F762AC80ED900902760 /* Tips.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5C5F752AC80ED900902760 /* Tips.swift */; };
+		2A5C5F782AC97E3700902760 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5C5F772AC97E3700902760 /* SearchView.swift */; };
 		2A8133582AC49500004F124B /* InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A8133572AC49500004F124B /* InfoPlist.xcstrings */; };
 		2A9AFE562ABB376100A77A2C /* SpiceApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9AFE552ABB376100A77A2C /* SpiceApp.swift */; };
 		2A9AFE582ABB376100A77A2C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9AFE572ABB376100A77A2C /* ContentView.swift */; };
@@ -26,6 +27,7 @@
 		2A37A92D2ABF36FB009C64CE /* OnBoardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingView.swift; sourceTree = "<group>"; };
 		2A49687F2ABDD81D00DBC58B /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		2A5C5F752AC80ED900902760 /* Tips.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tips.swift; sourceTree = "<group>"; };
+		2A5C5F772AC97E3700902760 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		2A8133572AC49500004F124B /* InfoPlist.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = InfoPlist.xcstrings; sourceTree = "<group>"; };
 		2A9AFE522ABB376100A77A2C /* Spice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Spice.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A9AFE552ABB376100A77A2C /* SpiceApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpiceApp.swift; sourceTree = "<group>"; };
@@ -78,6 +80,7 @@
 				2A37A92B2ABF3345009C64CE /* CanvasView.swift */,
 				2A49687F2ABDD81D00DBC58B /* SettingsView.swift */,
 				2A37A92D2ABF36FB009C64CE /* OnBoardingView.swift */,
+				2A5C5F772AC97E3700902760 /* SearchView.swift */,
 				2A9AFE692ABB79BF00A77A2C /* Shapes.swift */,
 				2AE073A72AC1ECFB000AECE0 /* FilesTypes.swift */,
 				2A5C5F752AC80ED900902760 /* Tips.swift */,
@@ -173,6 +176,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2A4968802ABDD81D00DBC58B /* SettingsView.swift in Sources */,
+				2A5C5F782AC97E3700902760 /* SearchView.swift in Sources */,
 				2A37A92C2ABF3345009C64CE /* CanvasView.swift in Sources */,
 				2AE073A82AC1ECFB000AECE0 /* FilesTypes.swift in Sources */,
 				2A9AFE582ABB376100A77A2C /* ContentView.swift in Sources */,
@@ -315,7 +319,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 501;
+				CURRENT_PROJECT_VERSION = 625;
 				DEVELOPMENT_ASSET_PATHS = "\"Spice/Preview Content\"";
 				DEVELOPMENT_TEAM = N2L3268M2F;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -353,7 +357,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 501;
+				CURRENT_PROJECT_VERSION = 625;
 				DEVELOPMENT_ASSET_PATHS = "\"Spice/Preview Content\"";
 				DEVELOPMENT_TEAM = N2L3268M2F;
 				ENABLE_HARDENED_RUNTIME = YES;

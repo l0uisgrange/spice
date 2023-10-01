@@ -21,7 +21,7 @@ struct OnBoardingView: View {
                 .resizable()
                 .frame(width: 60, height: 60)
             Text("ONBOARDING_TITLE")
-                .font(.largeTitle)
+                .font(.title2)
                 .fontWeight(.semibold)
             Text("ONBOARDING_MESSAGE")
             Form {
@@ -39,7 +39,9 @@ struct OnBoardingView: View {
                     Text("GRID")
                         .tag(2)
                 }
-            }.formStyle(.grouped)
+            }.background(.windowBackground)
+            .scrollContentBackground(.hidden)
+            .formStyle(.grouped)
             .scrollDisabled(true)
             HStack {
                 Link(destination: URL(string: "https://github.com/l0uisgrange/spice/wiki")!) {
@@ -54,11 +56,24 @@ struct OnBoardingView: View {
                 }.buttonStyle(.borderedProminent)
                 .controlSize(.extraLarge)
             }
-            Text("VERSION \(appVersion) (\(appBuild))")
-                .font(.caption)
-                .foregroundStyle(.gray)
+            HStack {
+                Text("VERSION \(appVersion) (\(appBuild))")
+                    .font(.caption)
+                    .foregroundStyle(.gray)
+                if Int(appVersion.components(separatedBy: ".").first ?? "0") == 0 {
+                    Text("alpha")
+                        .font(.caption)
+                        .foregroundStyle(.orange)
+                        .padding(.vertical, 4)
+                        .padding(.horizontal, 7)
+                        .overlay(
+                            Capsule()
+                                .stroke(.orange, lineWidth: 0.9)
+                        )
+                }
+            }
         }.frame(width: 400)
         .padding(40)
-        .background(.background)
+        .background(.windowBackground)
     }
 }

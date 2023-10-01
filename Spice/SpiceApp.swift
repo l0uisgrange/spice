@@ -16,6 +16,7 @@ struct SpiceApp: App {
     @AppStorage("onBoarded") private var onBoarded = false
     @Environment(\.openWindow) var openWindow
     @State private var isPresented: Bool = false
+    @State private var searchComponent: Bool = false
     @State var zoom: Double = 1.5
     @State var editionMode: EditionMode = .cursor
     var body: some Scene {
@@ -25,8 +26,11 @@ struct SpiceApp: App {
                 .sheet(isPresented: $isPresented) {
                     OnBoardingView(isPresented: $isPresented)
                 }
+                .sheet(isPresented: $searchComponent) {
+                    SearchView(isPresented: $searchComponent)
+                }
                 .onAppear {
-                    if onBoarded {
+                    if !onBoarded {
                         isPresented.toggle()
                     }
                 }
@@ -56,6 +60,13 @@ struct SpiceApp: App {
                     zoom -= 0.5
                 }
                 Divider()
+            }
+            CommandGroup(after: CommandGroupPlacement.textEditing) {
+                Button {
+                    searchComponent.toggle()
+                } label: {
+                    Text("ADD_COMPONENT")
+                }.keyboardShortcut(".")
             }
             CommandGroup(after: CommandGroupPlacement.appSettings) {
                 Button {

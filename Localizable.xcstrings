@@ -32,6 +32,54 @@
         }
       }
     },
+    "ADD" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Ajouter"
+          }
+        }
+      }
+    },
+    "ADD_COMPONENT" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add component"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Ajouter composant"
+          }
+        }
+      }
+    },
+    "alpha" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "alpha"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "alpha"
+          }
+        }
+      }
+    },
     "BACKGROUND" : {
       "localizations" : {
         "de" : {
@@ -272,7 +320,14 @@
       }
     },
     "GitHub" : {
-
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "GitHub"
+          }
+        }
+      }
     },
     "GRID" : {
       "localizations" : {
@@ -382,6 +437,42 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Installare"
+          }
+        }
+      }
+    },
+    "NEED_HELP?" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Need help?"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Besoin d'aide ?"
+          }
+        }
+      }
+    },
+    "NO_RESULT" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aucun résultat"
+          }
+        }
+      }
+    },
+    "NO_RESULT_DESCRIPTION" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aucun composant ne correspond à la recherche"
           }
         }
       }
@@ -538,6 +629,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Lancer"
+          }
+        }
+      }
+    },
+    "SEARCH_COMPONENT" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rechercher un composant"
           }
         }
       }
@@ -744,9 +845,6 @@
           }
         }
       }
-    },
-    "Your content here" : {
-
     },
     "ZOOM_IN" : {
       "localizations" : {

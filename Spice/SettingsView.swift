@@ -23,6 +23,17 @@ struct SettingsView: View {
                     Text("VERSION")
                     Spacer()
                     Text("\(appVersion) (\(appBuild))")
+                    if Int(appVersion.components(separatedBy: ".").first ?? "0") == 0 {
+                        Text("alpha")
+                            .font(.caption)
+                            .foregroundStyle(.orange)
+                            .padding(.vertical, 4)
+                            .padding(.horizontal, 7)
+                            .overlay(
+                                Capsule()
+                                    .stroke(.orange, lineWidth: 0.9)
+                            )
+                    }
                 }
                 Toggle(isOn: $checkUpdate, label: {
                     Text("CHECK_UPDATE_AUTOMATICALLY")
