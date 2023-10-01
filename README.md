@@ -37,7 +37,8 @@ Check out my roadmap to see what I'm working on. You can also suggest new featur
 
 I'm a Swiss 🇨🇭 developer who is tired of seeing bad UX/UI in macOS apps in the engineering world. That's why I create beautiful, user-friendly apps that follow Apple's design guidelines.
 
-## Licence ⚖️
+## Copyright ⚖️
 
-Spice is an open source project.
+This project is copyrighted by Louis Grange.
+Copyright © Louis Grange
 
