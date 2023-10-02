@@ -22,7 +22,7 @@ class CircuitComponent: Identifiable {
     var startingPoint: CGPoint = CGPoint.zero
     var endingPoint: CGPoint = CGPoint.zero
     var type: String = ""
-    func draw(context: GraphicsContext, zoom: Double = 1.0, style: Int = 1, cursor: CGPoint) {
+    func draw(context: GraphicsContext, zoom: Double = 1.0, style: Int = 1, cursor: CGPoint, color: Color = Color.primary) {
         context.drawLayer { ctx in
             if type != "W" {
                 ctx.translateBy(x: startingPoint.x, y: startingPoint.y)
@@ -30,13 +30,13 @@ class CircuitComponent: Identifiable {
             }
             ctx.stroke(
                 getPath(self, style: style),
-                with: .color(Color("CircuitColor")),
+                with: .color(color),
                 lineWidth: 1.1/zoom
             )
             if type == "I" && style == 2 {
                 ctx.fill(
                     getPath(self, style: style),
-                    with: .color(Color("CircuitColor"))
+                    with: .color(color)
                 )
             }
         }

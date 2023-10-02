@@ -10,17 +10,13 @@ import SwiftUI
 struct SearchView: View {
     @Binding var isPresented: Bool
     @State var searchText: String = ""
-    @State var typeSelected: String = ""
+    @AppStorage("symbolsStyle") private var symbolsStyle = 0
+    @State var typeSelected: CircuitComponent.ID?
     @State var components: [CircuitComponent] = [
-        CircuitComponent("", start: CGPoint(x: -30, y: 0), end: CGPoint(x: 30, y: 0), type: "W", value: 0),
-        CircuitComponent("", start: CGPoint(x: -30, y: 0), end: CGPoint(x: 30, y: 0), type: "R", value: 0),
-        CircuitComponent("", start: CGPoint(x: -30, y: 0), end: CGPoint(x: 30, y: 0), type: "L", value: 0),
-        CircuitComponent("", start: CGPoint(x: -30, y: 0), end: CGPoint(x: 30, y: 0), type: "C", value: 0)
-    ]
-    var columns: [GridItem] = [
-        GridItem(.adaptive(minimum: 100, maximum: 300)),
-        GridItem(.adaptive(minimum: 100, maximum: 300)),
-        GridItem(.adaptive(minimum: 100, maximum: 300))
+        CircuitComponent("WIRE", start: CGPoint(x: -30, y: 0), end: CGPoint(x: 30, y: 0), type: "W", value: 0),
+        CircuitComponent("RESISTOR", start: CGPoint(x: -30, y: 0), end: CGPoint(x: 30, y: 0), type: "R", value: 0),
+        CircuitComponent("INDUCTOR", start: CGPoint(x: -30, y: 0), end: CGPoint(x: 30, y: 0), type: "L", value: 0),
+        CircuitComponent("CAPACITOR", start: CGPoint(x: -30, y: 0), end: CGPoint(x: 30, y: 0), type: "C", value: 0)
     ]
     var body: some View {
         VStack(alignment: .trailing, spacing: 0) {
@@ -29,47 +25,23 @@ struct SearchView: View {
                     .textFieldStyle(.roundedBorder)
                     .controlSize(.extraLarge)
                     .tint(.accentColor)
-                    .padding(.bottom, 20)
-                LazyVGrid(columns: columns, spacing: 15) {
-                    ForEach(components) { c in
-                        ZStack(alignment: .bottomTrailing) {
-                            Canvas { context, size  in
-                                context.translateBy(x: size.width/2.0, y: size.height/2.0)
-                                c.draw(context: context, cursor: CGPoint.zero)
-                            }.frame(height: 70)
-                                .overlay(
-                                    RoundedRectangle(cornerRadius: 8)
-                                        .stroke(typeSelected != c.type ? .gray.opacity(0.3) : .accentColor, lineWidth: typeSelected != c.type ? 0.7 : 1.5)
-                                )
-                                .onHover { hover in
-                                    if hover {
-                                        NSCursor.pointingHand.push()
-                                    } else {
-                                        NSCursor.arrow.push()
-                                    }
-                                }
-                                .onTapGesture {
-                                    typeSelected = c.type
-                                }
-                            VStack {
-                                Button {
-                                    
-                                } label: {
-                                    Image(systemName: "info.circle")
-                                        .foregroundStyle(.accent)
-                                }.buttonStyle(.plain)
-                            }.padding(15)
+                    .padding([.horizontal, .top], 20)
+                Form {
+                    Table(components, selection: $typeSelected) {
+                        TableColumn("NAME") { el in
+                            Text(LocalizedStringKey(el.name))
                         }
-                    }
-                }.frame(height: 300, alignment: .top)
-                /*ContentUnavailableView("NO_RESULT", systemImage: "magnifyingglass", description: Text("NO_RESULT_DESCRIPTION"))
-                    .padding(.vertical, 30)*/
-            }.padding(20)
+                        TableColumn("TYPE", value: \.type)
+                    }.frame(height: 300)
+                    .listStyle(.plain)
+                    .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
+                }.formStyle(GroupedFormStyle())
+                .scrollContentBackground(.hidden)
+            }
             Divider()
             HStack {
                 Link(destination: URL(string: "https://github.com/l0uisgrange/spice/wiki")!) {
-                    Text("NEED_HELP?")
-                        .foregroundStyle(.accent)
+                    Label("NEED_HELP?", systemImage: "questionmark")
                 }.buttonStyle(.link)
                 Spacer()
                 Button {
@@ -87,5 +59,6 @@ struct SearchView: View {
             }.padding(15)
         }.frame(width: 500)
         .background(.windowBackground)
+        .searchable(text: $searchText, prompt: "")
     }
 }

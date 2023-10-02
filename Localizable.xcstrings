@@ -42,7 +42,7 @@
         },
         "fr" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Ajouter"
           }
         }
@@ -58,7 +58,7 @@
         },
         "fr" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Ajouter composant"
           }
         }
@@ -126,6 +126,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Annulla"
+          }
+        }
+      }
+    },
+    "CAPACITOR" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Capacitor"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Capacité"
           }
         }
       }
@@ -321,6 +338,12 @@
     },
     "GitHub" : {
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "GitHub"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -413,6 +436,23 @@
         }
       }
     },
+    "INDUCTOR" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Inductor"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Induction"
+          }
+        }
+      }
+    },
     "INSTALL_UPDATE" : {
       "localizations" : {
         "de" : {
@@ -441,40 +481,34 @@
         }
       }
     },
-    "NEED_HELP?" : {
+    "NAME" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Need help?"
+            "value" : "Name"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Besoin d'aide ?"
+            "value" : "Nom"
           }
         }
       }
     },
-    "NO_RESULT" : {
-      "extractionState" : "stale",
+    "NEED_HELP?" : {
       "localizations" : {
-        "fr" : {
+        "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Aucun résultat"
+            "value" : "Need help"
           }
-        }
-      }
-    },
-    "NO_RESULT_DESCRIPTION" : {
-      "extractionState" : "stale",
-      "localizations" : {
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Aucun composant ne correspond à la recherche"
+            "value" : "Besoin d'aide"
           }
         }
       }
@@ -619,6 +653,23 @@
         }
       }
     },
+    "RESISTOR" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Resistor"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Résistance"
+          }
+        }
+      }
+    },
     "RUN" : {
       "localizations" : {
         "en" : {
@@ -637,6 +688,12 @@
     },
     "SEARCH_COMPONENT" : {
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Search component"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -678,6 +735,22 @@
     },
     "TIP_SIMULATION_TITLE" : {
 
+    },
+    "TYPE" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Type"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Type"
+          }
+        }
+      }
     },
     "UNDO" : {
       "localizations" : {
