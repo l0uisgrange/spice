@@ -21,7 +21,7 @@ struct SpiceApp: App {
     @State var editionMode: EditionMode = .cursor
     var body: some Scene {
         DocumentGroup(newDocument: SpiceDocument(components: [])) { file in
-            ContentView(document: file.$document, zoom: $zoom, editionMode: $editionMode)
+            ContentView(document: file.$document, zoom: $zoom, addComponent: $searchComponent, editionMode: $editionMode)
                 .frame(minWidth: 700, idealWidth: 900, minHeight: 500, idealHeight: 700)
                 .sheet(isPresented: $isPresented) {
                     OnBoardingView(isPresented: $isPresented)
@@ -67,6 +67,12 @@ struct SpiceApp: App {
                 } label: {
                     Text("ADD_COMPONENT")
                 }.keyboardShortcut(".")
+                Button {
+                    
+                } label: {
+                    Text("RUN_SIMULATION")
+                }.keyboardShortcut("R")
+                    .disabled(true)
             }
             CommandGroup(after: CommandGroupPlacement.appSettings) {
                 Button {
@@ -76,7 +82,7 @@ struct SpiceApp: App {
                 }.keyboardShortcut(",")
             }
         }
-        Window("", id: "settings") {
+        Window("SETTINGS", id: "settings") {
             SettingsView()
                 .frame(width: 500, height: 300)
         }.defaultPosition(.center)

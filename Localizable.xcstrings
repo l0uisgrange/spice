@@ -686,6 +686,16 @@
         }
       }
     },
+    "RUN_SIMULATION" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lancer simulation"
+          }
+        }
+      }
+    },
     "SEARCH_COMPONENT" : {
       "localizations" : {
         "en" : {

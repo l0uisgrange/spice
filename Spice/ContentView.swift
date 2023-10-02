@@ -14,11 +14,11 @@ struct ContentView: View {
     @AppStorage("checkUpdate") private var checkUpdate = true
     @Binding var document: SpiceDocument
     @Binding var zoom: Double
+    @Binding var addComponent: Bool
     @State private var origin: CGPoint = CGPoint.zero
     let dotSize: CGFloat = 1.0
     @State var updateAvailable: Bool = false
     @Binding var editionMode: EditionMode
-    @State private var showingComponents = false
     var body: some View {
         VStack(spacing: 0) {
             GeometryReader { geometry in
@@ -68,7 +68,7 @@ struct ContentView: View {
                     Label("WIRE", systemImage: "line.diagonal").tag(EditionMode.wire)
                 }.pickerStyle(SegmentedPickerStyle())
                 Button {
-                    showingComponents.toggle()
+                    addComponent.toggle()
                 } label: {
                     Label("", systemImage: "plus")
                 }
