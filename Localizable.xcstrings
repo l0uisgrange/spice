@@ -458,6 +458,7 @@
       }
     },
     "NO_RESULT" : {
+      "extractionState" : "stale",
       "localizations" : {
         "fr" : {
           "stringUnit" : {
@@ -468,6 +469,7 @@
       }
     },
     "NO_RESULT_DESCRIPTION" : {
+      "extractionState" : "stale",
       "localizations" : {
         "fr" : {
           "stringUnit" : {
