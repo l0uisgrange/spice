@@ -20,24 +20,28 @@ struct SearchView: View {
     ]
     var body: some View {
         VStack(alignment: .trailing, spacing: 0) {
-            VStack {
+            HStack(alignment: .center, spacing: 15) {
+                Image(systemName: "magnifyingglass")
+                    .foregroundStyle(.gray)
                 TextField("SEARCH_COMPONENT", text: $searchText)
-                    .textFieldStyle(.roundedBorder)
-                    .controlSize(.extraLarge)
+                    .textFieldStyle(.plain)
+                    .font(.title2)
                     .tint(.accentColor)
-                    .padding([.horizontal, .top], 20)
-                Form {
-                    Table(components, selection: $typeSelected) {
-                        TableColumn("NAME") { el in
-                            Text(LocalizedStringKey(el.name))
-                        }
-                        TableColumn("TYPE", value: \.type)
-                    }.frame(height: 300)
-                    .listStyle(.plain)
-                    .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
-                }.formStyle(GroupedFormStyle())
-                .scrollContentBackground(.hidden)
-            }
+                    .padding(.bottom, -3)
+            }.padding(20)
+            .font(.title2)
+            Divider()
+            Form {
+                Table(components, selection: $typeSelected) {
+                    TableColumn("NAME") { el in
+                        Text(LocalizedStringKey(el.name))
+                    }
+                    TableColumn("TYPE", value: \.type)
+                }.frame(height: 300)
+                .listStyle(.plain)
+                .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
+            }.formStyle(GroupedFormStyle())
+            .scrollContentBackground(.hidden)
             Divider()
             HStack {
                 Link(destination: URL(string: "https://github.com/l0uisgrange/spice/wiki")!) {
