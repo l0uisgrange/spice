@@ -21,7 +21,7 @@ struct CanvasView: View {
     @State private var isHovering = false
     @GestureState private var magnifyBy = 1.0
     @State private var newComponent: CircuitComponent = CircuitComponent("", start: CGPoint(x: 1000, y:1000), end: CGPoint(x: 1000, y:1000), type: "W", value: 10)
-    @Binding var editionMode: EditionMode
+    @Binding var editionMode: String
     var body: some View {
         Canvas { context, size in
             let windowWidth = geometry.size.width
@@ -30,7 +30,7 @@ struct CanvasView: View {
             context.translateBy(x: windowWidth/2.0 + origin.x + canvasContentOffset.x, y: windowHeight / 2 + origin.y + canvasContentOffset.y)
             context.scaleBy(x: zoom + currentZoom, y: zoom + currentZoom)
             context.drawGrid(gridStyle: gridStyle, zoom: zoom + currentZoom)
-            if editionMode == .wire {
+            if editionMode == "W" {
                 if newComponent.startingPoint != CGPoint(x: 1000, y: 1000) {
                     newComponent.draw(context:context, zoom: currentZoom+zoom, style: symbolsStyle, cursor: hoverLocation)
                 }
@@ -41,7 +41,7 @@ struct CanvasView: View {
         }
         .onTapGesture {
             let extreme = CGPoint(x: 1000, y:1000)
-            if editionMode == .wire {
+            if editionMode == "W" {
                 if newComponent.startingPoint == extreme {
                     newComponent = CircuitComponent("W", start: hoverLocation.alignedPoint, end: hoverLocation.alignedPoint, type: "W", value: 0)
                 } else {
@@ -61,7 +61,7 @@ struct CanvasView: View {
                     newComponent.endingPoint = hoverLocation
                 }
                 isHovering = true
-                if editionMode == .wire && isHovering {
+                if editionMode == "W" && isHovering {
                     NSCursor.crosshair.push()
                 }
             case .ended:

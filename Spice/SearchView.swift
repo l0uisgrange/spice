@@ -13,7 +13,6 @@ struct SearchView: View {
     @AppStorage("symbolsStyle") private var symbolsStyle = 0
     @State var typeSelected: CircuitComponent.ID?
     @State var components: [CircuitComponent] = [
-        CircuitComponent("WIRE", start: CGPoint(x: -30, y: 0), end: CGPoint(x: 30, y: 0), type: "W", value: 0),
         CircuitComponent("RESISTOR", start: CGPoint(x: -30, y: 0), end: CGPoint(x: 30, y: 0), type: "R", value: 0),
         CircuitComponent("INDUCTOR", start: CGPoint(x: -30, y: 0), end: CGPoint(x: 30, y: 0), type: "L", value: 0),
         CircuitComponent("CAPACITOR", start: CGPoint(x: -30, y: 0), end: CGPoint(x: 30, y: 0), type: "C", value: 0),
@@ -22,6 +21,7 @@ struct SearchView: View {
         CircuitComponent("ISOURCE", start: CGPoint(x: -30, y: 0), end: CGPoint(x: 30, y: 0), type: "I", value: 0),
         CircuitComponent("TRANSISTOR", start: CGPoint(x: -30, y: 0), end: CGPoint(x: 30, y: 0), type: "T", value: 0)
     ]
+    @Binding var editionMode: String
     var body: some View {
         VStack(alignment: .trailing, spacing: 0) {
             HStack(alignment: .center, spacing: 15) {
@@ -65,6 +65,7 @@ struct SearchView: View {
                 }.buttonStyle(.bordered)
                 .controlSize(.extraLarge)
                 Button {
+                    editionMode = components.first(where: { $0.id == typeSelected })?.name ?? ""
                     isPresented.toggle()
                 } label: {
                     Text("ADD")
@@ -73,6 +74,15 @@ struct SearchView: View {
             }.padding(15)
         }.frame(width: 500)
         .background(.windowBackground)
-        .searchable(text: $searchText, prompt: "")
+        .onKeyPress { key in
+            switch key.key {
+            case .return:
+                editionMode = components.first(where: { $0.id == typeSelected })?.name ?? ""
+                isPresented.toggle()
+            default:
+                print("")
+            }
+            return .handled
+        }
     }
 }

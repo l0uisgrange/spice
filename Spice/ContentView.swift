@@ -18,7 +18,7 @@ struct ContentView: View {
     @State private var origin: CGPoint = CGPoint.zero
     let dotSize: CGFloat = 1.0
     @State var updateAvailable: Bool = false
-    @Binding var editionMode: EditionMode
+    @Binding var editionMode: String
     var body: some View {
         VStack(spacing: 0) {
             GeometryReader { geometry in
@@ -44,9 +44,6 @@ struct ContentView: View {
                 }
             }
         }.toolbar {
-            ToolbarItem {
-                Spacer()
-            }
             ToolbarItemGroup(placement: .principal) {
                 Button {
                     undoManager?.undo()
@@ -64,8 +61,8 @@ struct ContentView: View {
                     Divider().frame(height: 20)
                 }
                 Picker("", selection: $editionMode) {
-                    Label("ERASE", systemImage: "hand.point.up").tag(EditionMode.cursor)
-                    Label("WIRE", systemImage: "line.diagonal").tag(EditionMode.wire)
+                    Label("ERASE", systemImage: "hand.point.up").tag("")
+                    Label("WIRE", systemImage: "line.diagonal").tag("W")
                 }.pickerStyle(SegmentedPickerStyle())
                 Button {
                     addComponent.toggle()
@@ -77,27 +74,21 @@ struct ContentView: View {
             ToolbarItemGroup(placement: .status) {
                 Button {
                     if(zoom >= 1) {
-                        withAnimation(.bouncy) {
-                            zoom -= 0.5
-                        }
+                        zoom -= 0.5
                     }
                 } label: {
                     Label("ZOOM_OUT", systemImage: "minus.magnifyingglass")
                 }.help("ZOOM_OUT")
                 Button {
                     if(zoom <= 2.5) {
-                        withAnimation(.bouncy) {
-                            zoom += 0.5
-                        }
+                        zoom += 0.5
                     }
                 } label: {
                     Label("ZOOM_IN", systemImage: "plus.magnifyingglass")
                 }.help("ZOOM_IN")
                 Button {
-                    withAnimation(.bouncy) {
-                        origin = CGPoint.zero
-                        zoom = 1.5
-                    }
+                    origin = CGPoint.zero
+                    zoom = 1.5
                 } label: {
                     Label("FOCUS", systemImage: "viewfinder")
                 }.help("FOCUS")

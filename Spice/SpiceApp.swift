@@ -18,16 +18,16 @@ struct SpiceApp: App {
     @State private var isPresented: Bool = false
     @State private var searchComponent: Bool = false
     @State var zoom: Double = 1.5
-    @State var editionMode: EditionMode = .cursor
+    @State var editionMode: String = ""
     var body: some Scene {
         DocumentGroup(newDocument: SpiceDocument(components: [])) { file in
             ContentView(document: file.$document, zoom: $zoom, addComponent: $searchComponent, editionMode: $editionMode)
                 .frame(minWidth: 700, idealWidth: 900, minHeight: 500, idealHeight: 700)
+                .sheet(isPresented: $searchComponent) {
+                    SearchView(isPresented: $searchComponent, editionMode: $editionMode)
+                }
                 .sheet(isPresented: $isPresented) {
                     OnBoardingView(isPresented: $isPresented)
-                }
-                .sheet(isPresented: $searchComponent) {
-                    SearchView(isPresented: $searchComponent)
                 }
                 .onAppear {
                     if !onBoarded {
@@ -87,8 +87,4 @@ struct SpiceApp: App {
                 .frame(width: 500, height: 300)
         }.defaultPosition(.center)
     }
-}
-
-enum EditionMode {
-    case cursor, wire, edit
 }
