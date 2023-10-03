@@ -9,33 +9,31 @@ import SwiftUI
 import Foundation
 
 class CircuitComponent: Identifiable {
-    init(_ name: String, start: CGPoint, end: CGPoint, type: String, value: Double) {
-        self.startingPoint = start
-        self.endingPoint = end
+    init(_ name: String, position: CGPoint, orientation: Direction, type: String, value: Double) {
+        self.position = position
+        self.orientation = orientation
         self.type = type
         self.value = value
         self.name = NSLocalizedString(name, comment: "")
+        self.path = getPath(self)
     }
     let id = UUID()
     var value: Any = 0.0
     var name: String = ""
-    var startingPoint: CGPoint = CGPoint.zero
-    var endingPoint: CGPoint = CGPoint.zero
+    var position: CGPoint = CGPoint.zero
+    var orientation: Direction = .top
     var type: String = ""
+    var path: Path = Path.init()
     func draw(context: GraphicsContext, zoom: Double = 1.0, style: Int = 1, cursor: CGPoint, color: Color = Color.primary) {
         context.drawLayer { ctx in
-            if type != "W" {
-                ctx.translateBy(x: startingPoint.x, y: startingPoint.y)
-                ctx.rotate(by: Angle(degrees: startingPoint.x == endingPoint.x ? 90 : 0))
-            }
             ctx.stroke(
-                getPath(self, style: style),
+                self.path,
                 with: .color(color),
                 lineWidth: 1.1/zoom
             )
             if type == "I" && style == 2 {
                 ctx.fill(
-                    getPath(self, style: style),
+                    self.path,
                     with: .color(color)
                 )
             }
@@ -44,21 +42,23 @@ class CircuitComponent: Identifiable {
 }
 
 func getPath(_ c: CircuitComponent, style: Int = 1) -> Path {
+    let rect: CGRect = CGRect(x: c.position.x, y: c.position.y-8, width: 60, height: 20).applying(CGAffineTransform(rotationAngle: c.orientation.getAngle()))
     switch c.type {
-    case "W":
-        return Wire(start: c.startingPoint.alignedPoint, end: c.endingPoint.alignedPoint).path()
     case "R":
-        return Resistor(start: c.startingPoint.alignedPoint, end: c.endingPoint.alignedPoint, style: style).path()
+        return Resistor(center: c.position, orientation: c.orientation, style: style).path(in: rect)
     case "L":
-        return Inductor(start: c.startingPoint.alignedPoint, end: c.endingPoint.alignedPoint, style: style).path()
+        return Inductor(center: c.position, orientation: c.orientation, style: style).path(in: rect)
     case "C":
-        return Capacitor(start: c.startingPoint.alignedPoint, end: c.endingPoint.alignedPoint, style: style).path()
+        return Capacitor(center: c.position, orientation: c.orientation, style: style).path(in: rect)
+    case "D":
+        return Diode(center: c.position, orientation: c.orientation, style: style).path(in: rect)
     case "V":
-        return VSource(start: c.startingPoint.alignedPoint, end: c.endingPoint.alignedPoint, style: style).path()
+        return VSource(center: c.position, orientation: c.orientation, style: style).path(in: rect)
     case "I":
-        return ISource(start: c.startingPoint.alignedPoint, end: c.endingPoint.alignedPoint, style: style).path()
+        return ISource(center: c.position, orientation: c.orientation, style: style).path(in: rect)
     default:
-        return Wire(start: c.startingPoint.alignedPoint, end: c.endingPoint.alignedPoint).path()
+        print("Type not printed because not supported")
+        return Path.init()
     }
 }
 
@@ -66,7 +66,7 @@ struct Wire: Shape {
     var start: CGPoint
     var end: CGPoint
 
-    func path(in rect: CGRect = CGRect(x: 0, y: -5, width: 400, height: 10)) -> Path {
+    func path(in rect: CGRect) -> Path {
         var path = Path()
         path.move(to: start)
         path.addLine(to: end)
@@ -139,7 +139,7 @@ struct Inductor: Shape {
     var orientation: Direction
     var style: Int = 1
 
-    func path(in rect: CGRect = CGRect(x: 0, y: -8, width: 60, height: 16)) -> Path {
+    func path(in rect: CGRect) -> Path {
         switch style {
         case 2:
             var path = Path()
@@ -168,7 +168,7 @@ struct VSource: Shape {
     var orientation: Direction
     var style: Int = 1
 
-    func path(in rect: CGRect = CGRect(x: 0, y: -8, width: 60, height: 16)) -> Path {
+    func path(in rect: CGRect) -> Path {
         switch style {
         case 2:
             var path = Path()
@@ -199,7 +199,7 @@ struct Diode: Shape {
     var orientation: Direction
     var style: Int = 1
 
-    func path(in rect: CGRect = CGRect(x: 0, y: -8, width: 60, height: 16)) -> Path {
+    func path(in rect: CGRect) -> Path {
         var path = Path()
         path.move(to: CGPoint.zero)
         path.addLine(to: CGPoint(x: 20, y: 0))
@@ -220,7 +220,7 @@ struct ISource: Shape {
     var orientation: Direction
     var style: Int = 1
 
-    func path(in rect: CGRect = CGRect(x: 0, y: -8, width: 60, height: 16)) -> Path {
+    func path(in rect: CGRect) -> Path {
         switch style {
         case 2:
             var path = Path()
