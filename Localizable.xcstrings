@@ -796,6 +796,7 @@
       }
     },
     "UNDO" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {

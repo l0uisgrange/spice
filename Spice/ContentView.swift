@@ -45,21 +45,6 @@ struct ContentView: View {
             }
         }.toolbar {
             ToolbarItemGroup(placement: .principal) {
-                Button {
-                    undoManager?.undo()
-                } label: {
-                    Label("CANCEL", systemImage: "arrow.uturn.backward")
-                }.help("CANCEL")
-                .disabled((undoManager?.canUndo ?? false) ? false : true)
-                Button {
-                    undoManager?.redo()
-                } label: {
-                    Label("UNDO", systemImage: "arrow.uturn.forward")
-                }.help("UNDO")
-                .disabled((undoManager?.canRedo ?? false) ? false : true)
-                HStack {
-                    Divider().frame(height: 20)
-                }
                 Picker("", selection: $editionMode) {
                     Label("ERASE", systemImage: "hand.point.up").tag("")
                     Label("WIRE", systemImage: "line.diagonal").tag("W")
@@ -94,6 +79,7 @@ struct ContentView: View {
                 }.help("FOCUS")
             }
             ToolbarItemGroup(placement: .primaryAction) {
+                Spacer()
                 Button {
                     
                 } label: {
