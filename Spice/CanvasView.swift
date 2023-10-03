@@ -34,6 +34,10 @@ struct CanvasView: View {
                 if newComponent.startingPoint != CGPoint(x: 1000, y: 1000) {
                     newComponent.draw(context:context, zoom: currentZoom+zoom, style: symbolsStyle, cursor: hoverLocation)
                 }
+            } else if editionMode != "" {
+                newComponent.type = editionMode
+                newComponent.startingPoint = hoverLocation.alignedPoint
+                newComponent.draw(context:context, zoom: currentZoom+zoom, style: symbolsStyle, cursor: hoverLocation)
             }
             for c in components {
                 c.draw(context: context, zoom: currentZoom + zoom, style: symbolsStyle, cursor: hoverLocation)
@@ -82,6 +86,7 @@ struct CanvasView: View {
                 origin.x += 50/zoom
             case .escape:
                 newComponent.startingPoint = CGPoint(x: 1000, y: 1000)
+                editionMode = ""
             case .space:
                 zoom = 1.5
                 origin = CGPoint.zero

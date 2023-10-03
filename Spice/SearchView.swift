@@ -33,6 +33,7 @@ struct SearchView: View {
                         isPresented.toggle()
                     }
                     .textFieldStyle(.plain)
+                    .padding(.bottom, -3)
                     .font(.title2)
                     .tint(.accentColor)
             }.padding(20)
