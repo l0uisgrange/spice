@@ -14,7 +14,7 @@ class CircuitComponent: Identifiable {
         self.endingPoint = end
         self.type = type
         self.value = value
-        self.name = name
+        self.name = NSLocalizedString(name, comment: "")
     }
     let id = UUID()
     var value: Any = 0.0

@@ -16,7 +16,11 @@ struct SearchView: View {
         CircuitComponent("WIRE", start: CGPoint(x: -30, y: 0), end: CGPoint(x: 30, y: 0), type: "W", value: 0),
         CircuitComponent("RESISTOR", start: CGPoint(x: -30, y: 0), end: CGPoint(x: 30, y: 0), type: "R", value: 0),
         CircuitComponent("INDUCTOR", start: CGPoint(x: -30, y: 0), end: CGPoint(x: 30, y: 0), type: "L", value: 0),
-        CircuitComponent("CAPACITOR", start: CGPoint(x: -30, y: 0), end: CGPoint(x: 30, y: 0), type: "C", value: 0)
+        CircuitComponent("CAPACITOR", start: CGPoint(x: -30, y: 0), end: CGPoint(x: 30, y: 0), type: "C", value: 0),
+        CircuitComponent("DIOD", start: CGPoint(x: -30, y: 0), end: CGPoint(x: 30, y: 0), type: "D", value: 0),
+        CircuitComponent("VSOURCE", start: CGPoint(x: -30, y: 0), end: CGPoint(x: 30, y: 0), type: "V", value: 0),
+        CircuitComponent("ISOURCE", start: CGPoint(x: -30, y: 0), end: CGPoint(x: 30, y: 0), type: "I", value: 0),
+        CircuitComponent("TRANSISTOR", start: CGPoint(x: -30, y: 0), end: CGPoint(x: 30, y: 0), type: "T", value: 0)
     ]
     var body: some View {
         VStack(alignment: .trailing, spacing: 0) {
@@ -32,9 +36,15 @@ struct SearchView: View {
             .font(.title2)
             Divider()
             Form {
-                Table(components, selection: $typeSelected) {
+                Table(components.sorted { $0.name < $1.name }.filter {
+                    if searchText.count > 0 {
+                        $0.name.lowercased().contains(searchText.lowercased())
+                    } else {
+                        true
+                    }
+                }, selection: $typeSelected) {
                     TableColumn("NAME") { el in
-                        Text(LocalizedStringKey(el.name))
+                        Text(el.name)
                     }
                     TableColumn("TYPE", value: \.type)
                 }.frame(height: 300)

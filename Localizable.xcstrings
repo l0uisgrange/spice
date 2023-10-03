@@ -241,6 +241,17 @@
         }
       }
     },
+    "DIOD" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Diode"
+          }
+        }
+      }
+    },
     "DOTS" : {
       "localizations" : {
         "de" : {
@@ -448,7 +459,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Induction"
+            "value" : "Inductance"
           }
         }
       }
@@ -477,6 +488,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Installare"
+          }
+        }
+      }
+    },
+    "ISOURCE" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Source de courant"
           }
         }
       }
@@ -746,6 +768,17 @@
     "TIP_SIMULATION_TITLE" : {
 
     },
+    "TRANSISTOR" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Transistor"
+          }
+        }
+      }
+    },
     "TYPE" : {
       "localizations" : {
         "en" : {
@@ -899,6 +932,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Versione %1$@ (%2$@)"
+          }
+        }
+      }
+    },
+    "VSOURCE" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Source de tension"
           }
         }
       }
