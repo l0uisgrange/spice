@@ -11,17 +11,17 @@ struct SearchView: View {
     @Binding var isPresented: Bool
     @State var searchText: String = ""
     @AppStorage("symbolsStyle") private var symbolsStyle = 0
-    @State var typeSelected: CircuitComponent.ID?
-    @State var components: [CircuitComponent] = [
-        CircuitComponent("RESISTOR", start: CGPoint(x: -30, y: 0), end: CGPoint(x: 30, y: 0), type: "R", value: 0),
-        CircuitComponent("INDUCTOR", start: CGPoint(x: -30, y: 0), end: CGPoint(x: 30, y: 0), type: "L", value: 0),
-        CircuitComponent("CAPACITOR", start: CGPoint(x: -30, y: 0), end: CGPoint(x: 30, y: 0), type: "C", value: 0),
-        CircuitComponent("DIOD", start: CGPoint(x: -30, y: 0), end: CGPoint(x: 30, y: 0), type: "D", value: 0),
-        CircuitComponent("VSOURCE", start: CGPoint(x: -30, y: 0), end: CGPoint(x: 30, y: 0), type: "V", value: 0),
-        CircuitComponent("ISOURCE", start: CGPoint(x: -30, y: 0), end: CGPoint(x: 30, y: 0), type: "I", value: 0),
-        CircuitComponent("TRANSISTOR", start: CGPoint(x: -30, y: 0), end: CGPoint(x: 30, y: 0), type: "T", value: 0)
-    ]
+    @State var typeSelected: ComponentType.ID?
     @Binding var editionMode: String
+    let components = [
+        ComponentType("RESISTOR", type: "R"),
+        ComponentType("INDUCTOR", type: "L"),
+        ComponentType("CAPACITOR", type: "C"),
+        ComponentType("DIODE", type: "D"),
+        ComponentType("VSOURCE", type: "V"),
+        ComponentType("ISOURCE", type: "I"),
+        ComponentType("TRANSISTOR", type: "T")
+    ]
     var body: some View {
         VStack(alignment: .trailing, spacing: 0) {
             HStack(alignment: .center, spacing: 15) {
@@ -74,11 +74,21 @@ struct SearchView: View {
         .background(.windowBackground)
     }
     
-    var filteredComponents: [CircuitComponent] {
+    var filteredComponents: [ComponentType] {
         components.sorted { $0.name < $1.name }.filter {
             if searchText.count > 0 {
                 $0.name.lowercased().contains(searchText.lowercased())
             } else { true }
         }
     }
+}
+
+struct ComponentType: Identifiable {
+    init(_ name: String, type: String) {
+        self.name = name
+        self.type = type
+    }
+    var id: UUID = UUID()
+    var name: String = ""
+    var type: String = ""
 }
