@@ -75,20 +75,20 @@ struct Wire: Shape {
 }
 
 struct Resistor: Shape {
-    var start: CGPoint
-    var end: CGPoint
+    var center: CGPoint
+    var orientation: Direction
     var style: Int = 1
 
-    func path(in rect: CGRect = CGRect(x: 0, y: -8, width: 60, height: 16)) -> Path {
+    func path(in rect: CGRect) -> Path {
         switch style {
         case 2:
             var path = Path()
             path.move(to: CGPoint.zero)
             path.addLine(to: CGPoint(x: 10, y: 0))
-            path.addRect(CGRect(x: 10, y: -8, width: 40, height: 15))
+            path.addRect(CGRect(x: 10, y: -8, width: 40, height: 16))
             path.move(to: CGPoint(x: 50, y: 0))
             path.addLine(to: CGPoint(x: 60, y: 0))
-            return path
+            return path.direct(center: center, direction: orientation)
         default:
             var path = Path()
             path.move(to: CGPoint.zero)
@@ -99,26 +99,26 @@ struct Resistor: Shape {
             path.addLine(to: CGPoint(x: 45, y: rect.height/2))
             path.addLine(to: CGPoint(x: 50, y: 0))
             path.addLine(to: CGPoint(x: 60, y: 0))
-            return path
+            return path.direct(center: center, direction: orientation)
         }
     }
 }
 
 struct Capacitor: Shape {
-    var start: CGPoint
-    var end: CGPoint
+    var center: CGPoint
+    var orientation: Direction
     var style: Int = 1
 
-    func path(in rect: CGRect = CGRect(x: 0, y: -8, width: 60, height: 16)) -> Path {
+    func path(in rect: CGRect) -> Path {
         switch style {
         case 2:
             var path = Path()
             path.move(to: CGPoint.zero)
             path.addLine(to: CGPoint(x: 10, y: 0))
-            path.addRect(CGRect(x: 10, y: -8, width: 40, height: 15))
+            path.addRect(CGRect(x: 10, y: -8, width: 40, height: 16))
             path.move(to: CGPoint(x: 50, y: 0))
             path.addLine(to: CGPoint(x: 60, y: 0))
-            return path
+            return path.direct(center: center, direction: orientation)
         default:
             var path = Path()
             path.move(to: CGPoint.zero)
@@ -129,14 +129,14 @@ struct Capacitor: Shape {
             path.addLine(to: CGPoint(x: 45, y: rect.height/2))
             path.addLine(to: CGPoint(x: 50, y: 0))
             path.addLine(to: CGPoint(x: 60, y: 0))
-            return path
+            return path.direct(center: center, direction: orientation)
         }
     }
 }
 
 struct Inductor: Shape {
-    var start: CGPoint
-    var end: CGPoint
+    var center: CGPoint
+    var orientation: Direction
     var style: Int = 1
 
     func path(in rect: CGRect = CGRect(x: 0, y: -8, width: 60, height: 16)) -> Path {
@@ -148,7 +148,7 @@ struct Inductor: Shape {
             path.addRect(CGRect(x: 10, y: -8, width: 40, height: 15))
             path.move(to: CGPoint(x: 50, y: 0))
             path.addLine(to: CGPoint(x: 60, y: 0))
-            return path
+            return path.direct(center: center, direction: orientation)
         default:
             var path = Path()
             path.move(to: CGPoint.zero)
@@ -158,14 +158,14 @@ struct Inductor: Shape {
             path.addArc(center: CGPoint(x: 42, y: 0), radius: 8, startAngle: Angle(degrees: 220), endAngle: Angle(degrees: 0), clockwise: true)
             path.move(to: CGPoint(x: 50, y: 0))
             path.addLine(to: CGPoint(x: 60, y: 0))
-            return path
+            return path.direct(center: center, direction: orientation)
         }
     }
 }
 
 struct VSource: Shape {
-    var start: CGPoint
-    var end: CGPoint
+    var center: CGPoint
+    var orientation: Direction
     var style: Int = 1
 
     func path(in rect: CGRect = CGRect(x: 0, y: -8, width: 60, height: 16)) -> Path {
@@ -175,7 +175,7 @@ struct VSource: Shape {
             path.move(to: CGPoint.zero)
             path.addLine(to: CGPoint(x: 60, y: 0))
             path.addRoundedRect(in: CGRect(x: 15, y: -15, width: 30, height: 30), cornerSize: CGSize(width: 200, height: 200))
-            return path
+            return path.direct(center: center, direction: orientation)
         default:
             var path = Path()
             path.move(to: CGPoint.zero)
@@ -189,14 +189,35 @@ struct VSource: Shape {
             path.addLine(to: CGPoint(x: 40, y: 0))
             path.move(to: CGPoint(x: 45, y: 0))
             path.addLine(to: CGPoint(x: 60, y: 0))
-            return path
+            return path.direct(center: center, direction: orientation)
         }
     }
 }
 
+struct Diode: Shape {
+    var center: CGPoint
+    var orientation: Direction
+    var style: Int = 1
+
+    func path(in rect: CGRect = CGRect(x: 0, y: -8, width: 60, height: 16)) -> Path {
+        var path = Path()
+        path.move(to: CGPoint.zero)
+        path.addLine(to: CGPoint(x: 20, y: 0))
+        path.addLine(to: CGPoint(x: 20, y: 8))
+        path.addLine(to: CGPoint(x: 40, y: 0))
+        path.addLine(to: CGPoint(x: 20, y: -8))
+        path.addLine(to: CGPoint(x: 20, y: 0))
+        path.move(to: CGPoint(x: 40, y: 8))
+        path.addLine(to: CGPoint(x: 40, y: -8))
+        path.move(to: CGPoint(x: 40, y: 0))
+        path.addLine(to: CGPoint(x: 60, y: 0))
+        return path.direct(center: center, direction: orientation)
+    }
+}
+
 struct ISource: Shape {
-    var start: CGPoint
-    var end: CGPoint
+    var center: CGPoint
+    var orientation: Direction
     var style: Int = 1
 
     func path(in rect: CGRect = CGRect(x: 0, y: -8, width: 60, height: 16)) -> Path {
@@ -210,7 +231,7 @@ struct ISource: Shape {
             path.addLine(to: CGPoint(x: 60, y: 0))
             path.move(to: CGPoint(x:30, y:-15))
             path.addLine(to: CGPoint(x: 30, y: 15))
-            return path
+            return path.direct(center: center, direction: orientation)
         default:
             var path = Path()
             path.move(to: CGPoint.zero)
@@ -224,7 +245,29 @@ struct ISource: Shape {
             path.addLine(to: CGPoint(x: 40, y: 0))
             path.move(to: CGPoint(x: 45, y: 0))
             path.addLine(to: CGPoint(x: 60, y: 0))
-            return path
+            return path.direct(center: center, direction: orientation)
         }
+    }
+}
+
+enum Direction {
+    case top, bottom, leading, trailing
+    func getAngle() -> CGFloat {
+        switch self {
+        case .top:
+            return 90
+        case .bottom:
+            return 280
+        case .trailing:
+            return 180
+        default:
+            return 0
+        }
+    }
+}
+
+extension Path {
+    func direct(center: CGPoint, direction: Direction) -> Path {
+        return self.offsetBy(dx: center.x, dy: center.y).applying(CGAffineTransform(rotationAngle: direction.getAngle()))
     }
 }

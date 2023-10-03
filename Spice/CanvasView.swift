@@ -50,9 +50,13 @@ struct CanvasView: View {
                     newComponent = CircuitComponent("W", start: hoverLocation.alignedPoint, end: hoverLocation.alignedPoint, type: "W", value: 0)
                 } else {
                     newComponent.endingPoint = hoverLocation.alignedPoint
+                    newComponent.type = editionMode
                     components.append(newComponent)
                     newComponent = CircuitComponent("W", start: extreme, end: extreme, type: "W", value: 0)
                 }
+            } else {
+                newComponent.startingPoint = hoverLocation.alignedPoint
+                components.append(newComponent)
             }
         }
         .onContinuousHover(coordinateSpace: .local) { phase in
