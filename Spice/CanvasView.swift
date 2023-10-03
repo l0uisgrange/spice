@@ -30,7 +30,7 @@ struct CanvasView: View {
             context.scaleBy(x: zoom + currentZoom, y: zoom + currentZoom)
             context.drawGrid(gridStyle: gridStyle, zoom: zoom + currentZoom)
             if editionMode != "" {
-                CircuitComponent(editionMode, position: hoverLocation, orientation: .top, type: editionMode, value: 0)
+                CircuitComponent(editionMode, position: hoverLocation.alignedPoint, orientation: .top, type: editionMode, value: 0)
                     .draw(context:context, zoom: currentZoom+zoom, style: symbolsStyle, cursor: hoverLocation)
             }
             for c in components {

@@ -241,7 +241,7 @@
         }
       }
     },
-    "DIOD" : {
+    "DIODE" : {
       "extractionState" : "manual",
       "localizations" : {
         "fr" : {

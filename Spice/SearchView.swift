@@ -85,7 +85,7 @@ struct SearchView: View {
 
 struct ComponentType: Identifiable {
     init(_ name: String, type: String) {
-        self.name = name
+        self.name = NSLocalizedString(name, comment: "")
         self.type = type
     }
     var id: UUID = UUID()

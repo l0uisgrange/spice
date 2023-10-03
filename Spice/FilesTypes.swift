@@ -35,7 +35,7 @@ struct SpiceDocument: FileDocument {
                     position: CGPoint(x: Int(Double(lineDataset[1])!), y: Int(Double(lineDataset[2])!)),
                     orientation: orientationDecoder(lineDataset[3]),
                     type: lineDataset[0].components(separatedBy: "").first ?? "W",
-                    value: lineDataset.count > 5 ? Double(lineDataset[5]) ?? 0.0 : 0.0)
+                    value: lineDataset.count > 4 ? Double(lineDataset[4]) ?? 0.0 : 0.0)
                 components.append(newComponent)
             }
         }
@@ -73,6 +73,6 @@ func orientationEncoder(_ orientation: Direction) -> String {
     case .bottom:
         return "B"
     default:
-        return "T"
+        return "X"
     }
 }

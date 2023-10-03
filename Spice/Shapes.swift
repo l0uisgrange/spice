@@ -42,7 +42,7 @@ class CircuitComponent: Identifiable {
 }
 
 func getPath(_ c: CircuitComponent, style: Int = 1) -> Path {
-    let rect: CGRect = CGRect(x: c.position.x, y: c.position.y-8, width: 60, height: 20).applying(CGAffineTransform(rotationAngle: c.orientation.getAngle()))
+    let rect: CGRect = CGRect(x: c.position.x, y: c.position.y-8, width: 60, height: 16)
     switch c.type {
     case "R":
         return Resistor(center: c.position, orientation: c.orientation, style: style).path(in: rect)
