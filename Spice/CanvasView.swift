@@ -20,7 +20,6 @@ struct CanvasView: View {
     @State private var hoverLocation: CGPoint = .zero
     @State private var isHovering = false
     @GestureState private var magnifyBy = 1.0
-    @State private var newComponent: CircuitComponent = CircuitComponent("", start: CGPoint(x: 1000, y:1000), end: CGPoint(x: 1000, y:1000), type: "W", value: 10)
     @Binding var editionMode: String
     var body: some View {
         Canvas { context, size in
@@ -30,34 +29,17 @@ struct CanvasView: View {
             context.translateBy(x: windowWidth/2.0 + origin.x + canvasContentOffset.x, y: windowHeight / 2 + origin.y + canvasContentOffset.y)
             context.scaleBy(x: zoom + currentZoom, y: zoom + currentZoom)
             context.drawGrid(gridStyle: gridStyle, zoom: zoom + currentZoom)
-            if editionMode == "W" {
-                if newComponent.startingPoint != CGPoint(x: 1000, y: 1000) {
-                    newComponent.draw(context:context, zoom: currentZoom+zoom, style: symbolsStyle, cursor: hoverLocation)
-                }
-            } else if editionMode != "" {
-                newComponent.type = editionMode
-                newComponent.startingPoint = hoverLocation.alignedPoint
-                newComponent.draw(context:context, zoom: currentZoom+zoom, style: symbolsStyle, cursor: hoverLocation)
+            if editionMode != "" {
+                CircuitComponent(editionMode, position: hoverLocation, orientation: .top, type: editionMode, value: 0)
+                    .draw(context:context, zoom: currentZoom+zoom, style: symbolsStyle, cursor: hoverLocation)
             }
             for c in components {
                 c.draw(context: context, zoom: currentZoom + zoom, style: symbolsStyle, cursor: hoverLocation)
             }
         }
         .onTapGesture {
-            let extreme = CGPoint(x: 1000, y:1000)
-            if editionMode == "W" {
-                if newComponent.startingPoint == extreme {
-                    newComponent = CircuitComponent("W", start: hoverLocation.alignedPoint, end: hoverLocation.alignedPoint, type: "W", value: 0)
-                } else {
-                    newComponent.endingPoint = hoverLocation.alignedPoint
-                    newComponent.type = editionMode
-                    components.append(newComponent)
-                    newComponent = CircuitComponent("W", start: extreme, end: extreme, type: "W", value: 0)
-                }
-            } else {
-                newComponent.startingPoint = hoverLocation.alignedPoint
-                components.append(newComponent)
-            }
+            let newComponent = CircuitComponent(editionMode, position: hoverLocation, orientation: .top, type: editionMode, value: 0)
+            components.append(newComponent)
         }
         .onContinuousHover(coordinateSpace: .local) { phase in
             switch phase {
@@ -65,11 +47,8 @@ struct CanvasView: View {
                 let y  = -geometry.size.height/(2*(zoom+currentZoom)) + location.y/(zoom+currentZoom) - origin.y/(zoom+currentZoom)
                 let x  = -geometry.size.width/(2*(zoom+currentZoom)) + location.x/(zoom+currentZoom) - origin.x/(zoom+currentZoom)
                 hoverLocation = CGPoint(x: x, y: y)
-                if newComponent.name != "" {
-                    newComponent.endingPoint = hoverLocation
-                }
                 isHovering = true
-                if editionMode == "W" && isHovering {
+                if editionMode != "" {
                     NSCursor.crosshair.push()
                 }
             case .ended:
@@ -89,7 +68,6 @@ struct CanvasView: View {
             case .leftArrow:
                 origin.x += 50/zoom
             case .escape:
-                newComponent.startingPoint = CGPoint(x: 1000, y: 1000)
                 editionMode = ""
             case .space:
                 zoom = 1.5
@@ -99,16 +77,16 @@ struct CanvasView: View {
                 switch result.characters {
                 case "W":
                     print("Switch to W")
-                    newComponent.type = "W"
+                    editionMode = "W"
                 case "R":
                     print("Switch to R")
-                    newComponent.type = "R"
+                    editionMode = "R"
                 case "L":
                     print("Switch to L")
-                    newComponent.type = "L"
+                    editionMode = "L"
                 case "C":
                     print("Switch to C")
-                    newComponent.type = "C"
+                    editionMode = "C"
                 default:
                     print("Key not recognized (char)")
                 }

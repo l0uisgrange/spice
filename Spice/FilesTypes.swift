@@ -32,11 +32,10 @@ struct SpiceDocument: FileDocument {
                 }
                 let newComponent = CircuitComponent(
                     lineDataset[0],
-                    start: CGPoint(x: Int(Double(lineDataset[1])!), y: Int(Double(lineDataset[2])!)),
-                    end: CGPoint(x: Int(Double(lineDataset[3])!), y: Int(Double(lineDataset[4])!)),
+                    position: CGPoint(x: Int(Double(lineDataset[1])!), y: Int(Double(lineDataset[2])!)),
+                    orientation: orientationDecoder(lineDataset[3]),
                     type: lineDataset[0].components(separatedBy: "").first ?? "W",
                     value: lineDataset.count > 5 ? Double(lineDataset[5]) ?? 0.0 : 0.0)
-                print("\(newComponent.type) : \(newComponent.startingPoint)->\(newComponent.endingPoint)")
                 components.append(newComponent)
             }
         }
@@ -45,9 +44,35 @@ struct SpiceDocument: FileDocument {
     func fileWrapper(configuration: WriteConfiguration) throws -> FileWrapper {
         var fileContent: String = "* Data statements\n"
         for c in components {
-            let thisLine: String = "\(c.name) \(c.startingPoint.x) \(c.startingPoint.y) \(c.endingPoint.x) \(c.endingPoint.y) \(c.value)\n"
+            let thisLine: String = "\(c.name) \(c.position.x) \(c.position.y) \(orientationEncoder(c.orientation)) \(c.value)\n"
             fileContent += thisLine
         }
         return FileWrapper(regularFileWithContents: Data(fileContent.utf8))
+    }
+}
+
+func orientationDecoder(_ orientation: String) -> Direction {
+    switch orientation {
+    case "L":
+        return .leading
+    case "T":
+        return .top
+    case "B":
+        return .bottom
+    default:
+        return .trailing
+    }
+}
+
+func orientationEncoder(_ orientation: Direction) -> String {
+    switch orientation {
+    case .leading:
+        return "L"
+    case .top:
+        return "T"
+    case .bottom:
+        return "B"
+    default:
+        return "T"
     }
 }
