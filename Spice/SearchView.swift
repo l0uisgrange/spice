@@ -28,21 +28,18 @@ struct SearchView: View {
                 Image(systemName: "magnifyingglass")
                     .foregroundStyle(.gray)
                 TextField("SEARCH_COMPONENT", text: $searchText)
+                    .onSubmit {
+                        editionMode = components.first(where: { $0.id == typeSelected })?.name ?? ""
+                        isPresented.toggle()
+                    }
                     .textFieldStyle(.plain)
                     .font(.title2)
                     .tint(.accentColor)
-                    .padding(.bottom, -3)
             }.padding(20)
             .font(.title2)
             Divider()
             Form {
-                Table(components.sorted { $0.name < $1.name }.filter {
-                    if searchText.count > 0 {
-                        $0.name.lowercased().contains(searchText.lowercased())
-                    } else {
-                        true
-                    }
-                }, selection: $typeSelected) {
+                Table(filteredComponents, selection: $typeSelected) {
                     TableColumn("NAME") { el in
                         Text(el.name)
                     }
@@ -65,7 +62,7 @@ struct SearchView: View {
                 }.buttonStyle(.bordered)
                 .controlSize(.extraLarge)
                 Button {
-                    editionMode = components.first(where: { $0.id == typeSelected })?.name ?? ""
+                    editionMode = components.first(where: { $0.id == typeSelected })?.type ?? (searchText.count > 0 ? filteredComponents.first?.type ?? "" : "")
                     isPresented.toggle()
                 } label: {
                     Text("ADD")
@@ -74,15 +71,13 @@ struct SearchView: View {
             }.padding(15)
         }.frame(width: 500)
         .background(.windowBackground)
-        .onKeyPress { key in
-            switch key.key {
-            case .return:
-                editionMode = components.first(where: { $0.id == typeSelected })?.name ?? ""
-                isPresented.toggle()
-            default:
-                print("")
-            }
-            return .handled
+    }
+    
+    var filteredComponents: [CircuitComponent] {
+        components.sorted { $0.name < $1.name }.filter {
+            if searchText.count > 0 {
+                $0.name.lowercased().contains(searchText.lowercased())
+            } else { true }
         }
     }
 }
