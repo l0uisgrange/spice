@@ -255,19 +255,19 @@ enum Direction {
     func getAngle() -> CGFloat {
         switch self {
         case .top:
-            return 90
+            return .pi/2
         case .bottom:
-            return 280
+            return (.pi*3)/2
         case .trailing:
-            return 180
+            return .pi
         default:
-            return 0
+            return 0.0
         }
     }
 }
 
 extension Path {
     func direct(center: CGPoint, direction: Direction) -> Path {
-        return self.offsetBy(dx: center.x, dy: center.y).applying(CGAffineTransform(rotationAngle: direction.getAngle()))
+        return self.applying(CGAffineTransform(rotationAngle: direction.getAngle())).offsetBy(dx: center.x, dy: center.y)
     }
 }
