@@ -16,12 +16,14 @@ struct CanvasView: View {
     @Binding var zoom: Double
     @State private var currentZoom: Double = 0.0
     @State private var cursorPosition: CGPoint = CGPoint.zero
-    @Binding var components: [CircuitComponent]
+    @Binding var components: [Component]
+    @Binding var wires: [Wire]
     @State private var hoverLocation: CGPoint = .zero
     @State private var isHovering = false
     @GestureState private var magnifyBy = 1.0
     @Binding var editionMode: String
     @Binding var orientationMode: Direction
+    @State var wireBegin: CGPoint? = nil
     var body: some View {
         Canvas { context, size in
             let windowWidth = geometry.size.width
@@ -31,16 +33,34 @@ struct CanvasView: View {
             context.scaleBy(x: zoom + currentZoom, y: zoom + currentZoom)
             context.drawGrid(gridStyle: gridStyle, zoom: zoom + currentZoom)
             if editionMode != "" {
-                CircuitComponent(editionMode, position: hoverLocation.alignedPoint, orientation: orientationMode, type: editionMode, value: 0)
+                Component(editionMode, position: hoverLocation.alignedPoint, orientation: orientationMode, type: editionMode, value: 0)
                     .draw(context:context, zoom: currentZoom+zoom, style: symbolsStyle, cursor: hoverLocation)
             }
             for c in components {
                 c.draw(context: context, zoom: currentZoom + zoom, style: symbolsStyle, cursor: hoverLocation)
             }
+            for w in wires {
+                context.stroke(w.path, with: .color(Color("CircuitColor")), lineWidth: 1.2/(zoom+currentZoom))
+            }
+            if wireBegin != nil {
+                let wire = Wire(wireBegin ?? hoverLocation.alignedPoint, hoverLocation.alignedPoint)
+                context.stroke(wire.path, with: .color(Color("CircuitColor")), lineWidth: 1.2/(zoom+currentZoom))
+            }
         }
         .onTapGesture {
-            if editionMode != "" {
-                let newComponent = CircuitComponent(editionMode, position: hoverLocation.alignedPoint, orientation: orientationMode, type: editionMode, value: 0)
+            switch editionMode {
+            case "":
+                break
+            case "W":
+                if wireBegin != nil {
+                    let newWire = Wire(wireBegin!, hoverLocation.alignedPoint)
+                    wires.append(newWire)
+                    wireBegin = nil
+                } else {
+                    wireBegin = hoverLocation.alignedPoint
+                }
+            default:
+                let newComponent = Component(editionMode, position: hoverLocation.alignedPoint, orientation: orientationMode, type: editionMode, value: 0)
                 components.append(newComponent)
             }
         }

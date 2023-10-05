@@ -20,7 +20,7 @@ struct SpiceApp: App {
     @State var zoom: Double = 1.5
     @State var editionMode: String = ""
     var body: some Scene {
-        DocumentGroup(newDocument: SpiceDocument(components: [])) { file in
+        DocumentGroup(newDocument: SpiceDocument(components: [], wires: [])) { file in
             ContentView(document: file.$document, zoom: $zoom, addComponent: $searchComponent, editionMode: $editionMode)
                 .frame(minWidth: 700, idealWidth: 900, minHeight: 500, idealHeight: 700)
                 .sheet(isPresented: $searchComponent) {

@@ -24,7 +24,7 @@ struct ContentView: View {
         VStack(spacing: 0) {
             GeometryReader { geometry in
                 ZStack(alignment: .topTrailing) {
-                    CanvasView(geometry: geometry, origin: $origin, zoom: $zoom, components: $document.components, editionMode: $editionMode, orientationMode: $orientationMode)
+                    CanvasView(geometry: geometry, origin: $origin, zoom: $zoom, components: $document.components, wires: $document.wires, editionMode: $editionMode, orientationMode: $orientationMode)
                         .task {
                             if checkUpdate {
                                 updateAvailable = await checkForUpdate()

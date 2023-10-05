@@ -15,10 +15,12 @@ extension UTType {
 struct SpiceDocument: FileDocument {
     static var readableContentTypes: [UTType] = [.spice]
     
-    var components: [CircuitComponent] = []
+    var components: [Component] = []
+    var wires: [Wire] = []
     
-    init(components: [CircuitComponent]) {
+    init(components: [Component], wires: [Wire]) {
         self.components = components
+        self.wires = wires
     }
     
     init(configuration: ReadConfiguration) throws {
@@ -30,7 +32,7 @@ struct SpiceDocument: FileDocument {
                 if(lineDataset.contains("*") || lineDataset.count < 5) {
                     continue
                 }
-                let newComponent = CircuitComponent(
+                let newComponent = Component(
                     lineDataset[0],
                     position: CGPoint(x: Int(Double(lineDataset[1])!), y: Int(Double(lineDataset[2])!)),
                     orientation: orientationDecoder(lineDataset[3]),

@@ -1,5 +1,5 @@
 //
-//  Data.swift
+//  Shapes.swift
 //  Spice
 //
 //  Created by Louis Grange on 20.09.2023.
@@ -8,7 +8,7 @@
 import SwiftUI
 import Foundation
 
-class CircuitComponent: Identifiable {
+class Component: Identifiable {
     init(_ name: String, position: CGPoint, orientation: Direction, type: String, value: Double) {
         self.position = position
         self.orientation = orientation
@@ -41,7 +41,19 @@ class CircuitComponent: Identifiable {
     }
 }
 
-func getPath(_ c: CircuitComponent, style: SymbolStyle = .ANSI) -> Path {
+class Wire: Identifiable {
+    init(_ start: CGPoint, _ end: CGPoint) {
+        self.start = start
+        self.end = end
+        self.path = Line(start: start, end: end).path(in: CGRect(x: start.x, y: start.y, width: max(start.x-end.x, 1.2), height: max(start.y-start.y, 1.2)))
+    }
+    let id = UUID()
+    var start: CGPoint
+    var end: CGPoint
+    var path: Path = Path.init()
+}
+
+func getPath(_ c: Component, style: SymbolStyle = .ANSI) -> Path {
     let rect: CGRect = CGRect(x: c.position.x, y: c.position.y-8, width: 60, height: 16)
     switch c.type {
     case "R":
@@ -62,7 +74,7 @@ func getPath(_ c: CircuitComponent, style: SymbolStyle = .ANSI) -> Path {
     }
 }
 
-struct Wire: Shape {
+struct Line: Shape {
     var start: CGPoint
     var end: CGPoint
 
