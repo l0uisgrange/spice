@@ -21,10 +21,11 @@ As I am just a human being like you, I would really appreciate your help in corr
 ## File format
 
 Spice supports the original SPICE netlists (files), developed in 1975 and widely used for circuit simulation. However, it mainly uses it's own `.spice` format, which looks like this:
+
 ```text
 * Data statements
-R1 0 10 10 10 100
-V1 0 10 0 0 DC 150
+R1 0 10 T 100
+V1 0 10 B DC 150
 ```
 
 For more information on how this works, see the documentation [Wiki](https://github.com/l0uisgrange/spice/wiki).
