@@ -26,25 +26,38 @@ struct SpiceDocument: FileDocument {
     init(configuration: ReadConfiguration) throws {
         if let data = configuration.file.regularFileContents {
             let text = String(decoding: data, as: UTF8.self)
-            let linesFile = text.components(separatedBy: "\n")
-            for line in linesFile {
+            let fileLines = text.components(separatedBy: "\n")
+            for line in fileLines {
                 let lineDataset = line.components(separatedBy: " ")
-                if(lineDataset.contains("*") || lineDataset.count < 5) {
+                guard line.count >= 5 else { continue }
+                switch lineDataset.first {
+                case "*":
                     continue
+                case "W":
+                    guard lineDataset.count == 5 else { continue }
+                    let start = CGPoint(x: Int(lineDataset[1])!, y: Int(lineDataset[2])!)
+                    let end = CGPoint(x: Int(lineDataset[3])!, y: Int(lineDataset[4])!)
+                    wires.append(Wire(start, end))
+                default:
+                    guard lineDataset.count >= 5 else { continue }
+                    let newComponent = Component(
+                        lineDataset[0],
+                        position: CGPoint(x: Int(lineDataset[1])!, y: Int(lineDataset[2])!),
+                        orientation: orientationDecoder(lineDataset[3]),
+                        type: lineDataset[0].components(separatedBy: "").first ?? "-",
+                        value: Double(lineDataset[4]) ?? 0.0)
+                    components.append(newComponent)
                 }
-                let newComponent = Component(
-                    lineDataset[0],
-                    position: CGPoint(x: Int(Double(lineDataset[1])!), y: Int(Double(lineDataset[2])!)),
-                    orientation: orientationDecoder(lineDataset[3]),
-                    type: lineDataset[0].components(separatedBy: "").first ?? "W",
-                    value: lineDataset.count > 4 ? Double(lineDataset[4]) ?? 0.0 : 0.0)
-                components.append(newComponent)
             }
         }
     }
     
     func fileWrapper(configuration: WriteConfiguration) throws -> FileWrapper {
-        var fileContent: String = "* Data statements\n"
+        var fileContent: String = "* Wires\n"
+        for w in wires {
+            fileContent += "W \(w.start.x) \(w.start.y) \(w.end.x) \(w.end.y)\n"
+        }
+        fileContent += "* Components\n"
         for c in components {
             let thisLine: String = "\(c.name) \(c.position.x) \(c.position.y) \(orientationEncoder(c.orientation)) \(c.value)\n"
             fileContent += thisLine
