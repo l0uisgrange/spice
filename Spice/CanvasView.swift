@@ -39,8 +39,10 @@ struct CanvasView: View {
             }
         }
         .onTapGesture {
-            let newComponent = CircuitComponent(editionMode, position: hoverLocation.alignedPoint, orientation: orientationMode, type: editionMode, value: 0)
-            components.append(newComponent)
+            if editionMode != "" {
+                let newComponent = CircuitComponent(editionMode, position: hoverLocation.alignedPoint, orientation: orientationMode, type: editionMode, value: 0)
+                components.append(newComponent)
+            }
         }
         .onContinuousHover(coordinateSpace: .local) { phase in
             switch phase {

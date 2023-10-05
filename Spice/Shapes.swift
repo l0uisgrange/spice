@@ -24,12 +24,12 @@ class CircuitComponent: Identifiable {
     var orientation: Direction = .top
     var type: String = ""
     var path: Path = Path.init()
-    func draw(context: GraphicsContext, zoom: Double = 1.0, style: SymbolStyle = .ANSI, cursor: CGPoint, color: Color = Color.primary) {
+    func draw(context: GraphicsContext, zoom: Double = 1.0, style: SymbolStyle = .ANSI, cursor: CGPoint, color: Color = Color("CircuitColor")) {
         context.drawLayer { ctx in
             ctx.stroke(
                 self.path,
                 with: .color(color),
-                lineWidth: 1.1/zoom
+                lineWidth: 1.2/zoom
             )
             if type == "I" && style == .ANSI {
                 ctx.fill(
@@ -112,10 +112,13 @@ struct Capacitor: Shape {
     func path(in rect: CGRect) -> Path {
         var path = Path()
         path.move(to: CGPoint.zero)
-        path.addLine(to: CGPoint(x: 10, y: 0))
-        path.addRect(CGRect(x: 10, y: -8, width: 40, height: 16))
-        path.move(to: CGPoint(x: 50, y: 0))
-        path.addLine(to: CGPoint(x: 60, y: 0))
+        path.addLine(to: CGPoint(x: 20, y: 0))
+        path.move(to: CGPoint(x: 20, y: -8))
+        path.addLine(to: CGPoint(x: 20, y: 8))
+        path.move(to: CGPoint(x: 30, y: -8))
+        path.addLine(to: CGPoint(x: 30, y: 8))
+        path.move(to: CGPoint(x: 30, y: 0))
+        path.addLine(to: CGPoint(x: 50, y: 0))
         return path.direct(center: center, direction: orientation)
     }
 }
