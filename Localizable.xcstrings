@@ -80,6 +80,9 @@
         }
       }
     },
+    "ANSI" : {
+
+    },
     "BACKGROUND" : {
       "localizations" : {
         "de" : {
@@ -447,6 +450,12 @@
         }
       }
     },
+    "IEC" : {
+
+    },
+    "IEEE" : {
+
+    },
     "INDUCTOR" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -691,6 +700,9 @@
           }
         }
       }
+    },
+    "ROTATE" : {
+
     },
     "RUN" : {
       "localizations" : {

@@ -12,7 +12,7 @@ struct SettingsView: View {
     @State private var updateAvailable: Bool = false
     @State private var checkedUpdate: Bool = false
     @AppStorage("checkUpdate") private var checkUpdate = true
-    @AppStorage("symbolsStyle") private var symbolsStyle = 2
+    @AppStorage("symbolsStyle") private var symbolsStyle: SymbolStyle = .ANSI
     @AppStorage("gridStyle") private var gridStyle = 1
     let appBuild = Bundle.main.infoDictionary!["CFBundleVersion"] as! String
     let appVersion = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as! String
@@ -65,9 +65,8 @@ struct SettingsView: View {
             }
             Section {
                 Picker("COMPONENTS_APPEARANCE", selection: $symbolsStyle) {
-                    ForEach(1..<3) { option in
-                        Text(option == 1 ? "US_STYLE" : "EU_STYLE")
-                            .tag(option)
+                    ForEach(SymbolStyle.allCases, id: \.self) { option in
+                        Text(String(describing: option))
                     }
                 }
                 Picker("GRID_APPEARANCE", selection: $gridStyle) {

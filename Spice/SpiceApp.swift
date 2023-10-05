@@ -11,7 +11,7 @@ import UniformTypeIdentifiers
 
 @main
 struct SpiceApp: App {
-    @AppStorage("symbolsStyle") private var symbolsStyle = 0
+    @AppStorage("symbolsStyle") private var symbolsStyle: SymbolStyle = .ANSI
     @AppStorage("gridStyle") private var gridStyle = 1
     @AppStorage("onBoarded") private var onBoarded = false
     @Environment(\.openWindow) var openWindow
@@ -47,10 +47,9 @@ struct SpiceApp: App {
                         .tag(2)
                 }
                 Picker("COMPONENTS", selection: $symbolsStyle) {
-                    Text("EU_STYLE")
-                        .tag(1)
-                    Text("US_STYLE")
-                        .tag(2)
+                    ForEach(SymbolStyle.allCases, id: \.self) { option in
+                        Text(String(describing: option))
+                    }
                 }
                 Divider()
                 Button("ZOOM_IN") {
@@ -87,4 +86,10 @@ struct SpiceApp: App {
                 .frame(width: 500, height: 300)
         }.defaultPosition(.center)
     }
+}
+
+enum SymbolStyle: String, CaseIterable {
+    case ANSI
+    case IEC
+    case IEEE
 }

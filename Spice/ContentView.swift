@@ -18,12 +18,13 @@ struct ContentView: View {
     @State private var origin: CGPoint = CGPoint.zero
     let dotSize: CGFloat = 1.0
     @State var updateAvailable: Bool = false
+    @State var orientationMode: Direction = .trailing
     @Binding var editionMode: String
     var body: some View {
         VStack(spacing: 0) {
             GeometryReader { geometry in
                 ZStack(alignment: .topTrailing) {
-                    CanvasView(geometry: geometry, origin: $origin, zoom: $zoom, components: $document.components, editionMode: $editionMode)
+                    CanvasView(geometry: geometry, origin: $origin, zoom: $zoom, components: $document.components, editionMode: $editionMode, orientationMode: $orientationMode)
                         .task {
                             if checkUpdate {
                                 updateAvailable = await checkForUpdate()
@@ -52,9 +53,23 @@ struct ContentView: View {
                 Button {
                     addComponent.toggle()
                 } label: {
-                    Label("", systemImage: "plus")
+                    Label("ADD_COMPONENT", systemImage: "plus")
                 }
                 Spacer().frame(width: 20)
+                Button {
+                    switch orientationMode {
+                    case .bottom:
+                        orientationMode = .trailing
+                    case .top:
+                        orientationMode = .leading
+                    case .leading:
+                        orientationMode = .bottom
+                    default:
+                        orientationMode = .top
+                    }
+                } label: {
+                    Label("ROTATE", systemImage: "rotate.right")
+                }
             }
             ToolbarItemGroup(placement: .status) {
                 Button {

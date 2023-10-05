@@ -26,10 +26,12 @@ struct OnBoardingView: View {
             Text("ONBOARDING_MESSAGE")
             Form {
                 Picker("COMPONENTS_APPEARANCE", selection: $symbolsStyle) {
-                    ForEach(1..<3) { option in
-                        Text(option == 1 ? "US_STYLE" : "EU_STYLE")
-                            .tag(option)
-                    }
+                    Text("ANSI")
+                        .tag("ANSI")
+                    Text("IEEE")
+                        .tag("IEEE")
+                    Text("IEC")
+                        .tag("IEC")
                 }
                 Picker("GRID_APPEARANCE", selection: $gridStyle) {
                     Text("NONE")

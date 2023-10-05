@@ -10,7 +10,7 @@ import SwiftUI
 struct CanvasView: View {
     @State var geometry: GeometryProxy
     @State private var canvasContentOffset: CGPoint = CGPoint.zero
-    @AppStorage("symbolsStyle") private var symbolsStyle = 0
+    @AppStorage("symbolsStyle") private var symbolsStyle: SymbolStyle = .ANSI
     @AppStorage("gridStyle") private var gridStyle = 1
     @Binding var origin: CGPoint
     @Binding var zoom: Double
@@ -21,6 +21,7 @@ struct CanvasView: View {
     @State private var isHovering = false
     @GestureState private var magnifyBy = 1.0
     @Binding var editionMode: String
+    @Binding var orientationMode: Direction
     var body: some View {
         Canvas { context, size in
             let windowWidth = geometry.size.width
@@ -30,7 +31,7 @@ struct CanvasView: View {
             context.scaleBy(x: zoom + currentZoom, y: zoom + currentZoom)
             context.drawGrid(gridStyle: gridStyle, zoom: zoom + currentZoom)
             if editionMode != "" {
-                CircuitComponent(editionMode, position: hoverLocation.alignedPoint, orientation: .top, type: editionMode, value: 0)
+                CircuitComponent(editionMode, position: hoverLocation.alignedPoint, orientation: orientationMode, type: editionMode, value: 0)
                     .draw(context:context, zoom: currentZoom+zoom, style: symbolsStyle, cursor: hoverLocation)
             }
             for c in components {
@@ -38,7 +39,7 @@ struct CanvasView: View {
             }
         }
         .onTapGesture {
-            let newComponent = CircuitComponent(editionMode, position: hoverLocation, orientation: .top, type: editionMode, value: 0)
+            let newComponent = CircuitComponent(editionMode, position: hoverLocation.alignedPoint, orientation: orientationMode, type: editionMode, value: 0)
             components.append(newComponent)
         }
         .onContinuousHover(coordinateSpace: .local) { phase in
@@ -111,8 +112,8 @@ struct CanvasView: View {
 
 extension CGPoint {
     var alignedPoint: CGPoint {
-        let x = self.x-self.x.remainder(dividingBy: 20)
-        let y = self.y-self.y.remainder(dividingBy: 20)
+        let x = self.x-self.x.remainder(dividingBy: 10)
+        let y = self.y-self.y.remainder(dividingBy: 10)
         return CGPoint(x: x, y: y)
     }
 }
@@ -140,6 +141,16 @@ extension GraphicsContext {
                         }
                     }
                 } else if gridStyle == 2 {
+                    if zoom >= 1.5 {
+                        for column in 0..<200 {
+                            path.move(to: CGPoint(x: -1990 + CGFloat(column) * CGFloat(20), y: -2000))
+                            path.addLine(to: CGPoint(x: -1990 + CGFloat(column) * CGFloat(20), y: 2000))
+                        }
+                        for row in 0..<200 {
+                            path.move(to: CGPoint(x:-2000, y: -1990 + CGFloat(row) * CGFloat(20)))
+                            path.addLine(to: CGPoint(x:2000, y: -1990 + CGFloat(row) * CGFloat(20)))
+                        }
+                    }
                     for column in 0..<200 {
                         path.move(to: CGPoint(x: -2000 + CGFloat(column) * CGFloat(20), y: -2000))
                         path.addLine(to: CGPoint(x: -2000 + CGFloat(column) * CGFloat(20), y: 2000))

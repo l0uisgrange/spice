@@ -24,14 +24,14 @@ class CircuitComponent: Identifiable {
     var orientation: Direction = .top
     var type: String = ""
     var path: Path = Path.init()
-    func draw(context: GraphicsContext, zoom: Double = 1.0, style: Int = 1, cursor: CGPoint, color: Color = Color.primary) {
+    func draw(context: GraphicsContext, zoom: Double = 1.0, style: SymbolStyle = .ANSI, cursor: CGPoint, color: Color = Color.primary) {
         context.drawLayer { ctx in
             ctx.stroke(
                 self.path,
                 with: .color(color),
                 lineWidth: 1.1/zoom
             )
-            if type == "I" && style == 2 {
+            if type == "I" && style == .ANSI {
                 ctx.fill(
                     self.path,
                     with: .color(color)
@@ -41,7 +41,7 @@ class CircuitComponent: Identifiable {
     }
 }
 
-func getPath(_ c: CircuitComponent, style: Int = 1) -> Path {
+func getPath(_ c: CircuitComponent, style: SymbolStyle = .ANSI) -> Path {
     let rect: CGRect = CGRect(x: c.position.x, y: c.position.y-8, width: 60, height: 16)
     switch c.type {
     case "R":
@@ -77,11 +77,11 @@ struct Wire: Shape {
 struct Resistor: Shape {
     var center: CGPoint
     var orientation: Direction
-    var style: Int = 1
+    var style: SymbolStyle = .ANSI
 
     func path(in rect: CGRect) -> Path {
         switch style {
-        case 2:
+        case .ANSI:
             var path = Path()
             path.move(to: CGPoint.zero)
             path.addLine(to: CGPoint(x: 10, y: 0))
@@ -107,41 +107,27 @@ struct Resistor: Shape {
 struct Capacitor: Shape {
     var center: CGPoint
     var orientation: Direction
-    var style: Int = 1
+    var style: SymbolStyle = .ANSI
 
     func path(in rect: CGRect) -> Path {
-        switch style {
-        case 2:
-            var path = Path()
-            path.move(to: CGPoint.zero)
-            path.addLine(to: CGPoint(x: 10, y: 0))
-            path.addRect(CGRect(x: 10, y: -8, width: 40, height: 16))
-            path.move(to: CGPoint(x: 50, y: 0))
-            path.addLine(to: CGPoint(x: 60, y: 0))
-            return path.direct(center: center, direction: orientation)
-        default:
-            var path = Path()
-            path.move(to: CGPoint.zero)
-            path.addLine(to: CGPoint(x: 10, y: 0))
-            path.addLine(to: CGPoint(x: 15, y: -rect.height/2))
-            path.addLine(to: CGPoint(x: 25, y: rect.height/2))
-            path.addLine(to: CGPoint(x: 35, y: -rect.height/2))
-            path.addLine(to: CGPoint(x: 45, y: rect.height/2))
-            path.addLine(to: CGPoint(x: 50, y: 0))
-            path.addLine(to: CGPoint(x: 60, y: 0))
-            return path.direct(center: center, direction: orientation)
-        }
+        var path = Path()
+        path.move(to: CGPoint.zero)
+        path.addLine(to: CGPoint(x: 10, y: 0))
+        path.addRect(CGRect(x: 10, y: -8, width: 40, height: 16))
+        path.move(to: CGPoint(x: 50, y: 0))
+        path.addLine(to: CGPoint(x: 60, y: 0))
+        return path.direct(center: center, direction: orientation)
     }
 }
 
 struct Inductor: Shape {
     var center: CGPoint
     var orientation: Direction
-    var style: Int = 1
+    var style: SymbolStyle = .ANSI
 
     func path(in rect: CGRect) -> Path {
         switch style {
-        case 2:
+        case .ANSI:
             var path = Path()
             path.move(to: CGPoint.zero)
             path.addLine(to: CGPoint(x: 10, y: 0))
@@ -166,11 +152,11 @@ struct Inductor: Shape {
 struct VSource: Shape {
     var center: CGPoint
     var orientation: Direction
-    var style: Int = 1
+    var style: SymbolStyle = .ANSI
 
     func path(in rect: CGRect) -> Path {
         switch style {
-        case 2:
+        case .ANSI:
             var path = Path()
             path.move(to: CGPoint.zero)
             path.addLine(to: CGPoint(x: 60, y: 0))
@@ -197,7 +183,7 @@ struct VSource: Shape {
 struct Diode: Shape {
     var center: CGPoint
     var orientation: Direction
-    var style: Int = 1
+    var style: SymbolStyle = .ANSI
 
     func path(in rect: CGRect) -> Path {
         var path = Path()
@@ -218,11 +204,11 @@ struct Diode: Shape {
 struct ISource: Shape {
     var center: CGPoint
     var orientation: Direction
-    var style: Int = 1
+    var style: SymbolStyle = .ANSI
 
     func path(in rect: CGRect) -> Path {
         switch style {
-        case 2:
+        case .ANSI:
             var path = Path()
             path.move(to: CGPoint.zero)
             path.addLine(to: CGPoint(x: 15, y: 0))
@@ -255,19 +241,19 @@ enum Direction {
     func getAngle() -> CGFloat {
         switch self {
         case .top:
-            return .pi/2
+            return -.pi/2
         case .bottom:
-            return (.pi*3)/2
+            return .pi/2
         case .trailing:
-            return .pi
-        default:
             return 0.0
+        default:
+            return .pi
         }
     }
 }
 
 extension Path {
     func direct(center: CGPoint, direction: Direction) -> Path {
-        return self.applying(CGAffineTransform(rotationAngle: direction.getAngle())).offsetBy(dx: center.x, dy: center.y)
+        return self.offsetBy(dx: -30, dy: 0).applying(CGAffineTransform(rotationAngle: direction.getAngle())).offsetBy(dx: center.x, dy: center.y)
     }
 }
