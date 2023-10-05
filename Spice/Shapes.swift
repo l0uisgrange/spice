@@ -27,7 +27,7 @@ class Component: Identifiable {
     func draw(context: GraphicsContext, zoom: Double = 1.0, style: SymbolStyle = .ANSI, cursor: CGPoint, color: Color = Color("CircuitColor")) {
         context.drawLayer { ctx in
             ctx.stroke(
-                self.path,
+                getPath(self, style: style),
                 with: .color(color),
                 lineWidth: 1.2/zoom
             )
@@ -97,19 +97,19 @@ struct Resistor: Shape {
             var path = Path()
             path.move(to: CGPoint.zero)
             path.addLine(to: CGPoint(x: 10, y: 0))
-            path.addRect(CGRect(x: 10, y: -8, width: 40, height: 16))
-            path.move(to: CGPoint(x: 50, y: 0))
+            path.addLine(to: CGPoint(x: 15, y: -rect.height/2))
+            path.addLine(to: CGPoint(x: 25, y: rect.height/2))
+            path.addLine(to: CGPoint(x: 35, y: -rect.height/2))
+            path.addLine(to: CGPoint(x: 45, y: rect.height/2))
+            path.addLine(to: CGPoint(x: 50, y: 0))
             path.addLine(to: CGPoint(x: 60, y: 0))
             return path.direct(center: center, direction: orientation)
         default:
             var path = Path()
             path.move(to: CGPoint.zero)
             path.addLine(to: CGPoint(x: 10, y: 0))
-            path.addLine(to: CGPoint(x: 15, y: -rect.height/2))
-            path.addLine(to: CGPoint(x: 25, y: rect.height/2))
-            path.addLine(to: CGPoint(x: 35, y: -rect.height/2))
-            path.addLine(to: CGPoint(x: 45, y: rect.height/2))
-            path.addLine(to: CGPoint(x: 50, y: 0))
+            path.addRect(CGRect(x: 10, y: -8, width: 40, height: 16))
+            path.move(to: CGPoint(x: 50, y: 0))
             path.addLine(to: CGPoint(x: 60, y: 0))
             return path.direct(center: center, direction: orientation)
         }
