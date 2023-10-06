@@ -81,6 +81,7 @@
       }
     },
     "ANSI" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -442,38 +443,6 @@
         }
       }
     },
-    "IEC" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "IEC"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "IEC"
-          }
-        }
-      }
-    },
-    "IEEE" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "IEEE"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "IEEE"
-          }
-        }
-      }
-    },
     "INDUCTOR" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -612,6 +581,26 @@
         }
       }
     },
+    "ONBOARDING_DRAW_CIRCUITS" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Créez des circuits précis et détaillés"
+          }
+        }
+      }
+    },
+    "ONBOARDING_EXPORT" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Partagez vos circuits avec le monde entier"
+          }
+        }
+      }
+    },
     "ONBOARDING_MESSAGE" : {
       "localizations" : {
         "de" : {
@@ -640,29 +629,39 @@
         }
       }
     },
+    "ONBOARDING_SIMULATE" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Testez vos circuits rapidement et facilement"
+          }
+        }
+      }
+    },
     "ONBOARDING_TITLE" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Willkommen bei Spice!"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Welcome on Spice!"
+            "value" : "Welcome"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Bienvenue sur Spice !"
+            "value" : "Bienvenue"
           }
         },
         "it" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Benvenuto su Spice!"
           }
         }
