@@ -17,13 +17,17 @@ struct CanvasView: View {
     @State private var currentZoom: Double = 0.0
     @State private var cursorPosition: CGPoint = CGPoint.zero
     @Binding var components: [Component]
+    @State var selectedComponents: [Component] = []
+    @State var selectedWires: [Wire] = []
     @Binding var wires: [Wire]
     @State private var hoverLocation: CGPoint = .zero
+    @State private var hoverRect: CGRect? = nil
     @State private var isHovering = false
     @GestureState private var magnifyBy = 1.0
     @Binding var editionMode: String
     @Binding var orientationMode: Direction
     @State var wireBegin: CGPoint? = nil
+    @FocusState private var focused: Bool
     var body: some View {
         Canvas { context, size in
             let windowWidth = geometry.size.width
@@ -37,19 +41,66 @@ struct CanvasView: View {
                     .draw(context:context, zoom: currentZoom+zoom, style: symbolsStyle, cursor: hoverLocation)
             }
             for c in components {
-                c.draw(context: context, zoom: currentZoom + zoom, style: symbolsStyle, cursor: hoverLocation)
+                c.draw(context: context, zoom: currentZoom + zoom, style: symbolsStyle, cursor: hoverLocation, selected: selectedComponents.contains { $0.id == c.id })
             }
             for w in wires {
-                context.stroke(w.path, with: .color(Color("CircuitColor")), lineWidth: 1/(zoom+currentZoom))
+                context.stroke(w.path, with: selectedWires.contains { $0.id == w.id } ? .color(Color("AccentColor")) : .color(Color("CircuitColor")), lineWidth: 1/(zoom+currentZoom))
+                if selectedWires.contains(where: { $0.id == w.id }) {
+                    context.stroke(w.path, with: .color(Color("AccentColor").opacity(0.1)), lineWidth: 5/(zoom+currentZoom))
+                }
+            }
+            if hoverRect != nil {
+                context.fill(Path(roundedRect: hoverRect!, cornerRadius: 0), with: .color(Color("CircuitColor").opacity(0.1)))
             }
             if wireBegin != nil {
                 let wire = Wire(wireBegin ?? hoverLocation.alignedPoint, hoverLocation.alignedPoint)
-                context.stroke(wire.path, with: .color(Color("CircuitColor")), lineWidth: 1/(zoom+currentZoom))
+                context.stroke(wire.path, with: .color(Color("CircuitColor").opacity(0.5)), lineWidth: 1/(zoom+currentZoom))
             }
-        }.onTapGesture {
+        }.focusable()
+        .onKeyPress { result in
+            switch result.key {
+            case .downArrow:
+                origin.y -= 50/zoom
+            case .upArrow:
+                origin.y += 50/zoom
+            case .rightArrow:
+                origin.x -= 50/zoom
+            case .leftArrow:
+                origin.x += 50/zoom
+            case .escape:
+                print("No more edition")
+                editionMode = ""
+            case "\u{7F}":
+                print("Deleted")
+                for c in selectedComponents {
+                    let index = selectedComponents.firstIndex { $0.id == c.id }
+                    if index != nil {
+                        components.remove(at: index!)
+                    }
+                }
+            case .space:
+                zoom = 1.5
+                origin = CGPoint.zero
+            default:
+                print("Key not recognized \(result.key)" )
+            }
+            return .handled
+        }
+        .onTapGesture {
             switch editionMode {
             case "":
-                break
+                selectedComponents = []
+                selectedWires = []
+                for c in components {
+                    if c.path.boundingRect.contains(hoverLocation) {
+                        selectedComponents.append(c)
+                    }
+                }
+                for w in wires {
+                    if w.path.boundingRect.contains(hoverLocation) {
+                        selectedWires.append(w)
+                    }
+                }
             case "W":
                 if wireBegin != nil {
                     let newWire = Wire(wireBegin!, hoverLocation.alignedPoint)
@@ -78,55 +129,41 @@ struct CanvasView: View {
                 NSCursor.arrow.push()
             }
         }
-        .focusable()
-        .onKeyPress(keys: [.downArrow, .upArrow, .rightArrow, .leftArrow, .escape, .space, "W", "R", "L", "C"], phases: [.repeat, .up]) { result in
-            switch result.key {
-            case .downArrow:
-                origin.y -= 50/zoom
-            case .upArrow:
-                origin.y += 50/zoom
-            case .rightArrow:
-                origin.x -= 50/zoom
-            case .leftArrow:
-                origin.x += 50/zoom
-            case .escape:
-                editionMode = ""
-            case .space:
-                zoom = 1.5
-                origin = CGPoint.zero
-            default:
-                print("Key not recognized (key)")
-                switch result.characters {
-                case "W":
-                    print("Switch to W")
-                    editionMode = "W"
-                case "R":
-                    print("Switch to R")
-                    editionMode = "R"
-                case "L":
-                    print("Switch to L")
-                    editionMode = "L"
-                case "C":
-                    print("Switch to C")
-                    editionMode = "C"
-                default:
-                    print("Key not recognized (char)")
-                }
-            }
-            return .handled
-        }
         .drawingGroup()
         .gesture(
-            DragGesture()
-                .onChanged { gesture in
-                    self.canvasContentOffset.x = gesture.translation.width
-                    self.canvasContentOffset.y = gesture.translation.height
-                }
-                .onEnded { gesture in
-                    self.origin.x = self.canvasContentOffset.x + self.origin.x
-                    self.origin.y = self.canvasContentOffset.y + self.origin.y
-                    self.canvasContentOffset = CGPoint.zero
-                }
+                DragGesture()
+                    .onChanged { gesture in
+                        if editionMode != "." {
+                            self.canvasContentOffset.x = gesture.translation.width
+                            self.canvasContentOffset.y = gesture.translation.height
+                        } else {
+                            if hoverRect == nil {
+                                hoverRect = CGRect(origin: hoverLocation, size: CGSizeZero)
+                            } else {
+                                hoverRect?.size.width = gesture.translation.width/zoom
+                                hoverRect?.size.height = gesture.translation.height/zoom
+                            }
+                        }
+                    }
+                    .onEnded { gesture in
+                        if editionMode != "." {
+                            self.origin.x = self.canvasContentOffset.x + self.origin.x
+                            self.origin.y = self.canvasContentOffset.y + self.origin.y
+                            self.canvasContentOffset = CGPoint.zero
+                        } else {
+                            for c in components {
+                                if c.path.boundingRect.intersects(hoverRect ?? CGRectNull) {
+                                    selectedComponents.append(c)
+                                }
+                            }
+                            for w in wires {
+                                if w.path.boundingRect.intersects(hoverRect ?? CGRectNull) {
+                                    selectedWires.append(w)
+                                }
+                            }
+                            hoverRect = nil
+                        }
+                    }
         )
     }
 }

@@ -24,11 +24,11 @@ class Component: Identifiable {
     var orientation: Direction = .top
     var type: String = ""
     var path: Path = Path.init()
-    func draw(context: GraphicsContext, zoom: Double = 1.0, style: SymbolStyle = .IEC, cursor: CGPoint, color: Color = Color("CircuitColor")) {
+    func draw(context: GraphicsContext, zoom: Double = 1.0, style: SymbolStyle = .IEC, cursor: CGPoint, color: Color = Color("CircuitColor"), selected: Bool = false) {
         context.drawLayer { ctx in
             ctx.stroke(
                 getPath(self, style: style),
-                with: .color(color),
+                with: selected ? .color(.accentColor) : .color(color),
                 lineWidth: 1/zoom
             )
             if type == "L" && style == .IEC {
@@ -36,6 +36,12 @@ class Component: Identifiable {
                     self.path,
                     with: .color(color)
                 )
+            }
+            if selected {
+                ctx.stroke(getPath(self, style: style),
+                           with: .color(Color("AccentColor").opacity(0.1)),
+                           lineWidth: 5/zoom
+                           )
             }
         }
     }
@@ -45,7 +51,7 @@ class Wire: Identifiable {
     init(_ start: CGPoint, _ end: CGPoint) {
         self.start = start
         self.end = end
-        self.path = Line(start: start, end: end).path(in: CGRect(x: start.x, y: start.y, width: max(start.x-end.x, 1.2), height: max(start.y-start.y, 1.2)))
+        self.path = Line(start: start, end: end).path(in: CGRect(x: start.x, y: start.y, width: max(start.x-end.x, 10), height: max(start.y-start.y, 10)))
     }
     let id = UUID()
     var start: CGPoint
@@ -66,6 +72,8 @@ func getPath(_ c: Component, style: SymbolStyle = .IEC) -> Path {
         return Diode(center: c.position, orientation: c.orientation, style: style).path(in: rect)
     case "V":
         return VSource(center: c.position, orientation: c.orientation, style: style).path(in: rect)
+    case "A":
+        return ACVSource(center: c.position, orientation: c.orientation).path(in: rect)
     case "F":
         return Fuse(center: c.position, orientation: c.orientation).path(in: rect)
     case "I":
@@ -194,6 +202,23 @@ struct VSource: Shape {
             path.addRoundedRect(in: CGRect(x: 15, y: -15, width: 30, height: 30), cornerSize: CGSize(width: 200, height: 200))
             return path.direct(center: center, direction: orientation)
         }
+    }
+}
+
+struct ACVSource: Shape {
+    var center: CGPoint
+    var orientation: Direction
+
+    func path(in rect: CGRect) -> Path {
+        var path = Path()
+        path.move(to: CGPoint.zero)
+        path.addLine(to: CGPoint(x: 15, y: 0))
+        path.addRoundedRect(in: CGRect(x: 15, y: -15, width: 30, height: 30), cornerSize: CGSize(width: 200, height: 200))
+        path.move(to: CGPoint(x: 45, y: 0))
+        path.addLine(to: CGPoint(x: 60, y: 0))
+        path.move(to: CGPoint(x: 20, y: 0))
+        path.addCurve(to: CGPoint(x: 40, y: 0), control1: CGPoint(x: 28.5, y: -20), control2: CGPoint(x: 31.5, y: 20))
+        return path.direct(center: center, direction: orientation)
     }
 }
 

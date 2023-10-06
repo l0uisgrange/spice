@@ -32,6 +32,17 @@
         }
       }
     },
+    "ACVSOURCE" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Source de tension alternative"
+          }
+        }
+      }
+    },
     "ADD" : {
       "localizations" : {
         "en" : {
