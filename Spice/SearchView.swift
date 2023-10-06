@@ -20,7 +20,8 @@ struct SearchView: View {
         ComponentType("DIODE", type: "D"),
         ComponentType("VSOURCE", type: "V"),
         ComponentType("ISOURCE", type: "I"),
-        ComponentType("TRANSISTOR", type: "T")
+        ComponentType("TRANSISTOR", type: "T"),
+        ComponentType("FUSE", type: "F")
     ]
     var body: some View {
         VStack(alignment: .trailing, spacing: 0) {

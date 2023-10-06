@@ -343,6 +343,17 @@
         }
       }
     },
+    "FUSE" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fusible"
+          }
+        }
+      }
+    },
     "GitHub" : {
       "localizations" : {
         "en" : {
@@ -869,35 +880,6 @@
         }
       }
     },
-    "US_STYLE" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Amerikaner"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "American"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Américain"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Americano"
-          }
-        }
-      }
-    },
     "VERSION" : {
       "localizations" : {
         "de" : {
@@ -988,7 +970,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Câble"
+            "value" : "Conducteur"
           }
         },
         "it" : {

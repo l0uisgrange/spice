@@ -66,6 +66,8 @@ func getPath(_ c: Component, style: SymbolStyle = .IEC) -> Path {
         return Diode(center: c.position, orientation: c.orientation, style: style).path(in: rect)
     case "V":
         return VSource(center: c.position, orientation: c.orientation, style: style).path(in: rect)
+    case "F":
+        return Fuse(center: c.position, orientation: c.orientation).path(in: rect)
     case "I":
         return ISource(center: c.position, orientation: c.orientation, style: style).path(in: rect)
     default:
@@ -248,6 +250,19 @@ struct ISource: Shape {
             path.addLine(to: CGPoint(x: 30, y: 15))
             return path.direct(center: center, direction: orientation)
         }
+    }
+}
+
+struct Fuse: Shape {
+    var center: CGPoint
+    var orientation: Direction
+
+    func path(in rect: CGRect) -> Path {
+        var path = Path()
+        path.move(to: CGPoint.zero)
+        path.addLine(to: CGPoint(x: 60, y: 0))
+        path.addRect(CGRect(x: 10, y: -8, width: 40, height: 16))
+        return path.direct(center: center, direction: orientation)
     }
 }
 
