@@ -10,7 +10,7 @@ import SwiftUI
 struct SearchView: View {
     @Binding var isPresented: Bool
     @State var searchText: String = ""
-    @AppStorage("symbolsStyle") private var symbolsStyle = 0
+    @AppStorage("symbolsStyle") private var symbolsStyle: SymbolStyle = .IEC
     @State var typeSelected: ComponentType.ID?
     @Binding var editionMode: String
     let components = [

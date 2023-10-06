@@ -24,14 +24,14 @@ class Component: Identifiable {
     var orientation: Direction = .top
     var type: String = ""
     var path: Path = Path.init()
-    func draw(context: GraphicsContext, zoom: Double = 1.0, style: SymbolStyle = .ANSI, cursor: CGPoint, color: Color = Color("CircuitColor")) {
+    func draw(context: GraphicsContext, zoom: Double = 1.0, style: SymbolStyle = .IEC, cursor: CGPoint, color: Color = Color("CircuitColor")) {
         context.drawLayer { ctx in
             ctx.stroke(
                 getPath(self, style: style),
                 with: .color(color),
                 lineWidth: 1.2/zoom
             )
-            if type == "I" && style == .ANSI {
+            if type == "L" && style == .IEC {
                 ctx.fill(
                     self.path,
                     with: .color(color)
@@ -53,7 +53,7 @@ class Wire: Identifiable {
     var path: Path = Path.init()
 }
 
-func getPath(_ c: Component, style: SymbolStyle = .ANSI) -> Path {
+func getPath(_ c: Component, style: SymbolStyle = .IEC) -> Path {
     let rect: CGRect = CGRect(x: c.position.x, y: c.position.y-8, width: 60, height: 16)
     switch c.type {
     case "R":
@@ -89,11 +89,11 @@ struct Line: Shape {
 struct Resistor: Shape {
     var center: CGPoint
     var orientation: Direction
-    var style: SymbolStyle = .ANSI
+    var style: SymbolStyle = .IEC
 
     func path(in rect: CGRect) -> Path {
         switch style {
-        case .ANSI:
+        case .ANSI_IEEE:
             var path = Path()
             path.move(to: CGPoint.zero)
             path.addLine(to: CGPoint(x: 10, y: 0))
@@ -119,7 +119,7 @@ struct Resistor: Shape {
 struct Capacitor: Shape {
     var center: CGPoint
     var orientation: Direction
-    var style: SymbolStyle = .ANSI
+    var style: SymbolStyle = .IEC
 
     func path(in rect: CGRect) -> Path {
         var path = Path()
@@ -138,15 +138,17 @@ struct Capacitor: Shape {
 struct Inductor: Shape {
     var center: CGPoint
     var orientation: Direction
-    var style: SymbolStyle = .ANSI
+    var style: SymbolStyle = .IEC
 
     func path(in rect: CGRect) -> Path {
         switch style {
-        case .ANSI:
+        case .ANSI_IEEE:
             var path = Path()
             path.move(to: CGPoint.zero)
             path.addLine(to: CGPoint(x: 10, y: 0))
-            path.addRect(CGRect(x: 10, y: -8, width: 40, height: 15))
+            path.addArc(center: CGPoint(x: 18 , y: 0), radius: 8, startAngle: Angle(degrees: 180), endAngle: Angle(degrees: 320), clockwise: true)
+            path.addArc(center: CGPoint(x: 30, y: 0), radius: 8, startAngle: Angle(degrees: 220), endAngle: Angle(degrees: 320), clockwise: true)
+            path.addArc(center: CGPoint(x: 42, y: 0), radius: 8, startAngle: Angle(degrees: 220), endAngle: Angle(degrees: 0), clockwise: true)
             path.move(to: CGPoint(x: 50, y: 0))
             path.addLine(to: CGPoint(x: 60, y: 0))
             return path.direct(center: center, direction: orientation)
@@ -154,9 +156,7 @@ struct Inductor: Shape {
             var path = Path()
             path.move(to: CGPoint.zero)
             path.addLine(to: CGPoint(x: 10, y: 0))
-            path.addArc(center: CGPoint(x: 18 , y: 0), radius: 8, startAngle: Angle(degrees: 180), endAngle: Angle(degrees: 320), clockwise: true)
-            path.addArc(center: CGPoint(x: 30, y: 0), radius: 8, startAngle: Angle(degrees: 220), endAngle: Angle(degrees: 320), clockwise: true)
-            path.addArc(center: CGPoint(x: 42, y: 0), radius: 8, startAngle: Angle(degrees: 220), endAngle: Angle(degrees: 0), clockwise: true)
+            path.addRect(CGRect(x: 10, y: -8, width: 40, height: 15))
             path.move(to: CGPoint(x: 50, y: 0))
             path.addLine(to: CGPoint(x: 60, y: 0))
             return path.direct(center: center, direction: orientation)
@@ -167,29 +167,29 @@ struct Inductor: Shape {
 struct VSource: Shape {
     var center: CGPoint
     var orientation: Direction
-    var style: SymbolStyle = .ANSI
+    var style: SymbolStyle = .IEC
 
     func path(in rect: CGRect) -> Path {
         switch style {
-        case .ANSI:
-            var path = Path()
-            path.move(to: CGPoint.zero)
-            path.addLine(to: CGPoint(x: 60, y: 0))
-            path.addRoundedRect(in: CGRect(x: 15, y: -15, width: 30, height: 30), cornerSize: CGSize(width: 200, height: 200))
-            return path.direct(center: center, direction: orientation)
-        default:
+        case .ANSI_IEEE:
             var path = Path()
             path.move(to: CGPoint.zero)
             path.addLine(to: CGPoint(x: 15, y: 0))
             path.addRoundedRect(in: CGRect(x: 15, y: -15, width: 30, height: 30), cornerSize: CGSize(width: 200, height: 200))
             path.move(to: CGPoint(x: 20, y: 0))
-            path.addLine(to: CGPoint(x: 25, y: 0))
-            path.move(to: CGPoint(x: 22.5, y: 2.5))
-            path.addLine(to: CGPoint(x: 22.5, y: -2.5))
-            path.move(to: CGPoint(x: 35, y: 0))
+            path.addLine(to: CGPoint(x: 27.5, y: 0))
+            path.move(to: CGPoint(x: 23.75, y: 3.75))
+            path.addLine(to: CGPoint(x: 23.75, y: -3.75))
+            path.move(to: CGPoint(x: 32.5, y: 0))
             path.addLine(to: CGPoint(x: 40, y: 0))
             path.move(to: CGPoint(x: 45, y: 0))
             path.addLine(to: CGPoint(x: 60, y: 0))
+            return path.direct(center: center, direction: orientation)
+        default:
+            var path = Path()
+            path.move(to: CGPoint.zero)
+            path.addLine(to: CGPoint(x: 60, y: 0))
+            path.addRoundedRect(in: CGRect(x: 15, y: -15, width: 30, height: 30), cornerSize: CGSize(width: 200, height: 200))
             return path.direct(center: center, direction: orientation)
         }
     }
@@ -198,7 +198,7 @@ struct VSource: Shape {
 struct Diode: Shape {
     var center: CGPoint
     var orientation: Direction
-    var style: SymbolStyle = .ANSI
+    var style: SymbolStyle = .IEC
 
     func path(in rect: CGRect) -> Path {
         var path = Path()
@@ -219,21 +219,11 @@ struct Diode: Shape {
 struct ISource: Shape {
     var center: CGPoint
     var orientation: Direction
-    var style: SymbolStyle = .ANSI
+    var style: SymbolStyle = .IEC
 
     func path(in rect: CGRect) -> Path {
         switch style {
-        case .ANSI:
-            var path = Path()
-            path.move(to: CGPoint.zero)
-            path.addLine(to: CGPoint(x: 15, y: 0))
-            path.addRoundedRect(in: CGRect(x: 15, y: -15, width: 30, height: 30), cornerSize: CGSize(width: 200, height: 200))
-            path.move(to: CGPoint(x:45, y:45))
-            path.addLine(to: CGPoint(x: 60, y: 0))
-            path.move(to: CGPoint(x:30, y:-15))
-            path.addLine(to: CGPoint(x: 30, y: 15))
-            return path.direct(center: center, direction: orientation)
-        default:
+        case .ANSI_IEEE:
             var path = Path()
             path.move(to: CGPoint.zero)
             path.addLine(to: CGPoint(x: 15, y: 0))
@@ -246,6 +236,16 @@ struct ISource: Shape {
             path.addLine(to: CGPoint(x: 40, y: 0))
             path.move(to: CGPoint(x: 45, y: 0))
             path.addLine(to: CGPoint(x: 60, y: 0))
+            return path.direct(center: center, direction: orientation)
+        default:
+            var path = Path()
+            path.move(to: CGPoint.zero)
+            path.addLine(to: CGPoint(x: 15, y: 0))
+            path.addRoundedRect(in: CGRect(x: 15, y: -15, width: 30, height: 30), cornerSize: CGSize(width: 200, height: 200))
+            path.move(to: CGPoint(x:45, y:0))
+            path.addLine(to: CGPoint(x: 60, y: 0))
+            path.move(to: CGPoint(x:30, y:-15))
+            path.addLine(to: CGPoint(x: 30, y: 15))
             return path.direct(center: center, direction: orientation)
         }
     }

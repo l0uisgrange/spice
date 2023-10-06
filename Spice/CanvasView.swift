@@ -10,7 +10,7 @@ import SwiftUI
 struct CanvasView: View {
     @State var geometry: GeometryProxy
     @State private var canvasContentOffset: CGPoint = CGPoint.zero
-    @AppStorage("symbolsStyle") private var symbolsStyle: SymbolStyle = .ANSI
+    @AppStorage("symbolsStyle") private var symbolsStyle: SymbolStyle = .IEC
     @AppStorage("gridStyle") private var gridStyle = 1
     @Binding var origin: CGPoint
     @Binding var zoom: Double
