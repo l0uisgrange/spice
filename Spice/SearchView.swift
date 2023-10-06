@@ -72,7 +72,7 @@ struct SearchView: View {
                 .controlSize(.extraLarge)
             }.padding(15)
         }.frame(width: 500)
-        .background(.windowBackground)
+        .background(Color("ToolbarBackground"))
     }
     
     var filteredComponents: [ComponentType] {

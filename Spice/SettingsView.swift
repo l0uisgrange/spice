@@ -17,7 +17,7 @@ struct SettingsView: View {
     let appBuild = Bundle.main.infoDictionary!["CFBundleVersion"] as! String
     let appVersion = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as! String
     var body: some View {
-        VStack(spacing: 0) {
+        VStack(alignment: .leading, spacing: 0) {
             Divider()
             Form {
                 Section {
@@ -40,11 +40,15 @@ struct SettingsView: View {
                     Toggle(isOn: $checkUpdate, label: {
                         Text("CHECK_UPDATE_AUTOMATICALLY")
                     }).tint(Color("AccentColor"))
+                } footer: {
+                    Text("UPDATE_FOOTER")
+                        .font(.caption)
+                        .foregroundStyle(.gray)
                 }
                 Section {
                     Picker("COMPONENTS_APPEARANCE", selection: $symbolsStyle) {
                         ForEach(SymbolStyle.allCases, id: \.self) { option in
-                            Text(String(describing: option))
+                            Text(LocalizedStringKey(option.rawValue))
                         }
                     }
                     Picker("GRID_APPEARANCE", selection: $gridStyle) {

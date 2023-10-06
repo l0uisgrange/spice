@@ -48,7 +48,7 @@ struct SpiceApp: App {
                 }
                 Picker("COMPONENTS", selection: $symbolsStyle) {
                     ForEach(SymbolStyle.allCases, id: \.self) { option in
-                        Text(String(describing: option))
+                        Text(LocalizedStringKey(option.rawValue))
                     }
                 }
                 Divider()

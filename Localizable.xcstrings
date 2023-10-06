@@ -82,6 +82,12 @@
     },
     "ANSI" : {
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ANSI"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -93,6 +99,12 @@
     "ANSI_IEEE" : {
       "extractionState" : "manual",
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ANSI/IEEE"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -243,6 +255,12 @@
     "DIODE" : {
       "extractionState" : "manual",
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Diode"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -426,6 +444,12 @@
     },
     "IEC" : {
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "IEC"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -436,6 +460,12 @@
     },
     "IEEE" : {
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "IEEE"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -464,6 +494,12 @@
     "ISOURCE" : {
       "extractionState" : "manual",
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Current source"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -474,6 +510,12 @@
     },
     "MOVE" : {
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Move"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -645,6 +687,12 @@
     },
     "ROTATE" : {
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rotate"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -671,6 +719,12 @@
     },
     "RUN_SIMULATION" : {
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Run"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -697,6 +751,12 @@
     },
     "SELECT" : {
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Select"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -742,6 +802,12 @@
     "TRANSISTOR" : {
       "extractionState" : "manual",
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Transistor"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -790,6 +856,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Aggiornamento disponibile"
+          }
+        }
+      }
+    },
+    "UPDATE_FOOTER" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "L'application vérifiera automatiquement à chaque lancement qu'elle est à jour"
           }
         }
       }
@@ -882,6 +958,12 @@
     "VSOURCE" : {
       "extractionState" : "manual",
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Voltage source"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
