@@ -22,6 +22,7 @@ struct ContentView: View {
     @Binding var editionMode: String
     var body: some View {
         VStack(spacing: 0) {
+            Divider()
             GeometryReader { geometry in
                 ZStack(alignment: .topTrailing) {
                     CanvasView(geometry: geometry, origin: $origin, zoom: $zoom, components: $document.components, wires: $document.wires, editionMode: $editionMode, orientationMode: $orientationMode)
@@ -47,15 +48,18 @@ struct ContentView: View {
         }.toolbar {
             ToolbarItemGroup(placement: .principal) {
                 Picker("", selection: $editionMode) {
-                    Label("ERASE", systemImage: "hand.point.up").tag("")
-                    Label("WIRE", systemImage: "line.diagonal").tag("W")
-                }.pickerStyle(SegmentedPickerStyle())
+                    Label("MOVE", image: "cursor").tag("")
+                    Label("SELECT", image: "cursor.select").tag(".")
+                    Label("WIRE", image: "line").tag("W")
+                }
+                .pickerStyle(SegmentedPickerStyle())
+                Spacer().frame(width: 20)
                 Button {
                     addComponent.toggle()
                 } label: {
-                    Label("ADD_COMPONENT", systemImage: "plus")
+                    Label("ADD_COMPONENT", image: "plus")
                 }
-                Spacer().frame(width: 20)
+                Spacer().frame(width: 40)
                 Button {
                     switch orientationMode {
                     case .bottom:
@@ -68,7 +72,7 @@ struct ContentView: View {
                         orientationMode = .top
                     }
                 } label: {
-                    Label("ROTATE", systemImage: "rotate.right")
+                    Label("ROTATE", image: "rotate.backwards")
                 }
             }
             ToolbarItemGroup(placement: .status) {
@@ -77,20 +81,20 @@ struct ContentView: View {
                         zoom -= 0.5
                     }
                 } label: {
-                    Label("ZOOM_OUT", systemImage: "minus.magnifyingglass")
+                    Label("ZOOM_OUT", image: "zoom.out")
                 }.help("ZOOM_OUT")
                 Button {
                     if(zoom <= 2.5) {
                         zoom += 0.5
                     }
                 } label: {
-                    Label("ZOOM_IN", systemImage: "plus.magnifyingglass")
+                    Label("ZOOM_IN", image: "zoom.in")
                 }.help("ZOOM_IN")
                 Button {
                     origin = CGPoint.zero
                     zoom = 1.5
                 } label: {
-                    Label("FOCUS", systemImage: "viewfinder")
+                    Label("FOCUS", image: "focus")
                 }.help("FOCUS")
             }
             ToolbarItemGroup(placement: .primaryAction) {
@@ -98,11 +102,12 @@ struct ContentView: View {
                 Button {
                     
                 } label: {
-                    Label("RUN", systemImage: "play.circle.fill")
+                    Label("RUN", image: "lightning")
                 }.help("RUN")
                 .disabled(true)
             }
-        }
+        }.toolbarRole(.editor)
+        .toolbarBackground(Color("ToolbarBackground"))
     }
 }
 

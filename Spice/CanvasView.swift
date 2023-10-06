@@ -28,7 +28,7 @@ struct CanvasView: View {
         Canvas { context, size in
             let windowWidth = geometry.size.width
             let windowHeight = geometry.size.height
-            //context.fill(Path(CGRect(origin: .zero, size: size)), with: .color(.white))
+            context.fill(Path(CGRect(origin: .zero, size: size)), with: .color(Color("CanvasBackground")))
             context.translateBy(x: windowWidth/2.0 + origin.x + canvasContentOffset.x, y: windowHeight / 2 + origin.y + canvasContentOffset.y)
             context.scaleBy(x: zoom + currentZoom, y: zoom + currentZoom)
             context.drawGrid(gridStyle: gridStyle, zoom: zoom + currentZoom)
@@ -40,14 +40,13 @@ struct CanvasView: View {
                 c.draw(context: context, zoom: currentZoom + zoom, style: symbolsStyle, cursor: hoverLocation)
             }
             for w in wires {
-                context.stroke(w.path, with: .color(Color("CircuitColor")), lineWidth: 1.2/(zoom+currentZoom))
+                context.stroke(w.path, with: .color(Color("CircuitColor")), lineWidth: 1/(zoom+currentZoom))
             }
             if wireBegin != nil {
                 let wire = Wire(wireBegin ?? hoverLocation.alignedPoint, hoverLocation.alignedPoint)
-                context.stroke(wire.path, with: .color(Color("CircuitColor")), lineWidth: 1.2/(zoom+currentZoom))
+                context.stroke(wire.path, with: .color(Color("CircuitColor")), lineWidth: 1/(zoom+currentZoom))
             }
-        }
-        .onTapGesture {
+        }.onTapGesture {
             switch editionMode {
             case "":
                 break

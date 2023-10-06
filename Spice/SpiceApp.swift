@@ -83,7 +83,6 @@ struct SpiceApp: App {
         }
         Window("SETTINGS", id: "settings") {
             SettingsView()
-                .frame(width: 500, height: 300)
         }.defaultPosition(.center)
     }
 }

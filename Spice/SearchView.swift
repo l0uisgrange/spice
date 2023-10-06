@@ -53,8 +53,9 @@ struct SearchView: View {
             Divider()
             HStack {
                 Link(destination: URL(string: "https://github.com/l0uisgrange/spice/wiki")!) {
-                    Label("NEED_HELP?", systemImage: "questionmark")
-                }.buttonStyle(.link)
+                    Label("NEED_HELP?", image: "help")
+                }.foregroundStyle(Color("AccentColor"))
+                .buttonStyle(.link)
                 Spacer()
                 Button {
                     isPresented.toggle()

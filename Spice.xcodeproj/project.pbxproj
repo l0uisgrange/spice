@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2A10FFFD2AD0233A000423AB /* Icons.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2A10FFFC2AD0233A000423AB /* Icons.xcassets */; };
 		2A37A92C2ABF3345009C64CE /* CanvasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A37A92B2ABF3345009C64CE /* CanvasView.swift */; };
 		2A37A92E2ABF36FB009C64CE /* OnBoardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A37A92D2ABF36FB009C64CE /* OnBoardingView.swift */; };
 		2A4968802ABDD81D00DBC58B /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A49687F2ABDD81D00DBC58B /* SettingsView.swift */; };
@@ -16,13 +17,13 @@
 		2A9AFE562ABB376100A77A2C /* SpiceApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9AFE552ABB376100A77A2C /* SpiceApp.swift */; };
 		2A9AFE582ABB376100A77A2C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9AFE572ABB376100A77A2C /* ContentView.swift */; };
 		2A9AFE5C2ABB376200A77A2C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2A9AFE5B2ABB376200A77A2C /* Assets.xcassets */; };
-		2A9AFE5F2ABB376200A77A2C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2A9AFE5E2ABB376200A77A2C /* Preview Assets.xcassets */; };
 		2A9AFE672ABB499500A77A2C /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A9AFE662ABB499500A77A2C /* Localizable.xcstrings */; };
 		2A9AFE6A2ABB79BF00A77A2C /* Shapes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9AFE692ABB79BF00A77A2C /* Shapes.swift */; };
 		2AE073A82AC1ECFB000AECE0 /* FilesTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE073A72AC1ECFB000AECE0 /* FilesTypes.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2A10FFFC2AD0233A000423AB /* Icons.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Icons.xcassets; sourceTree = "<group>"; };
 		2A37A92B2ABF3345009C64CE /* CanvasView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasView.swift; sourceTree = "<group>"; };
 		2A37A92D2ABF36FB009C64CE /* OnBoardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingView.swift; sourceTree = "<group>"; };
 		2A49687F2ABDD81D00DBC58B /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
@@ -33,7 +34,6 @@
 		2A9AFE552ABB376100A77A2C /* SpiceApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpiceApp.swift; sourceTree = "<group>"; };
 		2A9AFE572ABB376100A77A2C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		2A9AFE5B2ABB376200A77A2C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		2A9AFE5E2ABB376200A77A2C /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		2A9AFE602ABB376200A77A2C /* Spice.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Spice.entitlements; sourceTree = "<group>"; };
 		2A9AFE662ABB499500A77A2C /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		2A9AFE682ABB71FF00A77A2C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -84,19 +84,11 @@
 				2A9AFE692ABB79BF00A77A2C /* Shapes.swift */,
 				2AE073A72AC1ECFB000AECE0 /* FilesTypes.swift */,
 				2A5C5F752AC80ED900902760 /* Tips.swift */,
+				2A10FFFC2AD0233A000423AB /* Icons.xcassets */,
 				2A9AFE5B2ABB376200A77A2C /* Assets.xcassets */,
 				2A9AFE602ABB376200A77A2C /* Spice.entitlements */,
-				2A9AFE5D2ABB376200A77A2C /* Preview Content */,
 			);
 			path = Spice;
-			sourceTree = "<group>";
-		};
-		2A9AFE5D2ABB376200A77A2C /* Preview Content */ = {
-			isa = PBXGroup;
-			children = (
-				2A9AFE5E2ABB376200A77A2C /* Preview Assets.xcassets */,
-			);
-			path = "Preview Content";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -161,10 +153,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2A9AFE5F2ABB376200A77A2C /* Preview Assets.xcassets in Resources */,
 				2A9AFE5C2ABB376200A77A2C /* Assets.xcassets in Resources */,
 				2A8133582AC49500004F124B /* InfoPlist.xcstrings in Resources */,
 				2A9AFE672ABB499500A77A2C /* Localizable.xcstrings in Resources */,
+				2A10FFFD2AD0233A000423AB /* Icons.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -319,8 +311,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 828;
-				DEVELOPMENT_ASSET_PATHS = "\"Spice/Preview Content\"";
+				CURRENT_PROJECT_VERSION = 877;
 				DEVELOPMENT_TEAM = N2L3268M2F;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
@@ -336,7 +327,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
-				MARKETING_VERSION = 0.5.2;
+				MARKETING_VERSION = 0.6.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.louisgrange.Spice;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = macosx;
@@ -357,8 +348,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 828;
-				DEVELOPMENT_ASSET_PATHS = "\"Spice/Preview Content\"";
+				CURRENT_PROJECT_VERSION = 877;
 				DEVELOPMENT_TEAM = N2L3268M2F;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
@@ -374,7 +364,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
-				MARKETING_VERSION = 0.5.2;
+				MARKETING_VERSION = 0.6.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.louisgrange.Spice;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = macosx;

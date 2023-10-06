@@ -81,7 +81,25 @@
       }
     },
     "ANSI" : {
-
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ANSI"
+          }
+        }
+      }
+    },
+    "ANSI_IEEE" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ANSI/IEEE"
+          }
+        }
+      }
     },
     "BACKGROUND" : {
       "localizations" : {
@@ -146,28 +164,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Capacité"
-          }
-        }
-      }
-    },
-    "CHECK_UPDATE" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Auf Updates prüfen"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Check for updates"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Vérifier les mises à jour"
           }
         }
       }
@@ -279,28 +275,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Puntini"
-          }
-        }
-      }
-    },
-    "ERASE" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Löschen"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Erase"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Effacer"
           }
         }
       }
@@ -451,10 +425,24 @@
       }
     },
     "IEC" : {
-
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "IEC"
+          }
+        }
+      }
     },
     "IEEE" : {
-
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "IEEE"
+          }
+        }
+      }
     },
     "INDUCTOR" : {
       "extractionState" : "manual",
@@ -473,34 +461,6 @@
         }
       }
     },
-    "INSTALL_UPDATE" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Installieren"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Install"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Installer"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Installare"
-          }
-        }
-      }
-    },
     "ISOURCE" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -508,6 +468,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Source de courant"
+          }
+        }
+      }
+    },
+    "MOVE" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Déplacer"
           }
         }
       }
@@ -540,34 +510,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Besoin d'aide"
-          }
-        }
-      }
-    },
-    "NO_UPDATE_AVAILABLE" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Kein Update verfügbar"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "No update available"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Aucune mise à jour disponible"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Nessun aggiornamento disponibile"
           }
         }
       }
@@ -702,7 +644,14 @@
       }
     },
     "ROTATE" : {
-
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pivoter"
+          }
+        }
+      }
     },
     "RUN" : {
       "localizations" : {
@@ -742,6 +691,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Rechercher un composant"
+          }
+        }
+      }
+    },
+    "SELECT" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sélectionner"
           }
         }
       }
@@ -803,35 +762,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Type"
-          }
-        }
-      }
-    },
-    "UNDO" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Aufmachen"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Undo"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Rétablir"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Disfare"
           }
         }
       }

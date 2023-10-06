@@ -17,75 +17,57 @@ struct SettingsView: View {
     let appBuild = Bundle.main.infoDictionary!["CFBundleVersion"] as! String
     let appVersion = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as! String
     var body: some View {
-        Form {
-            Section {
-                LabeledContent("VERSION") {
-                    HStack {
-                        Text("\(appVersion) (\(appBuild))")
-                        if Int(appVersion.components(separatedBy: ".").first ?? "0") == 0 {
-                            Text("alpha")
-                                .font(.caption)
-                                .foregroundStyle(.orange)
-                                .padding(.vertical, 4)
-                                .padding(.horizontal, 7)
-                                .overlay(
-                                    Capsule()
-                                        .stroke(.orange, lineWidth: 0.9)
-                                )
-                        }
-                    }
-                }
-                Toggle(isOn: $checkUpdate, label: {
-                    Text("CHECK_UPDATE_AUTOMATICALLY")
-                })
-                VStack(alignment: .leading) {
-                    if updateAvailable {
-                        Text("UPDATE_AVAILABLE")
-                    } else {
-                        Text("NO_UPDATE_AVAILABLE")
-                    }
-                    HStack {
-                        Button {
-                            Task {
-                                updateAvailable = await checkForUpdate()
+        VStack(spacing: 0) {
+            Divider()
+            Form {
+                Section {
+                    LabeledContent("VERSION") {
+                        HStack {
+                            Text("\(appVersion) (\(appBuild))")
+                            if Int(appVersion.components(separatedBy: ".").first ?? "0") == 0 {
+                                Text("alpha")
+                                    .font(.caption)
+                                    .foregroundStyle(.orange)
+                                    .padding(.vertical, 4)
+                                    .padding(.horizontal, 7)
+                                    .overlay(
+                                        Capsule()
+                                            .stroke(.orange, lineWidth: 0.9)
+                                    )
                             }
-                            checkedUpdate = true
-                        } label: {
-                            Text("CHECK_UPDATE")
-                        }.buttonStyle(.bordered)
-                        .disabled(checkedUpdate)
-                        if updateAvailable {
-                            Link(destination: URL(string: "https://github.com/l0uisgrange/spice/releases/latest")!) {
-                                Text("INSTALL_UPDATE")
-                            }.buttonStyle(.borderedProminent)
-                            .controlSize(.large)
                         }
-                    }.padding(.top, 10)
+                    }
+                    Toggle(isOn: $checkUpdate, label: {
+                        Text("CHECK_UPDATE_AUTOMATICALLY")
+                    }).tint(Color("AccentColor"))
                 }
-            }
-            Section {
-                Picker("COMPONENTS_APPEARANCE", selection: $symbolsStyle) {
-                    ForEach(SymbolStyle.allCases, id: \.self) { option in
-                        Text(String(describing: option))
+                Section {
+                    Picker("COMPONENTS_APPEARANCE", selection: $symbolsStyle) {
+                        ForEach(SymbolStyle.allCases, id: \.self) { option in
+                            Text(String(describing: option))
+                        }
+                    }
+                    Picker("GRID_APPEARANCE", selection: $gridStyle) {
+                        Text("NONE")
+                            .tag(0)
+                        Text("DOTS")
+                            .tag(1)
+                        Text("GRID")
+                            .tag(2)
                     }
                 }
-                Picker("GRID_APPEARANCE", selection: $gridStyle) {
-                    Text("NONE")
-                        .tag(0)
-                    Text("DOTS")
-                        .tag(1)
-                    Text("GRID")
-                        .tag(2)
+            }.formStyle(.grouped)
+            .background(Color("CanvasBackground"))
+            .scrollContentBackground(.hidden)
+            .navigationTitle("SETTINGS")
+            .toolbar {
+                ToolbarItem {
+                    Link(destination: URL(string: "https://github.com/l0uisgrange/spice")!) {
+                        Label("GitHub", image: "github")
+                    }.buttonStyle(.borderedProminent)
                 }
-            }
-        }.formStyle(.grouped)
-        .navigationTitle("SETTINGS")
-        .toolbar {
-            ToolbarItem {
-                Link(destination: URL(string: "https://github.com/l0uisgrange/spice")!) {
-                    Label("GitHub", image: "GitHub")
-                }.buttonStyle(.borderedProminent)
-            }
+            }.toolbarRole(.automatic)
+            .toolbarBackground(Color("ToolbarBackground"), for: .windowToolbar)
         }
     }
 }

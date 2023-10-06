@@ -29,7 +29,7 @@ class Component: Identifiable {
             ctx.stroke(
                 getPath(self, style: style),
                 with: .color(color),
-                lineWidth: 1.2/zoom
+                lineWidth: 1/zoom
             )
             if type == "L" && style == .IEC {
                 ctx.fill(
