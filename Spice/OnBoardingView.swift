@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct OnBoardingView: View {
-    @AppStorage("symbolsStyle") private var symbolsStyle = 0
+    @AppStorage("symbolsStyle") private var symbolsStyle: SymbolStyle = .IEC
     @AppStorage("gridStyle") private var gridStyle = 1
     @AppStorage("onBoarded") private var onBoarded = false
     @Binding var isPresented: Bool

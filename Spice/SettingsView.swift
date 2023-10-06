@@ -12,7 +12,7 @@ struct SettingsView: View {
     @State private var updateAvailable: Bool = false
     @State private var checkedUpdate: Bool = false
     @AppStorage("checkUpdate") private var checkUpdate = true
-    @AppStorage("symbolsStyle") private var symbolsStyle: SymbolStyle = .ANSI
+    @AppStorage("symbolsStyle") private var symbolsStyle: SymbolStyle = .IEC
     @AppStorage("gridStyle") private var gridStyle = 1
     let appBuild = Bundle.main.infoDictionary!["CFBundleVersion"] as! String
     let appVersion = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as! String

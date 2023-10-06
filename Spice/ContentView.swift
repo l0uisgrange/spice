@@ -112,7 +112,7 @@ func checkForUpdate() async -> Bool {
     do {
         let (data, _) = try await URLSession.shared.data(from: url)
         if let resp = try? JSONDecoder().decode(Release.self, from: data) {
-            if resp.tag_name != current && resp.tag_name.count > 0 {
+            if resp.tag_name != "v\(String(describing: current))" && resp.tag_name.count > 0 {
                 return true
             }
         }

@@ -11,7 +11,7 @@ import UniformTypeIdentifiers
 
 @main
 struct SpiceApp: App {
-    @AppStorage("symbolsStyle") private var symbolsStyle: SymbolStyle = .ANSI
+    @AppStorage("symbolsStyle") private var symbolsStyle: SymbolStyle = .IEC
     @AppStorage("gridStyle") private var gridStyle = 1
     @AppStorage("onBoarded") private var onBoarded = false
     @Environment(\.openWindow) var openWindow
@@ -89,7 +89,6 @@ struct SpiceApp: App {
 }
 
 enum SymbolStyle: String, CaseIterable {
-    case ANSI
+    case ANSI_IEEE
     case IEC
-    case IEEE
 }
