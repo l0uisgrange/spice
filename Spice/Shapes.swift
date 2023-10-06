@@ -8,7 +8,7 @@
 import SwiftUI
 import Foundation
 
-class Component: Identifiable {
+class Component: Identifiable, ObservableObject {
     init(_ name: String, position: CGPoint, orientation: Direction, type: String, value: Double) {
         self.position = position
         self.orientation = orientation

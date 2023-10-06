@@ -72,10 +72,9 @@ struct CanvasView: View {
                 editionMode = ""
             case "\u{7F}":
                 print("Deleted")
-                for c in selectedComponents {
-                    let index = selectedComponents.firstIndex { $0.id == c.id }
-                    if index != nil {
-                        components.remove(at: index!)
+                Task {
+                    for c in selectedComponents {
+                        components = components.filter { $0.id != c.id }
                     }
                 }
             case .space:
