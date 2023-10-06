@@ -36,7 +36,7 @@ struct CanvasView: View {
             context.translateBy(x: windowWidth/2.0 + origin.x + canvasContentOffset.x, y: windowHeight / 2 + origin.y + canvasContentOffset.y)
             context.scaleBy(x: zoom + currentZoom, y: zoom + currentZoom)
             context.drawGrid(gridStyle: gridStyle, zoom: zoom + currentZoom)
-            if editionMode != "" {
+            if editionMode != "" && editionMode != "." {
                 Component(editionMode, position: hoverLocation.alignedPoint, orientation: orientationMode, type: editionMode, value: 0)
                     .draw(context:context, zoom: currentZoom+zoom, style: symbolsStyle, cursor: hoverLocation)
             }
@@ -75,6 +75,9 @@ struct CanvasView: View {
                 Task {
                     for c in selectedComponents {
                         components = components.filter { $0.id != c.id }
+                    }
+                    for w in selectedWires {
+                        wires = wires.filter { $0.id != w.id }
                     }
                 }
             case .space:
