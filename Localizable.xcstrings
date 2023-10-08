@@ -1,9 +1,6 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
-    "" : {
-
-    },
     "%@ (%@)" : {
       "localizations" : {
         "de" : {
@@ -500,6 +497,7 @@
       }
     },
     "MOVE" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -771,6 +769,7 @@
       }
     },
     "SELECT" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -813,6 +812,9 @@
           }
         }
       }
+    },
+    "SHARE" : {
+
     },
     "TIP_SIMULATION_DESCRIPTION" : {
 
@@ -965,6 +967,7 @@
       }
     },
     "WIRE" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {

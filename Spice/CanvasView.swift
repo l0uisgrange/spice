@@ -51,6 +51,7 @@ struct CanvasView: View {
             }
             if hoverRect != nil {
                 context.fill(Path(roundedRect: hoverRect!, cornerRadius: 0), with: .color(Color("CircuitColor").opacity(0.1)))
+                context.stroke(Path(roundedRect: hoverRect!, cornerRadius: 0), with: .color(Color("CircuitColor").opacity(0.3)), lineWidth: 1/zoom)
             }
             if wireBegin != nil {
                 let wire = Wire(wireBegin ?? hoverLocation.alignedPoint, hoverLocation.alignedPoint)
@@ -223,5 +224,13 @@ extension GraphicsContext {
             },
             with: .color(gridStyle == 1 ? .gray.opacity(0.4) : .gray.opacity(0.1)),
             lineWidth: 0.8/zoom)
+        self.stroke(Path() { path in
+            path.move(to: CGPoint(x: 0, y: -20))
+            path.addLine(to: CGPoint(x: 0, y: 20))
+            path.move(to: CGPoint(x: -20, y: 0))
+            path.addLine(to: CGPoint(x: 20, y: 0))
+        },
+        with: .color(.gray.opacity(0.6)),
+        lineWidth: 0.8/zoom)
     }
 }

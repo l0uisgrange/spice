@@ -31,7 +31,45 @@ struct ContentView: View {
                                 updateAvailable = await checkForUpdate()
                             }
                         }
-                    HStack {
+                    HStack(alignment: .top) {
+                        VStack {
+                            Button {
+                                editionMode = ""
+                            } label: {
+                                Image("cursor")
+                            }.padding(3)
+                            .background(editionMode == "" ? .white.opacity(0.2) : .white.opacity(0))
+                            .buttonStyle(.plain)
+                            .clipShape(RoundedRectangle(cornerRadius: 7))
+                            Button {
+                                editionMode = "."
+                            } label: {
+                                Image("cursor.select")
+                            }.padding(3)
+                            .background(editionMode == "." ? .white.opacity(0.2) : .white.opacity(0))
+                            .buttonStyle(.plain)
+                            .clipShape(RoundedRectangle(cornerRadius: 7))
+                            Button {
+                                editionMode = "W"
+                            } label: {
+                                Image("line")
+                            }.padding(3)
+                            .background(editionMode == "W" ? .white.opacity(0.2) : .white.opacity(0))
+                            .buttonStyle(.plain)
+                            .clipShape(RoundedRectangle(cornerRadius: 7))
+                            Divider().frame(width: 25).padding(.vertical, 2)
+                            Button {
+                                addComponent.toggle()
+                            } label: {
+                                Image("blocks")
+                            }.padding(3)
+                            .buttonStyle(.plain)
+                            .clipShape(RoundedRectangle(cornerRadius: 7))
+                        }.padding(6)
+                        .background(Color("AccentDark"))
+                        .foregroundStyle(Color("CanvasBackground"))
+                        .clipShape(RoundedRectangle(cornerRadius: 9))
+                        Spacer()
                         if updateAvailable {
                             Link(destination: URL(string: "https://github.com/l0uisgrange/spice/releases/latest")!) {
                                 Label("UPDATE_AVAILABLE", systemImage: "arrow.down.circle.fill")
@@ -47,19 +85,6 @@ struct ContentView: View {
             }
         }.toolbar {
             ToolbarItemGroup(placement: .principal) {
-                Picker("", selection: $editionMode) {
-                    Label("MOVE", image: "cursor").tag("")
-                    Label("SELECT", image: "cursor.select").tag(".")
-                    Label("WIRE", image: "line").tag("W")
-                }
-                .pickerStyle(SegmentedPickerStyle())
-                Spacer().frame(width: 20)
-                Button {
-                    addComponent.toggle()
-                } label: {
-                    Label("ADD_COMPONENT", image: "plus")
-                }
-                Spacer().frame(width: 40)
                 Button {
                     switch orientationMode {
                     case .bottom:
@@ -96,9 +121,14 @@ struct ContentView: View {
                 } label: {
                     Label("FOCUS", image: "focus")
                 }.help("FOCUS")
+                Spacer()
             }
             ToolbarItemGroup(placement: .primaryAction) {
-                Spacer()
+                Button {
+                    
+                } label: {
+                    Label("SHARE", image: "share")
+                }.help("SHARE")
                 Button {
                     
                 } label: {
