@@ -73,6 +73,23 @@
         }
       }
     },
+    "CFBundleTypeName" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Spice circuit"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Circuit Spice"
+          }
+        }
+      }
+    },
     "NSHumanReadableCopyright" : {
       "extractionState" : "manual",
       "localizations" : {

@@ -17,7 +17,6 @@ struct CanvasView: View {
     @State private var currentZoom: Double = 0.0
     @State private var cursorPosition: CGPoint = CGPoint.zero
     @Binding var components: [Component]
-    @State var selectedComponents: [Component] = []
     @State var selectedWires: [Wire] = []
     @Binding var wires: [Wire]
     @State private var hoverLocation: CGPoint = .zero
@@ -28,6 +27,7 @@ struct CanvasView: View {
     @Binding var orientationMode: Direction
     @State var wireBegin: CGPoint? = nil
     @FocusState private var focused: Bool
+    @Binding var selectedComponents: [Component]
     var body: some View {
         Canvas { context, size in
             let windowWidth = geometry.size.width

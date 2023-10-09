@@ -134,13 +134,13 @@ struct Capacitor: Shape {
     func path(in rect: CGRect) -> Path {
         var path = Path()
         path.move(to: CGPoint.zero)
-        path.addLine(to: CGPoint(x: 20, y: 0))
-        path.move(to: CGPoint(x: 20, y: -8))
-        path.addLine(to: CGPoint(x: 20, y: 8))
-        path.move(to: CGPoint(x: 30, y: -8))
-        path.addLine(to: CGPoint(x: 30, y: 8))
-        path.move(to: CGPoint(x: 30, y: 0))
-        path.addLine(to: CGPoint(x: 50, y: 0))
+        path.addLine(to: CGPoint(x: 27, y: 0))
+        path.move(to: CGPoint(x: 27, y: -10))
+        path.addLine(to: CGPoint(x: 27, y: 10))
+        path.move(to: CGPoint(x: 33, y: -10))
+        path.addLine(to: CGPoint(x: 33, y: 10))
+        path.move(to: CGPoint(x: 33, y: 0))
+        path.addLine(to: CGPoint(x: 60, y: 0))
         return path.direct(center: center, direction: orientation)
     }
 }

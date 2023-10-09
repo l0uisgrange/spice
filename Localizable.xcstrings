@@ -32,26 +32,16 @@
     "ACVSOURCE" : {
       "extractionState" : "manual",
       "localizations" : {
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Source de tension alternative"
-          }
-        }
-      }
-    },
-    "ADD" : {
-      "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Add"
+            "value" : "AC Voltage source"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ajouter"
+            "value" : "Source de tension alternative"
           }
         }
       }
@@ -84,23 +74,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "alpha"
-          }
-        }
-      }
-    },
-    "ANSI" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "ANSI"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "ANSI"
           }
         }
       }
@@ -140,34 +113,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Arrière-plan"
-          }
-        }
-      }
-    },
-    "CANCEL" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Abbrechen"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Cancel"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Annuler"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Annulla"
           }
         }
       }
@@ -261,6 +206,22 @@
         }
       }
     },
+    "Delete" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Delete"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Supprimer"
+          }
+        }
+      }
+    },
     "DIODE" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -306,6 +267,22 @@
         }
       }
     },
+    "Edit" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Edit"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Modifier"
+          }
+        }
+      }
+    },
     "EU_STYLE" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -335,6 +312,22 @@
         }
       }
     },
+    "EXPORT_PDF" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Export as pdf"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Exporter en PDF"
+          }
+        }
+      }
+    },
     "FOCUS" : {
       "localizations" : {
         "en" : {
@@ -354,6 +347,12 @@
     "FUSE" : {
       "extractionState" : "manual",
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fuse"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -496,51 +495,18 @@
         }
       }
     },
-    "MOVE" : {
-      "extractionState" : "stale",
+    "NO_RESULT" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Move"
+            "value" : "No result"
           }
         },
         "fr" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "Déplacer"
-          }
-        }
-      }
-    },
-    "NAME" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Name"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Nom"
-          }
-        }
-      }
-    },
-    "NEED_HELP?" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Need help"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Besoin d'aide"
+            "state" : "needs_review",
+            "value" : "Aucun résultat"
           }
         }
       }
@@ -757,30 +723,13 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Search component"
+            "value" : "Search"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Rechercher un composant"
-          }
-        }
-      }
-    },
-    "SELECT" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Select"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sélectionner"
+            "value" : "Rechercher"
           }
         }
       }
@@ -814,7 +763,20 @@
       }
     },
     "SHARE" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Share"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Partager"
+          }
+        }
+      }
     },
     "TIP_SIMULATION_DESCRIPTION" : {
 
@@ -835,50 +797,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Transistor"
-          }
-        }
-      }
-    },
-    "TYPE" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Type"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Type"
-          }
-        }
-      }
-    },
-    "UPDATE_AVAILABLE" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Update verfügbar"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Update available"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Mise à jour disponible"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Aggiornamento disponibile"
           }
         }
       }
@@ -962,35 +880,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Source de tension"
-          }
-        }
-      }
-    },
-    "WIRE" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Leitung"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Wire"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Conducteur"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Filo"
           }
         }
       }

@@ -18,20 +18,32 @@ struct SpiceApp: App {
     @State private var isPresented: Bool = false
     @State private var searchComponent: Bool = false
     @State var zoom: Double = 1.5
+    @State var exporting: Bool = false
     @State var editionMode: String = ""
+    @State private var document = SpiceDocument(components: [], wires: [])
     var body: some Scene {
         DocumentGroup(newDocument: SpiceDocument(components: [], wires: [])) { file in
-            ContentView(document: file.$document, zoom: $zoom, addComponent: $searchComponent, editionMode: $editionMode)
+            ContentView(document: file.$document, zoom: $zoom, addComponent: $searchComponent, editionMode: $editionMode, exporting: $exporting)
                 .frame(minWidth: 700, idealWidth: 900, minHeight: 500, idealHeight: 700)
-                .sheet(isPresented: $searchComponent) {
-                    SearchView(isPresented: $searchComponent, editionMode: $editionMode)
-                }
                 .sheet(isPresented: $isPresented) {
                     OnBoardingView(isPresented: $isPresented)
                 }
                 .onAppear {
                     if !onBoarded {
                         isPresented.toggle()
+                    }
+                }
+                .fileExporter(
+                    isPresented: $exporting,
+                    document: document,
+                    contentType: .pdf
+                ) { result in
+                    switch result {
+                    case .success(let file):
+                        print(file)
+                        print("Hello world")
+                    case .failure(let error):
+                        print(error)
                     }
                 }
         }.defaultPosition(.center)
@@ -62,7 +74,9 @@ struct SpiceApp: App {
             }
             CommandGroup(after: CommandGroupPlacement.textEditing) {
                 Button {
-                    searchComponent.toggle()
+                    withAnimation(.snappy(duration: 0.2)) {
+                        searchComponent.toggle()
+                    }
                 } label: {
                     Text("ADD_COMPONENT")
                 }.keyboardShortcut(".")
@@ -79,6 +93,13 @@ struct SpiceApp: App {
                 } label: {
                     Text("SETTINGS")
                 }.keyboardShortcut(",")
+            }
+            CommandGroup(after: CommandGroupPlacement.importExport) {
+                Button {
+                    self.exporting.toggle()
+                } label: {
+                    Text("EXPORT_PDF")
+                }
             }
         }
         Window("SETTINGS", id: "settings") {

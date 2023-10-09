@@ -18,69 +18,38 @@ struct ContentView: View {
     @State private var origin: CGPoint = CGPoint.zero
     let dotSize: CGFloat = 1.0
     @State var updateAvailable: Bool = false
+    @State var selectedComponents: [Component] = []
     @State var orientationMode: Direction = .trailing
+    @State var componentInfo: Bool = true
     @Binding var editionMode: String
+    @Binding var exporting: Bool
     var body: some View {
         VStack(spacing: 0) {
             Divider()
             GeometryReader { geometry in
                 ZStack(alignment: .topTrailing) {
-                    CanvasView(geometry: geometry, origin: $origin, zoom: $zoom, components: $document.components, wires: $document.wires, editionMode: $editionMode, orientationMode: $orientationMode)
+                    CanvasView(geometry: geometry, origin: $origin, zoom: $zoom, components: $document.components, wires: $document.wires, editionMode: $editionMode, orientationMode: $orientationMode, selectedComponents: $selectedComponents)
                         .task {
                             if checkUpdate {
                                 updateAvailable = await checkForUpdate()
                             }
                         }
                     HStack(alignment: .top) {
-                        VStack {
-                            Button {
-                                editionMode = ""
-                            } label: {
-                                Image("cursor")
-                            }.padding(3)
-                            .background(editionMode == "" ? .white.opacity(0.2) : .white.opacity(0))
-                            .buttonStyle(.plain)
-                            .clipShape(RoundedRectangle(cornerRadius: 7))
-                            Button {
-                                editionMode = "."
-                            } label: {
-                                Image("cursor.select")
-                            }.padding(3)
-                            .background(editionMode == "." ? .white.opacity(0.2) : .white.opacity(0))
-                            .buttonStyle(.plain)
-                            .clipShape(RoundedRectangle(cornerRadius: 7))
-                            Button {
-                                editionMode = "W"
-                            } label: {
-                                Image("line")
-                            }.padding(3)
-                            .background(editionMode == "W" ? .white.opacity(0.2) : .white.opacity(0))
-                            .buttonStyle(.plain)
-                            .clipShape(RoundedRectangle(cornerRadius: 7))
-                            Divider().frame(width: 25).padding(.vertical, 2)
-                            Button {
-                                addComponent.toggle()
-                            } label: {
-                                Image("blocks")
-                            }.padding(3)
-                            .buttonStyle(.plain)
-                            .clipShape(RoundedRectangle(cornerRadius: 7))
-                        }.padding(6)
-                        .background(Color("AccentDark"))
-                        .foregroundStyle(Color("CanvasBackground"))
-                        .clipShape(RoundedRectangle(cornerRadius: 9))
-                        Spacer()
-                        if updateAvailable {
-                            Link(destination: URL(string: "https://github.com/l0uisgrange/spice/releases/latest")!) {
-                                Label("UPDATE_AVAILABLE", systemImage: "arrow.down.circle.fill")
-                                    .padding(.vertical, 7)
-                                    .padding(.horizontal, 10)
-                                    .background(.black.opacity(0.8))
-                                    .foregroundStyle(.white)
-                                    .clipShape(RoundedRectangle(cornerRadius: 5))
-                            }.buttonStyle(PlainButtonStyle())
+                        SideBarView(editionMode: $editionMode, addComponent: $addComponent)
+                        if addComponent {
+                            SearchView(isPresented: $addComponent, editionMode: $editionMode)
+                                .transition(.scale(0.000001, anchor: .leading))
                         }
+                        Spacer()
                     }.padding(20)
+                }
+            }
+            .contextMenu {
+                Button(action: {}) {
+                    Text("Edit")
+                }
+                Button(role: .destructive, action: {}) {
+                    Text("Delete")
                 }
             }
         }.toolbar {
@@ -125,7 +94,7 @@ struct ContentView: View {
             }
             ToolbarItemGroup(placement: .primaryAction) {
                 Button {
-                    
+                    exporting.toggle()
                 } label: {
                     Label("SHARE", image: "share")
                 }.help("SHARE")

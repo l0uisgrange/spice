@@ -14,6 +14,7 @@ extension UTType {
 
 struct SpiceDocument: FileDocument {
     static var readableContentTypes: [UTType] = [.spice]
+    static var writableContentTypes: [UTType] = [.spice, .pdf]
     
     var components: [Component] = []
     var wires: [Wire] = []
