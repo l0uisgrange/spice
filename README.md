@@ -4,6 +4,8 @@
 
 Spice 🌶️ is a native macOS electronic circuit simulator that rivals LTSpice and other legacy software 🤮. It has a new, modern interface ⭐️ with easy-to-use features and smooth performance. Totally free and open source.
 
+<img width="600" alt="capture" src="https://github.com/l0uisgrange/spice/assets/70532216/cc9754d7-da0a-45db-a3ec-5ad95011e7d8">
+
 ## Download
 
 You can download the [latest version](https://github.com/l0uisgrange/spice/releases/latest) and run it directly.
