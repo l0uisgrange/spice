@@ -29,24 +29,21 @@ struct SearchView: View {
     @FocusState var isFocusOn: Bool
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
-            TextField("SEARCH_COMPONENT", text: $searchText)
-                .focused($isFocusOn)
-                .font(.title2)
-                .textFieldStyle(.plain)
-                .controlSize(.extraLarge)
-                .padding(.horizontal, 9)
-                .padding(.vertical, 5)
-                .foregroundStyle(.black)
-                .background(Color("CanvasBackground"))
-                .clipShape(RoundedRectangle(cornerRadius: 7))
-                .onSubmit {
-                    editionMode = filteredComponents.first?.type ?? ""
-                    isPresented.toggle()
-                }
-                .padding(.vertical, 6)
-                .onAppear {
-                    isFocusOn = true
-                }
+            HStack(spacing: 13) {
+                Image("search")
+                TextField("", text: $searchText, prompt: Text("SEARCH_COMPONENT"))
+                    .focused($isFocusOn)
+                    .textFieldStyle(.plain)
+                    .font(.title2)
+                    .controlSize(.extraLarge)
+                    .onSubmit {
+                        editionMode = filteredComponents.first?.type ?? ""
+                        isPresented.toggle()
+                    }
+                    .onAppear {
+                        isFocusOn = true
+                    }
+            }.padding(15)
             Divider().padding(.bottom, 6)
             if filteredComponents.count == 0 {
                 HStack {
@@ -67,7 +64,7 @@ struct SearchView: View {
                             let comp = Component("", position: .zero, orientation: .trailing, type: c.type, value: 0.0)
                             context.translateBy(x: 21, y: 15)
                             context.scaleBy(x: 0.7, y: 0.7)
-                            comp.draw(context: context, zoom: 0.7, style: symbolsStyle, cursor: .zero, color: .white)
+                            comp.draw(context: context, zoom: 0.7, style: symbolsStyle, cursor: .zero, color: .primary)
                         }.frame(width: 42, height: 30)
                         Text(c.name)
                             .lineLimit(1)
@@ -76,11 +73,11 @@ struct SearchView: View {
                     }.padding(.horizontal, 9)
                     .padding(.vertical, 0)
                 }.buttonStyle(SearchViewItem())
+                .padding(.horizontal, 6)
             }
-        }.frame(width: 220)
-        .padding([.horizontal, .bottom], 6)
-        .background(Color("AccentDark"))
-        .foregroundStyle(Color("CanvasBackground"))
+        }.frame(width: 250)
+        .padding([.bottom], 6)
+        .background(.regularMaterial)
         .clipShape(RoundedRectangle(cornerRadius: 9))
     }
     
