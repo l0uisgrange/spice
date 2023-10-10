@@ -51,13 +51,10 @@ struct SearchView: View {
             Divider().padding(.bottom, 6)
             if filteredComponents.count == 0 {
                 HStack {
+                    Text("NO_RESULT")
                     Spacer()
-                    VStack(alignment: .center, spacing: 10) {
-                        Image("search.x")
-                        Text("NO_RESULT")
-                    }
-                    Spacer()
-                }.padding(.vertical, 10)
+                }.padding(.horizontal, 15)
+                .padding(.vertical, 10)
             }
             ForEach(filteredComponents) { c in
                 Button {

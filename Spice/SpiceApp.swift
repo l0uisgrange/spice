@@ -29,7 +29,7 @@ struct SpiceApp: App {
                     OnBoardingView(isPresented: $isPresented)
                 }
                 .onAppear {
-                    if !onBoarded {
+                    if onBoarded {
                         isPresented.toggle()
                     }
                 }

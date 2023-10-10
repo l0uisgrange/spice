@@ -71,6 +71,17 @@ struct CanvasView: View {
             case .escape:
                 print("No more edition")
                 editionMode = ""
+            case "r":
+                switch orientationMode {
+                case .bottom:
+                    orientationMode = .trailing
+                case .top:
+                    orientationMode = .leading
+                case .leading:
+                    orientationMode = .bottom
+                default:
+                    orientationMode = .top
+                }
             case "\u{7F}":
                 print("Deleted")
                 Task {
@@ -150,8 +161,10 @@ struct CanvasView: View {
                     }
                     .onEnded { gesture in
                         if editionMode != "." {
-                            self.origin.x = self.canvasContentOffset.x + self.origin.x
-                            self.origin.y = self.canvasContentOffset.y + self.origin.y
+                            if -2000 + geometry.size.width/2.0 < canvasContentOffset.x + origin.x && canvasContentOffset.x + origin.x < 2000 - geometry.size.width/2.0 && -2000 + geometry.size.height/2.0 < canvasContentOffset.y + origin.y && canvasContentOffset.y + origin.y < 2000 - geometry.size.height/2.0 {
+                                self.origin.x = self.canvasContentOffset.x + self.origin.x
+                                self.origin.y = self.canvasContentOffset.y + self.origin.y
+                            }
                             self.canvasContentOffset = CGPoint.zero
                         } else {
                             for c in components {
