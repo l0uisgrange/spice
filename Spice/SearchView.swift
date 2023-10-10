@@ -36,12 +36,16 @@ struct SearchView: View {
                     .textFieldStyle(.plain)
                     .font(.title2)
                     .controlSize(.extraLarge)
+                    .padding(.top, 2)
                     .onSubmit {
                         editionMode = filteredComponents.first?.type ?? ""
                         isPresented.toggle()
                     }
                     .onAppear {
-                        isFocusOn = true
+                        Task {
+                            try? await Task.sleep(nanoseconds: 200_000_000)
+                            isFocusOn = true
+                        }
                     }
             }.padding(15)
             Divider().padding(.bottom, 6)

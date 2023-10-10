@@ -38,7 +38,7 @@ struct ContentView: View {
                         SideBarView(editionMode: $editionMode, addComponent: $addComponent)
                         if addComponent {
                             SearchView(isPresented: $addComponent, editionMode: $editionMode)
-                                .transition(.scale(0.000001, anchor: .leading))
+                                .transition(.scale)
                         }
                         Spacer()
                     }.padding(20)
