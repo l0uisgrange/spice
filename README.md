@@ -2,7 +2,7 @@
 ![](https://img.shields.io/github/v/release/l0uisgrange/spice)
 ![](https://img.shields.io/github/issues/l0uisgrange/spice)
 
-<img src="https://github.com/l0uisgrange/spice/assets/70532216/7f39514e-b40a-4744-b328-4aff1338e34c" width="50" align="left">
+<img src="https://github.com/l0uisgrange/spice/assets/70532216/7f39514e-b40a-4744-b328-4aff1338e34c" width="45" align="left">
 
 # Spice circuit simulator
 
