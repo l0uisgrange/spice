@@ -22,19 +22,23 @@ Spice only runs on **macOS Sonoma** 14.0+ and currently supports the following l
 - 🇩🇪 German
 - 🇮🇹 Italian
 
-As I am just a human being like you, I would really appreciate your help in correcting translations into your language. Please open an issue to start.
+As I am just a human being like you, I would really appreciate your help in correcting translations into your language. Please [open an issue](https://github.com/l0uisgrange/spice/issues/new/choose) to start.
 
 ## File format
 
-Spice supports the original SPICE netlists (files), developed in 1975 and widely used for circuit simulation. However, it mainly uses it's own `.spice` format, which looks like this:
+Spice is planned 📋 to support the universal SPICE netlists (files), developed in 1975 and widely used for circuit simulation. However, it mainly uses it's own `.sp` format, which looks like this:
 
 ```text
-* Data statements
-R1 0 10 T 100
-V1 0 10 B DC 150
+* Wires
+W -40.0 -110.0 50.0 -110.0
+W -40.0 -130.0 50.0 -130.0
+* Components
+R 0.0 -70.0 X 0.0
+L -80.0 -10.0 T 0.0
+C 120.0 -70.0 X 0.0
 ```
 
-For more information on how this works, see the documentation [Wiki](https://github.com/l0uisgrange/spice/wiki).
+For more information on how this works, see the documentation 📚 [Wiki](https://github.com/l0uisgrange/spice/wiki).
 
 ## Suggestions
 
