@@ -41,6 +41,7 @@ struct CanvasView: View {
                     .draw(context:context, zoom: currentZoom+zoom, style: symbolsStyle, cursor: hoverLocation)
             }
             for c in components {
+                c.name = c.type
                 c.draw(context: context, zoom: currentZoom + zoom, style: symbolsStyle, cursor: hoverLocation, selected: selectedComponents.contains { $0.id == c.id })
             }
             for w in wires {
@@ -50,8 +51,7 @@ struct CanvasView: View {
                 }
             }
             if hoverRect != nil {
-                context.fill(Path(roundedRect: hoverRect!, cornerRadius: 0), with: .color(Color("CircuitColor").opacity(0.1)))
-                context.stroke(Path(roundedRect: hoverRect!, cornerRadius: 0), with: .color(Color("CircuitColor").opacity(0.3)), lineWidth: 1/zoom)
+                context.stroke(Path(roundedRect: hoverRect!, cornerRadius: 0), with: .color(Color("SelectionColor")), style: StrokeStyle(lineWidth: 1.2/zoom, dash: [4]))
             }
             if wireBegin != nil {
                 let wire = Wire(wireBegin ?? hoverLocation.alignedPoint, hoverLocation.alignedPoint)
@@ -123,6 +123,8 @@ struct CanvasView: View {
                 } else {
                     wireBegin = hoverLocation.alignedPoint
                 }
+            case ".":
+                print("Hey")
             default:
                 let newComponent = Component(editionMode, position: hoverLocation.alignedPoint, orientation: orientationMode, type: editionMode, value: 0)
                 components.append(newComponent)
@@ -152,6 +154,8 @@ struct CanvasView: View {
                             self.canvasContentOffset.y = gesture.translation.height
                         } else {
                             if hoverRect == nil {
+                                selectedComponents.removeAll()
+                                selectedWires.removeAll()
                                 hoverRect = CGRect(origin: hoverLocation, size: CGSizeZero)
                             } else {
                                 hoverRect?.size.width = gesture.translation.width/zoom

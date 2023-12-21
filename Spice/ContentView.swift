@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Charts
 import SwiftData
 import TipKit
 
@@ -15,6 +16,7 @@ struct ContentView: View {
     @Binding var document: SpiceDocument
     @Binding var zoom: Double
     @Binding var addComponent: Bool
+    @Environment(\.openWindow) var openWindow
     @State private var origin: CGPoint = CGPoint.zero
     let dotSize: CGFloat = 1.0
     @State var updateAvailable: Bool = false
@@ -23,6 +25,7 @@ struct ContentView: View {
     @State var componentInfo: Bool = true
     @Binding var editionMode: String
     @Binding var exporting: Bool
+    var favoriteLandmarkTip = RunSimulationTip()
     var body: some View {
         VStack(spacing: 0) {
             Divider()
@@ -52,6 +55,15 @@ struct ContentView: View {
                     Text("Delete")
                 }
             }
+            /*
+            Divider()
+            HStack {
+                Text("Sauvegardé il y a 3 minutes")
+                Spacer()
+            }.padding(.vertical, 10)
+            .padding(.horizontal, 20)
+            .background(Color("CanvasBackground"))
+             */
         }.toolbar {
             ToolbarItemGroup(placement: .principal) {
                 Button {
@@ -94,19 +106,28 @@ struct ContentView: View {
             }
             ToolbarItemGroup(placement: .primaryAction) {
                 Button {
-                    exporting.toggle()
+                    Task {
+                        exporting.toggle()
+                    }
                 } label: {
                     Label("SHARE", image: "share")
                 }.help("SHARE")
                 Button {
-                    
+                    openWindow(id: "analysis")
                 } label: {
                     Label("RUN", image: "lightning")
                 }.help("RUN")
                 .disabled(true)
+                .popoverTip(favoriteLandmarkTip)
             }
         }.toolbarRole(.editor)
         .toolbarBackground(Color("ToolbarBackground"))
+        .task {
+            try? Tips.configure([
+                .displayFrequency(.immediate),
+                .datastoreLocation(.applicationDefault)
+            ])
+        }
     }
 }
 

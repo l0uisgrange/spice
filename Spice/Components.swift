@@ -11,7 +11,7 @@ struct SearchViewItem: ButtonStyle {
     @State var hover: Bool = false
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
-            .background(hover ? Color.gray.opacity(0.35) : Color.accentColor.opacity(0))
+            .background(hover ? Color.gray.opacity(0.25) : Color.accentColor.opacity(0))
             .clipShape(RoundedRectangle(cornerRadius: 7))
             .onHover { phase in
                 switch phase {

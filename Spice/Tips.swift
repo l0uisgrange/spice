@@ -9,9 +9,6 @@ import SwiftUI
 import TipKit
 
 struct RunSimulationTip: Tip {
-    var image: Image? {
-        Image(systemName: "flag.checkered.2.crossed")
-    }
     var title: Text {
         Text("TIP_SIMULATION_TITLE")
     }

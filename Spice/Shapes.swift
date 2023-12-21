@@ -19,13 +19,17 @@ class Component: Identifiable, ObservableObject {
     }
     let id = UUID()
     var value: Any = 0.0
-    var name: String = ""
+    var name: String = "NAME"
     var position: CGPoint = CGPoint.zero
     var orientation: Direction = .top
     var type: String = ""
     var path: Path = Path.init()
     func draw(context: GraphicsContext, zoom: Double = 1.0, style: SymbolStyle = .IEC, cursor: CGPoint, color: Color = Color("CircuitColor"), selected: Bool = false) {
         context.drawLayer { ctx in
+            if type != "W" {
+                let resolved = ctx.resolve(Text(self.name).foregroundStyle(Color("CircuitColor")).font(.footnote))
+                ctx.draw(resolved, at: self.position.placeText(direction: self.orientation), anchor: self.orientation.alignment)
+            }
             ctx.stroke(
                 getPath(self, style: style),
                 with: selected ? .color(.accentColor) : .color(color),
@@ -78,6 +82,10 @@ func getPath(_ c: Component, style: SymbolStyle = .IEC) -> Path {
         return Fuse(center: c.position, orientation: c.orientation).path(in: rect)
     case "I":
         return ISource(center: c.position, orientation: c.orientation, style: style).path(in: rect)
+    case "P":
+        return Lamp(center: c.position, orientation: c.orientation).path(in: rect)
+    case "Amp":
+        return Lamp(center: c.position, orientation: c.orientation).path(in: rect)
     default:
         print("Type not printed because not supported")
         return Path.init()
@@ -278,6 +286,25 @@ struct ISource: Shape {
     }
 }
 
+struct Lamp: Shape {
+    var center: CGPoint
+    var orientation: Direction
+
+    func path(in rect: CGRect) -> Path {
+        var path = Path()
+        path.move(to: CGPoint.zero)
+        path.addLine(to: CGPoint(x: 15, y: 0))
+        path.addRoundedRect(in: CGRect(x: 15, y: -15, width: 30, height: 30), cornerSize: CGSize(width: 200, height: 200))
+        path.move(to: CGPoint(x: 40.607, y: 10.607))
+        path.addLine(to: CGPoint(x: 19.393, y: -10.607))
+        path.move(to: CGPoint(x: 19.393, y: 10.607))
+        path.addLine(to: CGPoint(x: 40.607, y: -10.607))
+        path.move(to: CGPoint(x:45, y:0))
+        path.addLine(to: CGPoint(x: 60, y: 0))
+        return path.direct(center: center, direction: orientation)
+    }
+}
+
 struct Fuse: Shape {
     var center: CGPoint
     var orientation: Direction
@@ -291,9 +318,35 @@ struct Fuse: Shape {
     }
 }
 
+struct Amplifier: Shape {
+    var center: CGPoint
+    var orientation: Direction
+
+    func path(in rect: CGRect) -> Path {
+        var path = Path()
+        path.move(to: CGPoint.zero)
+        path.addLine(to: CGPoint(x: 60, y: 0))
+        path.addRect(CGRect(x: 10, y: -8, width: 40, height: 16))
+        return path.direct(center: center, direction: orientation)
+    }
+}
+
+extension CGPoint {
+    func placeText(direction: Direction) -> CGPoint {
+        switch direction {
+        case .top:
+            return self.applying(CGAffineTransform(translationX: 20, y: 0))
+        case .bottom:
+            return self.applying(CGAffineTransform(translationX: 20, y: 0))
+        default:
+            return self.applying(CGAffineTransform(translationX: 0, y: -20))
+        }
+    }
+}
+
 enum Direction {
     case top, bottom, leading, trailing
-    func getAngle() -> CGFloat {
+    var angle: CGFloat {
         switch self {
         case .top:
             return -.pi/2
@@ -305,10 +358,20 @@ enum Direction {
             return .pi
         }
     }
+    var alignment: UnitPoint {
+        switch self {
+        case .top:
+            return .leading
+        case .bottom:
+            return .leading
+        default:
+            return .center
+        }
+    }
 }
 
 extension Path {
     func direct(center: CGPoint, direction: Direction) -> Path {
-        return self.offsetBy(dx: -30, dy: 0).applying(CGAffineTransform(rotationAngle: direction.getAngle())).offsetBy(dx: center.x, dy: center.y)
+        return self.offsetBy(dx: -30, dy: 0).applying(CGAffineTransform(rotationAngle: direction.angle)).offsetBy(dx: center.x, dy: center.y)
     }
 }

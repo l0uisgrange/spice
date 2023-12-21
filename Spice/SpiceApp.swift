@@ -18,7 +18,7 @@ struct SpiceApp: App {
     @State private var isPresented: Bool = false
     @State private var searchComponent: Bool = false
     @State var zoom: Double = 1.5
-    @State var exporting: Bool = false
+    @State var exporting: Bool = true
     @State var editionMode: String = ""
     @State private var document = SpiceDocument(components: [], wires: [])
     var body: some Scene {
@@ -31,19 +31,6 @@ struct SpiceApp: App {
                 .onAppear {
                     if onBoarded {
                         isPresented.toggle()
-                    }
-                }
-                .fileExporter(
-                    isPresented: $exporting,
-                    document: document,
-                    contentType: .pdf
-                ) { result in
-                    switch result {
-                    case .success(let file):
-                        print(file)
-                        print("Hello world")
-                    case .failure(let error):
-                        print(error)
                     }
                 }
         }.defaultPosition(.center)
@@ -96,7 +83,7 @@ struct SpiceApp: App {
             }
             CommandGroup(after: CommandGroupPlacement.importExport) {
                 Button {
-                    self.exporting.toggle()
+                    self.exporting = true
                 } label: {
                     Text("EXPORT_PDF")
                 }
@@ -104,6 +91,9 @@ struct SpiceApp: App {
         }
         Window("SETTINGS", id: "settings") {
             SettingsView()
+        }.defaultPosition(.center)
+        Window("ANALYSIS", id:"analysis") {
+            AnalysisView()
         }.defaultPosition(.center)
     }
 }

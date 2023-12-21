@@ -81,6 +81,16 @@
         }
       }
     },
+    "ANALYSIS" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Analyse de circuit"
+          }
+        }
+      }
+    },
     "ANSI_IEEE" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -464,6 +474,9 @@
         }
       }
     },
+    "Hours of Sunshine" : {
+
+    },
     "INDUCTOR" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -498,6 +511,9 @@
         }
       }
     },
+    "Month" : {
+
+    },
     "NO_RESULT" : {
       "localizations" : {
         "en" : {
@@ -508,7 +524,7 @@
         },
         "fr" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Aucun résultat"
           }
         }
@@ -782,10 +798,24 @@
       }
     },
     "TIP_SIMULATION_DESCRIPTION" : {
-
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vous pouvez maintenant lancer une simulation sur votre circuit !"
+          }
+        }
+      }
     },
     "TIP_SIMULATION_TITLE" : {
-
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lancer une simulation"
+          }
+        }
+      }
     },
     "TRANSISTOR" : {
       "extractionState" : "manual",

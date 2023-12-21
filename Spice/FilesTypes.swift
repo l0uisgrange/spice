@@ -54,14 +54,29 @@ struct SpiceDocument: FileDocument {
     }
     
     func fileWrapper(configuration: WriteConfiguration) throws -> FileWrapper {
-        var fileContent: String = "* Wires\n"
-        for w in wires {
-            fileContent += "W \(w.start.x) \(w.start.y) \(w.end.x) \(w.end.y)\n"
-        }
-        fileContent += "* Components\n"
-        for c in components {
-            let thisLine: String = "\(c.name) \(c.position.x) \(c.position.y) \(orientationEncoder(c.orientation)) \(c.value)\n"
-            fileContent += thisLine
+        var fileContent: String = ""
+        if configuration.contentType == .pdf {
+            fileContent += "* Wires\n"
+            for w in wires {
+                fileContent += "W \(w.start.x) \(w.start.y) \(w.end.x) \(w.end.y)\n"
+            }
+            fileContent += "* Components\n"
+            for c in components {
+                let thisLine: String = "\(c.type) \(c.position.x) \(c.position.y) \(orientationEncoder(c.orientation)) \(c.value)\n"
+                fileContent += thisLine
+            }
+            return FileWrapper(regularFileWithContents: Data(fileContent.utf8))
+        } else if configuration.contentType == .spice {
+            fileContent += "* Wires\n"
+            for w in wires {
+                fileContent += "W \(w.start.x) \(w.start.y) \(w.end.x) \(w.end.y)\n"
+            }
+            fileContent += "* Components\n"
+            for c in components {
+                let thisLine: String = "\(c.name) \(c.position.x) \(c.position.y) \(orientationEncoder(c.orientation)) \(c.value)\n"
+                fileContent += thisLine
+            }
+            return FileWrapper(regularFileWithContents: Data(fileContent.utf8))
         }
         return FileWrapper(regularFileWithContents: Data(fileContent.utf8))
     }
