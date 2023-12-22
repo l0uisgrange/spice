@@ -40,7 +40,12 @@ For more information on how this works, see the documentation 📚 [Wiki](https:
 
 ## Suggestions
 
-Check out my roadmap to see what I'm working on. You can also suggest new features, bug fixes or improvements to existing features by creating a new issue!
+Check out the following roadmap to see what I'm working on. You can also suggest new features, bug fixes or improvements to existing features by creating a new issue!
+
+- [x] Circuit drawing ✍️
+- [ ] Circuit simulation 🖲️
+- [ ] Circuit analysis ⏱️
+- [ ] App update and installation ⏳
 
 ## About me 👀
 
