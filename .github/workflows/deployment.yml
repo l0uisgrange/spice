@@ -1,4 +1,4 @@
-name: "Deployment"
+name: "App Store deployment"
 on:
   release:
     types: [published]
