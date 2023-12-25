@@ -8,8 +8,6 @@
 
 Spice 🌶️ is a native macOS electronic circuit simulator that rivals LTSpice and other legacy software 🤮. It has a new, modern interface ⭐️ with easy-to-use features and smooth performance. Totally free and open source.
 
-<img width="600" alt="capture" src="https://github.com/l0uisgrange/spice/assets/70532216/cc9754d7-da0a-45db-a3ec-5ad95011e7d8">
-
 ## Getting started
 
 You can download the [latest version](https://github.com/l0uisgrange/spice/releases/latest) and run it directly.
@@ -22,23 +20,32 @@ Spice only runs on **macOS Sonoma** 14.0+ and currently supports the following l
 - 🇩🇪 German
 - 🇮🇹 Italian
 
-As I am just a human being like you, I would really appreciate your help in correcting translations into your language. Please open an issue to start.
+As I am just a human being like you, I would really appreciate your help in correcting translations into your language. Please [open an issue](https://github.com/l0uisgrange/spice/issues/new/choose) to start.
 
 ## File format
 
-Spice supports the original SPICE netlists (files), developed in 1975 and widely used for circuit simulation. However, it mainly uses it's own `.spice` format, which looks like this:
+Spice is planned 📋 to support the universal SPICE netlists (files), developed in 1975 and widely used for circuit simulation. However, it mainly uses it's own `.sp` format, which looks like this:
 
 ```text
-* Data statements
-R1 0 10 T 100
-V1 0 10 B DC 150
+* Wires
+W -40.0 -110.0 50.0 -110.0
+W -40.0 -130.0 50.0 -130.0
+* Components
+R 0.0 -70.0 X 0.0
+L -80.0 -10.0 T 0.0
+C 120.0 -70.0 X 0.0
 ```
 
-For more information on how this works, see the documentation [Wiki](https://github.com/l0uisgrange/spice/wiki).
+For more information on how this works, see the documentation 📚 [Wiki](https://github.com/l0uisgrange/spice/wiki).
 
 ## Suggestions
 
-Check out my roadmap to see what I'm working on. You can also suggest new features, bug fixes or improvements to existing features by creating a new issue!
+Check out the following roadmap to see what I'm working on. You can also suggest new features, bug fixes or improvements to existing features by creating a new issue!
+
+- [x] Circuit drawing ✍️
+- [ ] Circuit simulation 🖲️
+- [ ] Circuit analysis ⏱️
+- [ ] App update and installation ⏳
 
 ## About me 👀
 
