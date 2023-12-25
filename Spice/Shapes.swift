@@ -28,7 +28,7 @@ class Component: Identifiable, ObservableObject {
         context.drawLayer { ctx in
             if type != "W" {
                 let resolved = ctx.resolve(Text(self.name).foregroundStyle(Color("CircuitColor")).font(.footnote))
-                ctx.draw(resolved, at: self.position.placeText(direction: self.orientation), anchor: self.orientation.alignment)
+                ctx.draw(resolved, at: self.position.applying(self.path.placeText(direction: self.orientation)), anchor: self.orientation.alignment)
             }
             ctx.stroke(
                 getPath(self, style: style),
@@ -64,30 +64,31 @@ class Wire: Identifiable {
 }
 
 func getPath(_ c: Component, style: SymbolStyle = .IEC) -> Path {
-    let rect: CGRect = CGRect(x: c.position.x, y: c.position.y-8, width: 60, height: 16)
+    let smallRect: CGRect = CGRect(x: c.position.x, y: c.position.y-8, width: 60, height: 16)
+    let mediumRect: CGRect = CGRect(x: c.position.x, y: c.position.y-15, width: 60, height: 30)
     switch c.type {
     case "R":
-        return Resistor(center: c.position, orientation: c.orientation, style: style).path(in: rect)
+        return Resistor(center: c.position, orientation: c.orientation, style: style).path(in: smallRect)
     case "L":
-        return Inductor(center: c.position, orientation: c.orientation, style: style).path(in: rect)
+        return Inductor(center: c.position, orientation: c.orientation, style: style).path(in: smallRect)
     case "C":
-        return Capacitor(center: c.position, orientation: c.orientation, style: style).path(in: rect)
+        return Capacitor(center: c.position, orientation: c.orientation, style: style).path(in: smallRect)
     case "D":
-        return Diode(center: c.position, orientation: c.orientation, style: style).path(in: rect)
+        return Diode(center: c.position, orientation: c.orientation, style: style).path(in: smallRect)
     case "V":
-        return VSource(center: c.position, orientation: c.orientation, style: style).path(in: rect)
+        return VSource(center: c.position, orientation: c.orientation, style: style).path(in: smallRect)
     case "A":
-        return ACVSource(center: c.position, orientation: c.orientation).path(in: rect)
+        return ACVSource(center: c.position, orientation: c.orientation).path(in: smallRect)
     case "F":
-        return Fuse(center: c.position, orientation: c.orientation).path(in: rect)
+        return Fuse(center: c.position, orientation: c.orientation).path(in: smallRect)
     case "I":
-        return ISource(center: c.position, orientation: c.orientation, style: style).path(in: rect)
+        return ISource(center: c.position, orientation: c.orientation, style: style).path(in: smallRect)
     case "P":
-        return Lamp(center: c.position, orientation: c.orientation).path(in: rect)
-    case "Amp":
-        return Lamp(center: c.position, orientation: c.orientation).path(in: rect)
+        return Lamp(center: c.position, orientation: c.orientation).path(in: smallRect)
+    case "AMP":
+        return Amplifier(center: c.position, orientation: c.orientation, style: style).path(in: mediumRect)
     default:
-        print("Type not printed because not supported")
+        print("Type \(c.type) not displayed because not supported")
         return Path.init()
     }
 }
@@ -193,7 +194,7 @@ struct VSource: Shape {
             var path = Path()
             path.move(to: CGPoint.zero)
             path.addLine(to: CGPoint(x: 15, y: 0))
-            path.addRoundedRect(in: CGRect(x: 15, y: -15, width: 30, height: 30), cornerSize: CGSize(width: 200, height: 200))
+            path.addEllipse(in: CGRect(x: 15, y: -15, width: 30, height: 30))
             path.move(to: CGPoint(x: 20, y: 0))
             path.addLine(to: CGPoint(x: 27.5, y: 0))
             path.move(to: CGPoint(x: 23.75, y: 3.75))
@@ -207,7 +208,7 @@ struct VSource: Shape {
             var path = Path()
             path.move(to: CGPoint.zero)
             path.addLine(to: CGPoint(x: 60, y: 0))
-            path.addRoundedRect(in: CGRect(x: 15, y: -15, width: 30, height: 30), cornerSize: CGSize(width: 200, height: 200))
+            path.addEllipse(in: CGRect(x: 15, y: -15, width: 30, height: 30))
             return path.direct(center: center, direction: orientation)
         }
     }
@@ -321,25 +322,61 @@ struct Fuse: Shape {
 struct Amplifier: Shape {
     var center: CGPoint
     var orientation: Direction
+    var style: SymbolStyle = .IEC
 
     func path(in rect: CGRect) -> Path {
-        var path = Path()
-        path.move(to: CGPoint.zero)
-        path.addLine(to: CGPoint(x: 60, y: 0))
-        path.addRect(CGRect(x: 10, y: -8, width: 40, height: 16))
-        return path.direct(center: center, direction: orientation)
+        switch style {
+        case .ANSI_IEEE:
+            var path = Path()
+            path.move(to: CGPoint(x:0,y:-10))
+            path.addLine(to: CGPoint(x: 10, y: -10))
+            path.move(to: CGPoint(x:0,y:10))
+            path.addLine(to: CGPoint(x: 10, y: 10))
+            path.move(to: CGPoint(x:10,y:-20))
+            path.addLine(to: CGPoint(x: 10, y: 20))
+            path.move(to: CGPoint(x:10,y:20))
+            path.addLine(to: CGPoint(x: 50, y: 0))
+            path.move(to: CGPoint(x:10,y:-20))
+            path.addLine(to: CGPoint(x: 50, y: 0))
+            path.addLine(to: CGPoint(x: 60, y: 0))
+            // SIGNS
+            path.move(to: CGPoint(x: 12.5, y: 10))
+            path.addLine(to: CGPoint(x: 20, y: 10))
+            path.move(to: CGPoint(x: 12.5, y: -10))
+            path.addLine(to: CGPoint(x: 20, y: -10))
+            path.move(to: CGPoint(x: 16.25, y: -6.25))
+            path.addLine(to: CGPoint(x: 16.25, y: -13.75))
+            return path.direct(center: center, direction: orientation)
+        default:
+            var path = Path()
+            path.move(to: CGPoint(x: 0, y: -10))
+            path.addLine(to: CGPoint(x: 10, y: -10))
+            path.move(to: CGPoint(x: 0, y: 10))
+            path.addLine(to: CGPoint(x: 10, y: 10))
+            path.addRect(CGRect(x: 10, y: -20, width: 40, height: 40))
+            path.move(to: CGPoint(x: 50, y:0))
+            path.addLine(to: CGPoint(x: 60, y: 0))
+            // SIGNS
+            path.move(to: CGPoint(x: 12.5, y: 10))
+            path.addLine(to: CGPoint(x: 20, y: 10))
+            path.move(to: CGPoint(x: 12.5, y: -10))
+            path.addLine(to: CGPoint(x: 20, y: -10))
+            path.move(to: CGPoint(x: 16.25, y: -6.25))
+            path.addLine(to: CGPoint(x: 16.25, y: -13.75))
+            return path.direct(center: center, direction: orientation)
+        }
     }
 }
 
-extension CGPoint {
-    func placeText(direction: Direction) -> CGPoint {
+extension Path {
+    func placeText(direction: Direction) -> CGAffineTransform {
         switch direction {
         case .top:
-            return self.applying(CGAffineTransform(translationX: 20, y: 0))
+            return CGAffineTransform(translationX: self.boundingRect.width/2+5, y: 0)
         case .bottom:
-            return self.applying(CGAffineTransform(translationX: 20, y: 0))
+            return CGAffineTransform(translationX: self.boundingRect.width/2+5, y: 0)
         default:
-            return self.applying(CGAffineTransform(translationX: 0, y: -20))
+            return CGAffineTransform(translationX: 0, y: self.boundingRect.height/2+10)
         }
     }
 }
