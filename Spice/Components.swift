@@ -78,3 +78,39 @@ struct SideBarView: View {
         }
     }
 }
+
+struct MenuButton: ButtonStyle {
+    @State var hover: Bool = false
+    var funcName: String = ""
+    var command: String = ""
+    func makeBody(configuration: Configuration) -> some View {
+        ZStack {
+            configuration.label
+                .padding(3)
+                .onHover(perform: { hovering in
+                    self.hover = hovering
+                })
+                .background(hover ? Color("ButtonHover") : nil)
+                .clipShape(RoundedRectangle(cornerRadius: 7))
+            if hover && funcName != "" {
+                VStack {
+                    Spacer()
+                    HStack {
+                        Text(LocalizedStringKey(funcName))
+                            .lineLimit(1)
+                        if command != "" {
+                            Text(command)
+                                .opacity(0.5)
+                        }
+                    }.aspectRatio(contentMode: .fill)
+                    .padding(.vertical, 5)
+                    .padding(.horizontal, 10)
+                    .background(Color("AccentDark"))
+                    .foregroundStyle(.white)
+                    .overlay(RoundedRectangle(cornerRadius: 7).stroke())
+                    .clipShape(RoundedRectangle(cornerRadius: 7))
+                }.frame(height: 90)
+            }
+        }.frame(width: 30)
+    }
+}

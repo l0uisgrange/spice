@@ -16,6 +16,7 @@ struct SpiceDocument: FileDocument {
     static var readableContentTypes: [UTType] = [.spice]
     static var writableContentTypes: [UTType] = [.spice, .pdf]
     
+    var text: String = ""
     var components: [Component] = []
     var wires: [Wire] = []
     
@@ -27,6 +28,7 @@ struct SpiceDocument: FileDocument {
     init(configuration: ReadConfiguration) throws {
         if let data = configuration.file.regularFileContents {
             let text = String(decoding: data, as: UTF8.self)
+            self.text = text
             let fileLines = text.components(separatedBy: "\n")
             for line in fileLines {
                 let lineDataset = line.components(separatedBy: " ")

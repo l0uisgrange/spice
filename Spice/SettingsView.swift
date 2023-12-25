@@ -71,7 +71,7 @@ struct SettingsView: View {
                     }.buttonStyle(.borderedProminent)
                 }
             }.toolbarRole(.automatic)
-            .toolbarBackground(Color("ToolbarBackground"), for: .windowToolbar)
+                .toolbarBackground(Color("ToolbarBackground"))
         }
     }
 }

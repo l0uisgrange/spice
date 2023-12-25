@@ -29,41 +29,53 @@ struct ContentView: View {
     var body: some View {
         VStack(spacing: 0) {
             Divider()
-            GeometryReader { geometry in
-                ZStack(alignment: .topTrailing) {
-                    CanvasView(geometry: geometry, origin: $origin, zoom: $zoom, components: $document.components, wires: $document.wires, editionMode: $editionMode, orientationMode: $orientationMode, selectedComponents: $selectedComponents)
-                        .task {
-                            if checkUpdate {
-                                updateAvailable = await checkForUpdate()
+            HStack(spacing: 0) {
+                VStack {
+                    Button {
+                        
+                    } label: {
+                        Image("plus")
+                    }
+                    Spacer()
+                }.padding(10)
+                .background(Color("CanvasBackgroundDarker"))
+                Divider()
+                GeometryReader { geometry in
+                    ZStack(alignment: .topTrailing) {
+                        CanvasView(geometry: geometry, origin: $origin, zoom: $zoom, components: $document.components, wires: $document.wires, editionMode: $editionMode, orientationMode: $orientationMode, selectedComponents: $selectedComponents)
+                            .task {
+                                if checkUpdate {
+                                    updateAvailable = await checkForUpdate()
+                                }
                             }
+                        HStack(alignment: .top) {
+                            SideBarView(editionMode: $editionMode, addComponent: $addComponent)
+                            if addComponent {
+                                SearchView(isPresented: $addComponent, editionMode: $editionMode)
+                                    .transition(.scale)
+                            }
+                            Spacer()
+                        }.padding(20)
+                    }
+                }.contextMenu {
+                    VStack {
+                        Button(action: {}) {
+                            Text("Edit")
                         }
-                    HStack(alignment: .top) {
-                        SideBarView(editionMode: $editionMode, addComponent: $addComponent)
-                        if addComponent {
-                            SearchView(isPresented: $addComponent, editionMode: $editionMode)
-                                .transition(.scale)
+                        Button(role: .destructive, action: {}) {
+                            Text("Delete")
                         }
-                        Spacer()
-                    }.padding(20)
+                    }.background(Color("CanvasBackground"))
+                    .clipShape(RoundedRectangle(cornerRadius: 10))
                 }
             }
-            .contextMenu {
-                Button(action: {}) {
-                    Text("Edit")
-                }
-                Button(role: .destructive, action: {}) {
-                    Text("Delete")
-                }
-            }
-            /*
-            Divider()
+            /*Divider()
             HStack {
                 Text("Sauvegardé il y a 3 minutes")
                 Spacer()
             }.padding(.vertical, 10)
             .padding(.horizontal, 20)
-            .background(Color("CanvasBackground"))
-             */
+            .background(Color("CanvasBackgroundDarker"))*/
         }.toolbar {
             ToolbarItemGroup(placement: .principal) {
                 Button {
@@ -79,7 +91,7 @@ struct ContentView: View {
                     }
                 } label: {
                     Label("ROTATE", image: "rotate.backwards")
-                }
+                }.buttonStyle(MenuButton(funcName: "ROTATE"))
             }
             ToolbarItemGroup(placement: .status) {
                 Button {
@@ -88,20 +100,21 @@ struct ContentView: View {
                     }
                 } label: {
                     Label("ZOOM_OUT", image: "zoom.out")
-                }.help("ZOOM_OUT")
+                }.buttonStyle(MenuButton(funcName: "ZOOM_OUT"))
                 Button {
                     if(zoom <= 2.5) {
                         zoom += 0.5
                     }
                 } label: {
                     Label("ZOOM_IN", image: "zoom.in")
-                }.help("ZOOM_IN")
+                }.buttonStyle(MenuButton(funcName: "ZOOM_IN"))
                 Button {
                     origin = CGPoint.zero
                     zoom = 1.5
                 } label: {
                     Label("FOCUS", image: "focus")
                 }.help("FOCUS")
+                .buttonStyle(MenuButton(funcName: "FOCUS"))
                 Spacer()
             }
             ToolbarItemGroup(placement: .primaryAction) {
@@ -111,14 +124,13 @@ struct ContentView: View {
                     }
                 } label: {
                     Label("SHARE", image: "share")
-                }.help("SHARE")
+                }.buttonStyle(MenuButton(funcName: "SHARE"))
                 Button {
                     openWindow(id: "analysis")
                 } label: {
                     Label("RUN", image: "lightning")
-                }.help("RUN")
-                .disabled(true)
-                .popoverTip(favoriteLandmarkTip)
+                }.popoverTip(favoriteLandmarkTip)
+                .buttonStyle(MenuButton(funcName: "RUN"))
             }
         }.toolbarRole(.editor)
         .toolbarBackground(Color("ToolbarBackground"))

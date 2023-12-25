@@ -65,6 +65,22 @@
         }
       }
     },
+    "ADD_GRAPH" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add a graph"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Ajouter un graphe"
+          }
+        }
+      }
+    },
     "alpha" : {
       "localizations" : {
         "en" : {
@@ -81,11 +97,34 @@
         }
       }
     },
-    "ANALYSIS" : {
+    "AMPLIFIER" : {
+      "extractionState" : "manual",
       "localizations" : {
-        "fr" : {
+        "en" : {
           "stringUnit" : {
             "state" : "translated",
+            "value" : "Amplifier"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Amplificateur"
+          }
+        }
+      }
+    },
+    "ANALYSIS" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Circuit analysis"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
             "value" : "Analyse de circuit"
           }
         }
@@ -511,6 +550,23 @@
         }
       }
     },
+    "LAMP" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lamp"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Lampe"
+          }
+        }
+      }
+    },
     "Month" : {
 
     },
@@ -799,9 +855,15 @@
     },
     "TIP_SIMULATION_DESCRIPTION" : {
       "localizations" : {
-        "fr" : {
+        "en" : {
           "stringUnit" : {
             "state" : "translated",
+            "value" : "Run a simulation"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
             "value" : "Vous pouvez maintenant lancer une simulation sur votre circuit !"
           }
         }
@@ -809,9 +871,15 @@
     },
     "TIP_SIMULATION_TITLE" : {
       "localizations" : {
-        "fr" : {
+        "en" : {
           "stringUnit" : {
             "state" : "translated",
+            "value" : "Click on this button to run your first simulation"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
             "value" : "Lancer une simulation"
           }
         }
@@ -836,9 +904,15 @@
     },
     "UPDATE_FOOTER" : {
       "localizations" : {
-        "fr" : {
+        "en" : {
           "stringUnit" : {
             "state" : "translated",
+            "value" : "The app automatically checks to see if it's up to date every time it starts."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
             "value" : "L'application vérifiera automatiquement à chaque lancement qu'elle est à jour"
           }
         }

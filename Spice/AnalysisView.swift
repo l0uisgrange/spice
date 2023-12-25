@@ -45,9 +45,10 @@ struct AnalysisView: View {
         .navigationTitle("ANALYSIS")
         .toolbar {
             ToolbarItem {
-                Link(destination: URL(string: "https://github.com/l0uisgrange/spice")!) {
-                    Label("GitHub", image: "github")
-                }.buttonStyle(.borderedProminent)
+                Button {
+                } label: {
+                    Label("ADD_GRAPH", image: "plus")
+                }.help("ADD_GRAPH")
             }
         }.toolbarRole(.automatic)
         .toolbarBackground(Color("ToolbarBackground"), for: .windowToolbar)
