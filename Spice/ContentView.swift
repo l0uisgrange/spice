@@ -31,14 +31,20 @@ struct ContentView: View {
             Divider()
             HStack(spacing: 0) {
                 VStack {
+                    Spacer()
                     Button {
-                        
+                        print("Pressed")
                     } label: {
                         Image("plus")
-                    }
-                    Spacer()
+                    }.buttonStyle(MenuButton(funcName: "WFWIOFHWIUE", alignment: .trailing))
+                    Button {
+                        print("Pressed")
+                    } label: {
+                        Image("plus")
+                    }.buttonStyle(MenuButton(funcName: "PLUS", alignment: .trailing))
                 }.padding(10)
                 .background(Color("CanvasBackgroundDarker"))
+                .zIndex(10.0)
                 Divider()
                 GeometryReader { geometry in
                     ZStack(alignment: .topTrailing) {
@@ -113,8 +119,7 @@ struct ContentView: View {
                     zoom = 1.5
                 } label: {
                     Label("FOCUS", image: "focus")
-                }.help("FOCUS")
-                .buttonStyle(MenuButton(funcName: "FOCUS"))
+                }.buttonStyle(MenuButton(funcName: "FOCUS"))
                 Spacer()
             }
             ToolbarItemGroup(placement: .primaryAction) {
@@ -128,9 +133,9 @@ struct ContentView: View {
                 Button {
                     openWindow(id: "analysis")
                 } label: {
-                    Label("RUN", image: "lightning")
+                    Label("RUN", image: "play")
                 }.popoverTip(favoriteLandmarkTip)
-                .buttonStyle(MenuButton(funcName: "RUN"))
+                .buttonStyle(MenuButton(funcName: "RUN", alignment: .bottomTrailing))
             }
         }.toolbarRole(.editor)
         .toolbarBackground(Color("ToolbarBackground"))

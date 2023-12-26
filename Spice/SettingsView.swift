@@ -68,7 +68,7 @@ struct SettingsView: View {
                 ToolbarItem {
                     Link(destination: URL(string: "https://github.com/l0uisgrange/spice")!) {
                         Label("GitHub", image: "github")
-                    }.buttonStyle(.borderedProminent)
+                    }.buttonStyle(MenuButton())
                 }
             }.toolbarRole(.automatic)
                 .toolbarBackground(Color("ToolbarBackground"))

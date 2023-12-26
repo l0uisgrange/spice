@@ -83,18 +83,19 @@ struct MenuButton: ButtonStyle {
     @State var hover: Bool = false
     var funcName: String = ""
     var command: String = ""
+    @State var size: CGSize = CGSizeZero
+    var alignment: Alignment = .bottom
     func makeBody(configuration: Configuration) -> some View {
         ZStack {
             configuration.label
-                .padding(3)
+                .padding(4)
                 .onHover(perform: { hovering in
                     self.hover = hovering
                 })
                 .background(hover ? Color("ButtonHover") : nil)
                 .clipShape(RoundedRectangle(cornerRadius: 7))
             if hover && funcName != "" {
-                VStack {
-                    Spacer()
+                HStack {
                     HStack {
                         Text(LocalizedStringKey(funcName))
                             .lineLimit(1)
@@ -103,14 +104,39 @@ struct MenuButton: ButtonStyle {
                                 .opacity(0.5)
                         }
                     }.aspectRatio(contentMode: .fill)
+                    .saveSize(in: $size)
                     .padding(.vertical, 5)
                     .padding(.horizontal, 10)
                     .background(Color("AccentDark"))
                     .foregroundStyle(.white)
-                    .overlay(RoundedRectangle(cornerRadius: 7).stroke())
                     .clipShape(RoundedRectangle(cornerRadius: 7))
-                }.frame(height: 90)
+                }.offset(x: alignment == .trailing ? size.width/2.0+45.0 :
+                            alignment == .bottomTrailing ? -size.width/2.0+5.0 : 0.0,
+                         y: alignment == .trailing ? 2 : 50.0)
+                .zIndex(3.0)
             }
-        }.frame(width: 30)
+        }.frame(width: 30, height: 30, alignment: .center)
+    }
+}
+
+
+struct SizeCalculator: ViewModifier {
+    @Binding var size: CGSize
+    func body(content: Content) -> some View {
+        content
+            .background(
+                GeometryReader { proxy in
+                    Color.clear // we just want the reader to get triggered, so let's use an empty color
+                        .onAppear {
+                            size = proxy.size
+                        }
+                }
+            )
+    }
+}
+
+extension View {
+    func saveSize(in size: Binding<CGSize>) -> some View {
+        modifier(SizeCalculator(size: size))
     }
 }

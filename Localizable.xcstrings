@@ -75,7 +75,7 @@
         },
         "fr" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Ajouter un graphe"
           }
         }
@@ -108,7 +108,7 @@
         },
         "fr" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Amplificateur"
           }
         }
@@ -124,7 +124,7 @@
         },
         "fr" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Analyse de circuit"
           }
         }
@@ -429,6 +429,22 @@
         }
       }
     },
+    "GITHUB_PAGE" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "GitHub"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "GitHub"
+          }
+        }
+      }
+    },
     "GRID" : {
       "localizations" : {
         "de" : {
@@ -561,7 +577,7 @@
         },
         "fr" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Lampe"
           }
         }
@@ -728,6 +744,22 @@
         }
       }
     },
+    "REPORT_BUG" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Report a bug"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Signaler un problème"
+          }
+        }
+      }
+    },
     "RESISTOR" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -863,7 +895,7 @@
         },
         "fr" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Vous pouvez maintenant lancer une simulation sur votre circuit !"
           }
         }
@@ -879,7 +911,7 @@
         },
         "fr" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Lancer une simulation"
           }
         }
@@ -912,7 +944,7 @@
         },
         "fr" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "L'application vérifiera automatiquement à chaque lancement qu'elle est à jour"
           }
         }
@@ -987,6 +1019,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Source de tension"
+          }
+        }
+      }
+    },
+    "WIKI" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wiki"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wiki"
           }
         }
       }

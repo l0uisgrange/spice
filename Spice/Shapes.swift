@@ -14,7 +14,7 @@ class Component: Identifiable, ObservableObject {
         self.orientation = orientation
         self.type = type
         self.value = value
-        self.name = NSLocalizedString(name, comment: "")
+        self.name = String(localized: LocalizedStringResource(stringLiteral: name))
         self.path = getPath(self)
     }
     let id = UUID()
@@ -33,7 +33,7 @@ class Component: Identifiable, ObservableObject {
             ctx.stroke(
                 getPath(self, style: style),
                 with: selected ? .color(.accentColor) : .color(color),
-                lineWidth: 1/zoom
+                lineWidth: 1.1/zoom
             )
             if type == "L" && style == .IEC {
                 ctx.fill(

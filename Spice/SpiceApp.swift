@@ -22,14 +22,15 @@ struct SpiceApp: App {
     @State var editionMode: String = ""
     @State private var document = SpiceDocument(components: [], wires: [])
     var body: some Scene {
-        DocumentGroup(newDocument: SpiceDocument(components: [], wires: [])) { file in
-            ContentView(document: file.$document, zoom: $zoom, addComponent: $searchComponent, editionMode: $editionMode, exporting: $exporting)
+        DocumentGroup(newDocument: SpiceDocument(components: [], wires: [])) { configuration in
+            ContentView(document: configuration.$document, zoom: $zoom, addComponent: $searchComponent, editionMode: $editionMode, exporting: $exporting)
                 .frame(minWidth: 700, idealWidth: 900, minHeight: 500, idealHeight: 700)
                 .sheet(isPresented: $isPresented) {
                     OnBoardingView(isPresented: $isPresented)
                 }
+                .toolbarBackground(Color("ToolbarBackground"), for: .windowToolbar)
                 .onAppear {
-                    if onBoarded {
+                    if !onBoarded {
                         isPresented.toggle()
                     }
                 }
@@ -72,7 +73,7 @@ struct SpiceApp: App {
                 } label: {
                     Text("RUN_SIMULATION")
                 }.keyboardShortcut("R")
-                    .disabled(true)
+                .disabled(true)
             }
             CommandGroup(after: CommandGroupPlacement.appSettings) {
                 Button {
@@ -86,6 +87,19 @@ struct SpiceApp: App {
                     self.exporting = true
                 } label: {
                     Text("EXPORT_PDF")
+                }
+            }
+            CommandGroup(replacing: .help) {
+                Group {
+                    Link("GITHUB_PAGE", destination: URL(
+                        string: "https://github.com/l0uisgrange/spice")!)
+                    Link("HELP_BEGIN", destination: URL(
+                        string: "https://github.com/l0uisgrange/spice/wiki")!)
+                }
+                Divider()
+                Group {
+                    Link("REPORT_BUG", destination: URL(
+                        string: "https://github.com/l0uisgrange/spice/issues/new/choose")!)
                 }
             }
         }
