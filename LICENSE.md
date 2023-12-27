@@ -19,7 +19,7 @@ Licensor receives from making the Licensed Material available under
 these terms and conditions.
 
 
-## Section 1 -- Definitions
+## Section 1 - Definitions
 
   a. Adapted Material means material subject to Copyright and Similar
      Rights that is derived from or based upon the Licensed Material
@@ -87,7 +87,7 @@ these terms and conditions.
      under this Public License. Your has a corresponding meaning.
 
 
-## Section 2 -- Scope
+## Section 2 - Scope
 
   a. License grant.
 
@@ -167,7 +167,7 @@ these terms and conditions.
           purposes.
 
 
-## Section 3 -- License Conditions
+## Section 3 - License Conditions
 
 Your exercise of the Licensed Rights is expressly made subject to the
 following conditions.
@@ -217,7 +217,7 @@ following conditions.
           reasonably practicable.
 
 
-## Section 4 -- Sui Generis Database Rights
+## Section 4 - Sui Generis Database Rights
 
 Where the Licensed Rights include Sui Generis Database Rights that
 apply to Your use of the Licensed Material:
@@ -240,7 +240,7 @@ replace Your obligations under this Public License where the Licensed
 Rights include other Copyright and Similar Rights.
 
 
-## Section 5 -- Disclaimer of Warranties and Limitation of Liability
+## Section 5 - Disclaimer of Warranties and Limitation of Liability
 
   a. UNLESS OTHERWISE SEPARATELY UNDERTAKEN BY THE LICENSOR, TO THE
      EXTENT POSSIBLE, THE LICENSOR OFFERS THE LICENSED MATERIAL AS-IS
@@ -269,7 +269,7 @@ Rights include other Copyright and Similar Rights.
      waiver of all liability.
 
 
-## Section 6 -- Term and Termination
+## Section 6 - Term and Termination
 
   a. This Public License applies for the term of the Copyright and
      Similar Rights licensed here. However, if You fail to comply with
@@ -308,7 +308,7 @@ Rights include other Copyright and Similar Rights.
      independent of the terms and conditions of this Public License.
 
 
-## Section 8 -- Interpretation
+## Section 8 - Interpretation
 
   a. For the avoidance of doubt, this Public License does not, and
      shall not be interpreted to, reduce, limit, restrict, or impose
