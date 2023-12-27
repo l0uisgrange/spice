@@ -1,16 +1,11 @@
-name: "App Store deployment"
+name: App Store deployment
 on:
   release:
     types: [published]
     branches: ["main"]
-  workflow_dispatch:
-    inputs:
-        tags:
-          description: 'Test scenario tags'
-          required: false
-          type: boolean
 jobs:
   build:
+    name: Build executable
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v3
