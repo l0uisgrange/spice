@@ -1,12 +1,14 @@
 ![](https://img.shields.io/github/downloads/l0uisgrange/spice/total)
-![](https://img.shields.io/github/v/release/l0uisgrange/spice)
+![](https://img.shields.io/github/v/release/l0uisgrange/spice?label=production)
+![](https://img.shields.io/github/v/tag/l0uisgrange/spice?label=development)
 ![](https://img.shields.io/github/issues/l0uisgrange/spice)
+
 
 <img src="https://github.com/l0uisgrange/spice/assets/70532216/7f39514e-b40a-4744-b328-4aff1338e34c" width="45" align="left">
 
 # Spice circuit simulator
 
-Spice 🌶️ is a native macOS electronic circuit simulator that rivals LTSpice and other legacy software 🤮. It has a new, modern interface ⭐️ with easy-to-use features and smooth performance. Totally free and open source.
+Introducing Spice 🌶️, your native macOS electronic circuit simulator. It rivals legacy softwares 🤮, but with a new, modern interface ⭐️ with easy-to-use features and smooth performance. Totally free and open source.
 
 ## Getting started
 
