@@ -1,4 +1,12 @@
-# Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International Public License
+<div style="display: flex;">
+<img width="30" src="https://github.com/l0uisgrange/spice/assets/70532216/c5f95c98-1cb6-4219-899c-74be020b8769">
+<img width="30" src="https://github.com/l0uisgrange/spice/assets/70532216/e6f3ca6f-51f0-4e88-a573-528987391962">
+<img width="30" src="https://github.com/l0uisgrange/spice/assets/70532216/27233635-680e-463d-beff-2d283df99bad">
+<img width="30" src="https://github.com/l0uisgrange/spice/assets/70532216/eecf491e-006c-4afb-ab0d-6518570d7dc3">
+</div>
+
+# CC BY-NC-ND 4.0
+### Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International Public License
 
 By exercising the Licensed Rights (defined below), You accept and agree
 to be bound by the terms and conditions of this Creative Commons
@@ -328,7 +336,7 @@ Rights include other Copyright and Similar Rights.
 Creative Commons is not a party to its public
 licenses. Notwithstanding, Creative Commons may elect to apply one of
 its public licenses to material it publishes and in those instances
-will be considered the â€œLicensor.â€ The text of the Creative Commons
+will be considered the "Licensor". The text of the Creative Commons
 public licenses is dedicated to the public domain under the CC0 Public
 Domain Dedication. Except for the limited purpose of indicating that
 material is shared under a Creative Commons public license or as
