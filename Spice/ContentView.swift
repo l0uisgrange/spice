@@ -39,7 +39,7 @@ struct ContentView: View {
                         Image(showBottom ? "sidebar.bottom.close" : "sidebar.bottom.open")
                     }.buttonStyle(MenuButton(funcName: "GRAPH", alignment: .trailing))
                 }.padding(10)
-                .background(Color("CanvasBackground"))
+                .background(Color("ToolbarBackground"))
                 .zIndex(10.0)
                 Divider()
                 VSplitView {
@@ -59,6 +59,22 @@ struct ContentView: View {
                                             }
                                         }
                                 )
+                            /*HStack {
+                                Button {
+                                    
+                                } label: {
+                                    Image("trash")
+                                        .resizable()
+                                        .frame(width: 20, height: 20)
+                                }.buttonStyle(MenuButton())
+                                .foregroundStyle(Color("DarkerRed"))
+                            }.padding(5)
+                            .background(Color("ToolbarBackground"))
+                            .clipShape(RoundedRectangle(cornerRadius: 10))
+                            .overlay {
+                                RoundedRectangle(cornerRadius: 10)
+                                    .stroke(.gray.opacity(0.35))
+                            }*/
                             HStack(alignment: .top) {
                                 SideBarView(editionMode: $editionMode, addComponent: $addComponent)
                                 if addComponent {

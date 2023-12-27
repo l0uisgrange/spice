@@ -34,6 +34,7 @@ struct SpiceApp: App {
                     if !onBoarded {
                         isPresented.toggle()
                     }
+                    NSWindow.allowsAutomaticWindowTabbing = false
                 }
         }.defaultPosition(.center)
         .commands {

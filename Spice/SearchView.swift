@@ -26,7 +26,9 @@ struct SearchView: View {
         ComponentType("FUSE", type: "F"),
         ComponentType("ACVSOURCE", type: "A"),
         ComponentType("LAMP", type: "P"),
-        ComponentType("AMPLIFIER", type: "AMP")
+        ComponentType("AMPLIFIER", type: "AMP"),
+        ComponentType("GROUND", type: "GND"),
+        ComponentType("EARTH", type: "ETH")
     ]
     @FocusState var isFocusOn: Bool
     var body: some View {

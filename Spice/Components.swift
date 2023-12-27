@@ -94,6 +94,7 @@ struct MenuButton: ButtonStyle {
                 })
                 .background(hover ? Color("ButtonHover") : nil)
                 .clipShape(RoundedRectangle(cornerRadius: 7))
+                .foregroundStyle(.primary)
             if hover && funcName != "" {
                 HStack {
                     HStack {

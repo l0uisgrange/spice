@@ -30,17 +30,15 @@ class Component: Identifiable, ObservableObject {
                 let resolved = ctx.resolve(Text(self.name).foregroundStyle(Color("CircuitColor")).font(.footnote))
                 ctx.draw(resolved, at: self.position.applying(self.path.placeText(direction: self.orientation)), anchor: self.orientation.alignment)
             }
+            ctx.fill(
+                self.path,
+                with: .color(Color("CanvasBackground"))
+            )
             ctx.stroke(
                 getPath(self, style: style),
                 with: selected ? .color(.accentColor) : .color(color),
-                lineWidth: 1.1/zoom
+                lineWidth: 0.75/zoom
             )
-            if type == "L" && style == .IEC {
-                ctx.fill(
-                    self.path,
-                    with: .color(color)
-                )
-            }
             if selected {
                 ctx.stroke(getPath(self, style: style),
                            with: .color(Color("AccentColor").opacity(0.1)),
@@ -88,6 +86,10 @@ func getPath(_ c: Component, style: SymbolStyle = .IEC) -> Path {
         return Lamp(center: c.position, orientation: c.orientation).path(in: smallRect)
     case "AMP":
         return Amplifier(center: c.position, orientation: c.orientation, style: style).path(in: mediumRect)
+    case "GND":
+        return Ground(center: c.position, orientation: c.orientation).path(in: CGRect(x: c.position.x, y: c.position.y-8, width: 20, height: 16))
+    case "ETH":
+        return Earth(center: c.position, orientation: c.orientation).path(in: CGRect(x: c.position.x, y: c.position.y-8, width: 20, height: 16))
     default:
         print("Type \(c.type) not displayed because not supported")
         return Path.init()
@@ -151,6 +153,42 @@ struct Capacitor: Shape {
         path.addLine(to: CGPoint(x: 33, y: 10))
         path.move(to: CGPoint(x: 33, y: 0))
         path.addLine(to: CGPoint(x: 60, y: 0))
+        return path.direct(center: center, direction: orientation)
+    }
+}
+
+struct Earth: Shape {
+    var center: CGPoint
+    var orientation: Direction
+    var style: SymbolStyle = .IEC
+
+    func path(in rect: CGRect) -> Path {
+        var path = Path()
+        path.move(to: CGPoint.zero)
+        path.addLine(to: CGPoint(x: 10, y: 0))
+        path.move(to: CGPoint(x: 10, y: 8))
+        path.addLine(to: CGPoint(x: 10, y: -8))
+        path.move(to: CGPoint(x: 12.5, y: 6))
+        path.addLine(to: CGPoint(x: 12.5, y: -6))
+        path.move(to: CGPoint(x: 15, y: 4))
+        path.addLine(to: CGPoint(x: 15, y: -4))
+        return path.direct(center: center, direction: orientation)
+    }
+}
+
+struct Ground: Shape {
+    var center: CGPoint
+    var orientation: Direction
+    var style: SymbolStyle = .IEC
+
+    func path(in rect: CGRect) -> Path {
+        var path = Path()
+        path.move(to: CGPoint.zero)
+        path.addLine(to: CGPoint(x: 10, y: 0))
+        path.move(to: CGPoint(x: 10, y: 8))
+        path.addLine(to: CGPoint(x: 10, y: -8))
+        path.addLine(to: CGPoint(x: 20, y: 0))
+        path.addLine(to: CGPoint(x: 10, y: 8))
         return path.direct(center: center, direction: orientation)
     }
 }
@@ -410,6 +448,9 @@ enum Direction {
 
 extension Path {
     func direct(center: CGPoint, direction: Direction) -> Path {
-        return self.offsetBy(dx: -30, dy: 0).applying(CGAffineTransform(rotationAngle: direction.angle)).offsetBy(dx: center.x, dy: center.y)
+        return self
+            .offsetBy(dx: -self.boundingRect.width/2.0, dy: 0)
+            .applying(CGAffineTransform(rotationAngle: direction.angle))
+            .offsetBy(dx: center.x, dy: center.y)
     }
 }
