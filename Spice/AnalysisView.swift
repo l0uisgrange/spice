@@ -29,8 +29,8 @@ struct AnalysisView: View {
             Divider()
             Chart(BatteryData.data, id: \.date) {
                 LineMark(
-                    x: .value("Month", $0.date),
-                    y: .value("Hours of Sunshine", $0.level)
+                    x: .value("", $0.date),
+                    y: .value("", $0.level)
                 ).lineStyle(StrokeStyle(lineWidth: 1))
             }.chartYScale(domain: [0, 1])
             .chartYAxis {
@@ -42,15 +42,5 @@ struct AnalysisView: View {
             .padding(20)
         }.background(Color("CanvasBackground"))
         .scrollContentBackground(.hidden)
-        .navigationTitle("ANALYSIS")
-        .toolbar {
-            ToolbarItem {
-                Button {
-                } label: {
-                    Label("ADD_GRAPH", image: "plus")
-                }.help("ADD_GRAPH")
-            }
-        }.toolbarRole(.automatic)
-        .toolbarBackground(Color("ToolbarBackground"), for: .windowToolbar)
     }
 }
