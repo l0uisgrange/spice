@@ -55,7 +55,8 @@ class Wire: Identifiable {
     init(_ start: CGPoint, _ end: CGPoint) {
         self.start = start
         self.end = end
-        self.path = Line(start: start, end: end).path(in: CGRect(x: start.x, y: start.y, width: max(start.x-end.x, 10), height: max(start.y-start.y, 10)))
+        self.path = Line(start: start, end: end)
+            .path(in: CGRect(x: start.x, y: start.y, width: max(start.x-end.x, 10), height: max(start.y-start.y, 10)))
     }
     let id = UUID()
     var start: CGPoint

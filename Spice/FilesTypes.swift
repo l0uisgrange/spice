@@ -32,17 +32,23 @@ struct SpiceDocument: FileDocument {
             let fileLines = text.components(separatedBy: "\n")
             for line in fileLines {
                 let lineDataset = line.components(separatedBy: " ")
-                guard line.count >= 5 else { continue }
+                guard line.count >= 1 else { continue }
                 switch lineDataset.first {
                 case "*":
                     continue
                 case "W":
-                    guard lineDataset.count == 5 else { continue }
+                    guard lineDataset.count == 5 
+                    else {
+                        throw CocoaError(.fileReadCorruptFile)
+                    }
                     let start = CGPoint(x: Double(lineDataset[1])!, y: Double(lineDataset[2])!)
                     let end = CGPoint(x: Double(lineDataset[3])!, y: Double(lineDataset[4])!)
                     wires.append(Wire(start, end))
                 default:
-                    guard lineDataset.count >= 5 else { continue }
+                    guard lineDataset.count >= 5
+                    else {
+                        throw CocoaError(.fileReadCorruptFile)
+                    }
                     let newComponent = Component(
                         lineDataset[0],
                         position: CGPoint(x: Double(lineDataset[1])!, y: Double(lineDataset[2])!),

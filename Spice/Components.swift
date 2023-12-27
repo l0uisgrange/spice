@@ -111,9 +111,9 @@ struct MenuButton: ButtonStyle {
                     .foregroundStyle(.white)
                     .clipShape(RoundedRectangle(cornerRadius: 7))
                 }.offset(x: alignment == .trailing ? size.width/2.0+45.0 :
-                            alignment == .bottomTrailing ? -size.width/2.0+5.0 : 0.0,
+                            alignment == .bottomTrailing ? -size.width/2.0+6.0 : 0.0,
                          y: alignment == .trailing ? 2 : 50.0)
-                .zIndex(3.0)
+                .zIndex(100.0)
             }
         }.frame(width: 30, height: 30, alignment: .center)
     }
@@ -126,7 +126,7 @@ struct SizeCalculator: ViewModifier {
         content
             .background(
                 GeometryReader { proxy in
-                    Color.clear // we just want the reader to get triggered, so let's use an empty color
+                    Color.clear
                         .onAppear {
                             size = proxy.size
                         }
@@ -138,5 +138,27 @@ struct SizeCalculator: ViewModifier {
 extension View {
     func saveSize(in size: Binding<CGSize>) -> some View {
         modifier(SizeCalculator(size: size))
+    }
+}
+
+struct Release: Decodable {
+    let tag_name: String
+}
+
+struct CanvasConfig {
+    var zoom: Double
+    var temporizedZoom: Double
+    var position: CGPoint
+    var running: Bool
+    
+    init() {
+        self.zoom = 1.5
+        self.temporizedZoom = 0.0
+        self.position = CGPoint.zero
+        self.running = false
+    }
+    
+    var magnifying: Double {
+        return zoom + temporizedZoom
     }
 }

@@ -32,9 +32,31 @@
         }
       }
     },
+    "%lld%%" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld%%"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld%%"
+          }
+        }
+      }
+    },
     "ACVSOURCE" : {
       "extractionState" : "manual",
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "AC Spannungsquelle"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -51,6 +73,12 @@
     },
     "ADD_COMPONENT" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Komponente hinzufügen"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -65,24 +93,14 @@
         }
       }
     },
-    "ADD_GRAPH" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Add a graph"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ajouter un graphe"
-          }
-        }
-      }
-    },
     "alpha" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "alpha"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -100,6 +118,12 @@
     "AMPLIFIER" : {
       "extractionState" : "manual",
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Verstäker"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -114,25 +138,15 @@
         }
       }
     },
-    "ANALYSIS" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Circuit analysis"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Analyse de circuit"
-          }
-        }
-      }
-    },
     "ANSI_IEEE" : {
       "extractionState" : "manual",
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ANSI/IEEE"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -172,6 +186,12 @@
     "CAPACITOR" : {
       "extractionState" : "manual",
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kapazität"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -260,6 +280,12 @@
     },
     "Delete" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Löschen"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -277,6 +303,12 @@
     "DIODE" : {
       "extractionState" : "manual",
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Diode"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -321,6 +353,12 @@
     },
     "Edit" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bearbeiten"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -366,6 +404,12 @@
     },
     "EXPORT_PDF" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Als PDF exportieren"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -382,6 +426,12 @@
     },
     "FOCUS" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zentrieren"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -399,6 +449,12 @@
     "FUSE" : {
       "extractionState" : "manual",
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sicherung"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -415,6 +471,12 @@
     },
     "GitHub" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "GitHub"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -431,6 +493,12 @@
     },
     "GITHUB_PAGE" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "GitHub"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -441,6 +509,29 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "GitHub"
+          }
+        }
+      }
+    },
+    "GRAPH" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Graph"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Graph"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Graphe"
           }
         }
       }
@@ -529,12 +620,15 @@
         }
       }
     },
-    "Hours of Sunshine" : {
-
-    },
     "INDUCTOR" : {
       "extractionState" : "manual",
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Drossel"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -552,6 +646,12 @@
     "ISOURCE" : {
       "extractionState" : "manual",
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Stromquelle"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -569,6 +669,12 @@
     "LAMP" : {
       "extractionState" : "manual",
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lampe"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -583,11 +689,14 @@
         }
       }
     },
-    "Month" : {
-
-    },
     "NO_RESULT" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kein Ergebnis"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -720,7 +829,7 @@
       "localizations" : {
         "de" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Willkommen bei Spice!"
           }
         },
@@ -746,6 +855,12 @@
     },
     "REPORT_BUG" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fehler melden"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -763,6 +878,12 @@
     "RESISTOR" : {
       "extractionState" : "manual",
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Widerstand"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -779,6 +900,12 @@
     },
     "ROTATE" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Drehen"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -795,6 +922,12 @@
     },
     "RUN" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Run"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -811,6 +944,12 @@
     },
     "RUN_SIMULATION" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Run"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -827,6 +966,12 @@
     },
     "SEARCH_COMPONENT" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Suchen"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -871,6 +1016,12 @@
     },
     "SHARE" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Teilen"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -885,8 +1036,41 @@
         }
       }
     },
+    "STOP" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Arrêter"
+          }
+        }
+      }
+    },
+    "STOP_SIMULATION" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Stop"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Arrêter la simulation"
+          }
+        }
+      }
+    },
     "TIP_SIMULATION_DESCRIPTION" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lauf Simulation"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -903,6 +1087,12 @@
     },
     "TIP_SIMULATION_TITLE" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Klicken Sie auf diese Schaltfläche, um Ihre erste Simulation durchzuführen"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -920,6 +1110,12 @@
     "TRANSISTOR" : {
       "extractionState" : "manual",
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Transistor"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -936,6 +1132,12 @@
     },
     "UPDATE_FOOTER" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Die App prüft bei jedem Start automatisch, ob sie auf dem neuesten Stand ist."
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1009,6 +1211,12 @@
     "VSOURCE" : {
       "extractionState" : "manual",
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Spannungsquelle"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1019,23 +1227,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Source de tension"
-          }
-        }
-      }
-    },
-    "WIKI" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Wiki"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Wiki"
           }
         }
       }

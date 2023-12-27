@@ -8,6 +8,7 @@
 import SwiftUI
 import SwiftData
 import UniformTypeIdentifiers
+import QuickLook
 
 @main
 struct SpiceApp: App {
@@ -17,13 +18,13 @@ struct SpiceApp: App {
     @Environment(\.openWindow) var openWindow
     @State private var isPresented: Bool = false
     @State private var searchComponent: Bool = false
-    @State var zoom: Double = 1.5
+    @State var cG: CanvasConfig = CanvasConfig()
     @State var exporting: Bool = true
     @State var editionMode: String = ""
     @State private var document = SpiceDocument(components: [], wires: [])
     var body: some Scene {
         DocumentGroup(newDocument: SpiceDocument(components: [], wires: [])) { configuration in
-            ContentView(document: configuration.$document, zoom: $zoom, addComponent: $searchComponent, editionMode: $editionMode, exporting: $exporting)
+            ContentView(document: configuration.$document, cG: $cG, addComponent: $searchComponent, editionMode: $editionMode, exporting: $exporting)
                 .frame(minWidth: 700, idealWidth: 900, minHeight: 500, idealHeight: 700)
                 .sheet(isPresented: $isPresented) {
                     OnBoardingView(isPresented: $isPresented)
@@ -53,11 +54,16 @@ struct SpiceApp: App {
                 }
                 Divider()
                 Button("ZOOM_IN") {
-                    zoom += 0.5
-                }
+                    cG.zoom += 0.5
+                }.keyboardShortcut("1", modifiers: [.command, .shift])
                 Button("ZOOM_OUT") {
-                    zoom -= 0.5
-                }
+                    cG.zoom -= 0.5
+                }.keyboardShortcut("-", modifiers: [.command])
+                Button("FOCUS") {
+                    cG.zoom = 1.5
+                    cG.temporizedZoom = 0.0
+                    cG.position = CGPoint.zero
+                }.keyboardShortcut(" ", modifiers: [])
                 Divider()
             }
             CommandGroup(after: CommandGroupPlacement.textEditing) {
@@ -69,11 +75,10 @@ struct SpiceApp: App {
                     Text("ADD_COMPONENT")
                 }.keyboardShortcut(".")
                 Button {
-                    
+                    cG.running.toggle()
                 } label: {
-                    Text("RUN_SIMULATION")
+                    Text(cG.running ? "STOP_SIMULATION" : "RUN_SIMULATION")
                 }.keyboardShortcut("R")
-                .disabled(true)
             }
             CommandGroup(after: CommandGroupPlacement.appSettings) {
                 Button {
@@ -105,9 +110,6 @@ struct SpiceApp: App {
         }
         Window("SETTINGS", id: "settings") {
             SettingsView()
-        }.defaultPosition(.center)
-        Window("ANALYSIS", id:"analysis") {
-            AnalysisView()
         }.defaultPosition(.center)
     }
 }

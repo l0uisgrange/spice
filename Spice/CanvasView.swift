@@ -12,9 +12,7 @@ struct CanvasView: View {
     @State private var canvasContentOffset: CGPoint = CGPoint.zero
     @AppStorage("symbolsStyle") private var symbolsStyle: SymbolStyle = .IEC
     @AppStorage("gridStyle") private var gridStyle = 1
-    @Binding var origin: CGPoint
-    @Binding var zoom: Double
-    @State private var currentZoom: Double = 0.0
+    @Binding var cG: CanvasConfig
     @State private var cursorPosition: CGPoint = CGPoint.zero
     @Binding var components: [Component]
     @State var selectedWires: [Wire] = []
@@ -33,41 +31,41 @@ struct CanvasView: View {
             let windowWidth = geometry.size.width
             let windowHeight = geometry.size.height
             context.fill(Path(CGRect(origin: .zero, size: size)), with: .color(Color("CanvasBackground")))
-            context.translateBy(x: windowWidth/2.0 + origin.x + canvasContentOffset.x, y: windowHeight / 2 + origin.y + canvasContentOffset.y)
-            context.scaleBy(x: zoom + currentZoom, y: zoom + currentZoom)
-            context.drawGrid(gridStyle: gridStyle, zoom: zoom + currentZoom)
+            context.translateBy(x: windowWidth/2.0 + cG.position.x + canvasContentOffset.x, y: windowHeight / 2 + cG.position.y + canvasContentOffset.y)
+            context.scaleBy(x: cG.magnifying, y: cG.magnifying)
+            context.drawGrid(gridStyle: gridStyle, zoom: cG.magnifying)
             if editionMode != "" && editionMode != "." {
                 Component(editionMode, position: hoverLocation.alignedPoint, orientation: orientationMode, type: editionMode, value: 0)
-                    .draw(context:context, zoom: currentZoom+zoom, style: symbolsStyle, cursor: hoverLocation)
+                    .draw(context:context, zoom: cG.magnifying, style: symbolsStyle, cursor: hoverLocation)
             }
             for c in components {
                 c.name = c.type
-                c.draw(context: context, zoom: currentZoom + zoom, style: symbolsStyle, cursor: hoverLocation, selected: selectedComponents.contains { $0.id == c.id })
+                c.draw(context: context, zoom: cG.magnifying, style: symbolsStyle, cursor: hoverLocation, selected: selectedComponents.contains { $0.id == c.id })
             }
             for w in wires {
-                context.stroke(w.path, with: selectedWires.contains { $0.id == w.id } ? .color(Color("AccentColor")) : .color(Color("CircuitColor")), lineWidth: 1/(zoom+currentZoom))
+                context.stroke(w.path, with: selectedWires.contains { $0.id == w.id } ? .color(Color("AccentColor")) : .color(Color("CircuitColor")), lineWidth: 1/cG.magnifying)
                 if selectedWires.contains(where: { $0.id == w.id }) {
-                    context.stroke(w.path, with: .color(Color("AccentColor").opacity(0.1)), lineWidth: 5/(zoom+currentZoom))
+                    context.stroke(w.path, with: .color(Color("AccentColor").opacity(0.1)), lineWidth: 5/cG.magnifying)
                 }
             }
             if hoverRect != nil {
-                context.stroke(Path(roundedRect: hoverRect!, cornerRadius: 0), with: .color(Color("SelectionColor")), style: StrokeStyle(lineWidth: 1.2/zoom, dash: [4]))
+                context.stroke(Path(roundedRect: hoverRect!, cornerRadius: 0), with: .color(Color("SelectionColor")), style: StrokeStyle(lineWidth: 1.2/cG.magnifying, dash: [4]))
             }
             if wireBegin != nil {
                 let wire = Wire(wireBegin ?? hoverLocation.alignedPoint, hoverLocation.alignedPoint)
-                context.stroke(wire.path, with: .color(Color("CircuitColor").opacity(0.5)), lineWidth: 1/(zoom+currentZoom))
+                context.stroke(wire.path, with: .color(Color("CircuitColor").opacity(0.5)), lineWidth: 1/cG.magnifying)
             }
         }.focusable()
-        .onKeyPress { result in
+        /*.onKeyPress { result in
             switch result.key {
             case .downArrow:
-                origin.y -= 50/zoom
+                cG.position.y -= 50/cG.magnifying
             case .upArrow:
-                origin.y += 50/zoom
+                cG.position.y += 50/cG.magnifying
             case .rightArrow:
-                origin.x -= 50/zoom
+                cG.position.x -= 50/cG.magnifying
             case .leftArrow:
-                origin.x += 50/zoom
+                cG.position.x += 50/cG.magnifying
             case .escape:
                 print("No more edition")
                 editionMode = ""
@@ -93,13 +91,13 @@ struct CanvasView: View {
                     }
                 }
             case .space:
-                zoom = 1.5
-                origin = CGPoint.zero
+                cG.zoom = 1.5
+                cG.position = CGPoint.zero
             default:
                 print("Key not recognized \(result.key)" )
             }
             return .handled
-        }
+        }*/
         .onTapGesture {
             switch editionMode {
             case "":
@@ -133,8 +131,8 @@ struct CanvasView: View {
         .onContinuousHover(coordinateSpace: .local) { phase in
             switch phase {
             case .active(let location):
-                let y  = -geometry.size.height/(2*(zoom+currentZoom)) + location.y/(zoom+currentZoom) - origin.y/(zoom+currentZoom)
-                let x  = -geometry.size.width/(2*(zoom+currentZoom)) + location.x/(zoom+currentZoom) - origin.x/(zoom+currentZoom)
+                let y  = -geometry.size.height/(2*cG.magnifying) + location.y/cG.magnifying - cG.position.y/cG.magnifying
+                let x  = -geometry.size.width/(2*cG.magnifying) + location.x/cG.magnifying - cG.position.x/cG.magnifying
                 hoverLocation = CGPoint(x: x, y: y)
                 isHovering = true
                 if editionMode != "" {
@@ -158,16 +156,16 @@ struct CanvasView: View {
                                 selectedWires.removeAll()
                                 hoverRect = CGRect(origin: hoverLocation, size: CGSizeZero)
                             } else {
-                                hoverRect?.size.width = gesture.translation.width/zoom
-                                hoverRect?.size.height = gesture.translation.height/zoom
+                                hoverRect?.size.width = gesture.translation.width/cG.magnifying
+                                hoverRect?.size.height = gesture.translation.height/cG.magnifying
                             }
                         }
                     }
                     .onEnded { gesture in
                         if editionMode != "." {
-                            if -2000 + geometry.size.width/2.0 < canvasContentOffset.x + origin.x && canvasContentOffset.x + origin.x < 2000 - geometry.size.width/2.0 && -2000 + geometry.size.height/2.0 < canvasContentOffset.y + origin.y && canvasContentOffset.y + origin.y < 2000 - geometry.size.height/2.0 {
-                                self.origin.x = self.canvasContentOffset.x + self.origin.x
-                                self.origin.y = self.canvasContentOffset.y + self.origin.y
+                            if -2000 + geometry.size.width/2.0 < canvasContentOffset.x + cG.position.x && canvasContentOffset.x + cG.position.x < 2000 - geometry.size.width/2.0 && -2000 + geometry.size.height/2.0 < canvasContentOffset.y + cG.position.y && canvasContentOffset.y + cG.position.y < 2000 - geometry.size.height/2.0 {
+                                cG.position.x += self.canvasContentOffset.x
+                                cG.position.y += self.canvasContentOffset.y
                             }
                             self.canvasContentOffset = CGPoint.zero
                         } else {
