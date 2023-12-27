@@ -12,6 +12,9 @@ Introducing Spice 🌶️, your native macOS electronic circuit simulator. It ri
 
 ## Getting started
 
+> [!IMPORTANT]
+> This project is still under development 👷‍♂️. The first stable and full-featured version will be v1.0.0. If you want to be notified when this version is released, please click on the ⭐️ star of this project.
+
 You can download the [latest version](https://github.com/l0uisgrange/spice/releases/latest) and run it directly.
 
 #### Requirements
