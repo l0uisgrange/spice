@@ -19,7 +19,7 @@ You can download the [latest version](https://github.com/l0uisgrange/spice/relea
 
 ### Requirements
 Spice only runs on 
-- **macOS Sonoma** 14.0+
+- **macOS** 14.0+
 - **iPadOS** 17.2+
 - **iOS** 17.2+
 
