@@ -8,17 +8,23 @@
 
 # Spice circuit simulator
 
-Introducing Spice 🌶️, your native macOS electronic circuit simulator. It rivals legacy softwares 🤮, but with a new, modern interface ⭐️ with easy-to-use features and smooth performance. Totally free and open source.
+Introducing Spice 🌶️, the next-generation electronic circuit simulator. It rivals legacy softwares 🤮, but with a new, modern interface ⭐️ with easy-to-use features and smooth performance. Totally free and open source.
 
 ## Getting started
 
 > [!IMPORTANT]
-> This project is still under development 👷‍♂️. The first stable and full-featured version will be v1.0.0. If you want to be notified when this version is released, please click on the ⭐️ star of this project.
+> This project is still under development 👷‍♂️. The first stable and full-featured version will be v1.0.0. If you want to be notified when this version is released, please click on the ⭐️ star of this project. The v1.0.0 will also be signed and released on the App Store.
 
 You can download the [latest version](https://github.com/l0uisgrange/spice/releases/latest) and run it directly.
 
-#### Requirements
-Spice only runs on **macOS Sonoma** 14.0+ and currently supports the following languages:
+### Requirements
+Spice only runs on 
+- **macOS Sonoma** 14.0+
+- **iPadOS** 17.2+
+- **iOS** 17.2+
+
+and currently supports the following languages:
+
 - 🇩🇰 Danish
 - 🇬🇧 English
 - 🇫🇷 French
