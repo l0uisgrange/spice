@@ -1,4 +1,4 @@
-![](https://img.shields.io/github/downloads/l0uisgrange/spice/total)
+![](https://img.shields.io/github/downloads/l0uisgrange/spice/total?color=blue)
 ![](https://img.shields.io/github/v/release/l0uisgrange/spice?label=production)
 ![](https://img.shields.io/github/v/tag/l0uisgrange/spice?label=development)
 ![](https://img.shields.io/github/issues/l0uisgrange/spice)
