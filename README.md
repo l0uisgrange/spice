@@ -51,7 +51,7 @@ For more information on how this works, see the documentation 📚 [Wiki](https:
 
 ## Suggestions
 
-Check out the following roadmap to see what I'm working on. You can also suggest new features, bug fixes or improvements to existing features by creating a new issue!
+Check out the following roadmap to see what I'm working on. You can also suggest new features, bug fixes or improvements to existing features by creating a [new issue](https://github.com/l0uisgrange/spice/issues/new) or by opening a [new discussion](https://github.com/l0uisgrange/spice/discussions/new?category=ideas)!
 
 - [x] Circuit drawing ✍️
 - [ ] Circuit simulation 🖲️
