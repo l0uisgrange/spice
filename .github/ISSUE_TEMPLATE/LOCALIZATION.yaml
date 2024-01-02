@@ -1,6 +1,5 @@
 name: Translation issue
 description: Help me correct any mistake
-title: ""
 labels: ["localization", "triage"]
 assignees:
   - l0uisgrange
