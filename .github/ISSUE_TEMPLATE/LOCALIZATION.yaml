@@ -1,0 +1,71 @@
+name: Translation issue
+description: Help me correct any mistake
+title: ""
+labels: ["localization", "triage"]
+assignees:
+  - l0uisgrange
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to fill out this report!
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: Also tell us, what did you expect to happen?
+      placeholder: Tell us what you see!
+      value: "A bug happened!"
+    validations:
+      required: true
+  - type: dropdown
+    id: language
+    attributes:
+      label: Active language
+      description: Your active language
+      placeholder: 
+      options:
+      - English (Default)
+      - French
+      - Danish
+      - German
+      - Italian
+    validations:
+      required: true
+  - type: textarea
+    id: behavior
+    attributes:
+      label: What text is wrong?
+      description: fwef
+      placeholder: 
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: What is the correct translation?
+      description: 
+      placeholder: Tell us what you see!
+    validations:
+      required: true
+  - type: dropdown
+    id: version
+    attributes:
+      label: Version
+      description: What version of our software are you running?
+      options:
+        - 1.0.0
+        - 0.7.0
+        - 0.6.1
+        - 0.6.0
+        - 0.5.1
+        - 0.5.0
+        - 0.4.1
+        - 0.4.0
+        - 0.3.0
+        - 0.2.1
+        - 0.2.0
+        - 0.1.0
+      default: 0
+    validations:
+      required: true
