@@ -2,7 +2,7 @@ name: Translation issue
 description: Help me correct any mistake
 labels: ["localization", "triage"]
 assignees:
-  - l0uisgrange
+  - octocat
 body:
   - type: markdown
     attributes:
