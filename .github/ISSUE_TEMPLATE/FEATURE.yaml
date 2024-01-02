@@ -1,6 +1,5 @@
 name: Feature request
-description: Suggest an idea for this project
-title: "[Bug]: "
+description: New feature request for this project
 labels: ["enhancement", "triage"]
 assignees:
   - l0uisgrange
@@ -21,6 +20,6 @@ body:
     id: suggestion
     attributes:
       label: Feature presentation
-      description: 
+      description: Explain your idea and convince me to include it in a future release!
     validations:
       required: true
