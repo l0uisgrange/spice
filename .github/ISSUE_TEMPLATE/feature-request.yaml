@@ -1,0 +1,26 @@
+name: Feature request
+description: Suggest an idea for this project
+title: "[Bug]: "
+labels: ["enhancement", "triage"]
+assignees:
+  - l0uisgrange
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to fill out this feature request! I look forward to reading your brilliant idea!
+  - type: input
+    id: contact
+    attributes:
+      label: Contact details
+      description: How can I get in touch with you if I need more info?
+      placeholder: ex. email@example.com
+    validations:
+      required: false
+  - type: textarea
+    id: suggestion
+    attributes:
+      label: Feature presentation
+      description: 
+    validations:
+      required: true
