@@ -12,7 +12,7 @@ body:
     id: language
     attributes:
       label: Language
-      description: What language are you using?
+      description: Which language do you use?
       options:
       - English (Default)
       - French
