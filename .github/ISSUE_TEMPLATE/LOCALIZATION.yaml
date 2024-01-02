@@ -22,7 +22,6 @@ body:
     attributes:
       label: Active language
       description: Your active language
-      placeholder: 
       options:
       - English (Default)
       - French
